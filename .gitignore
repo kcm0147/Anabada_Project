@@ -35,3 +35,5 @@ backend//.nb-gradle/
 
 ### VS Code ###
 backend/.vscode/
+
+.DS_Store
