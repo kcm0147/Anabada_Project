@@ -6,7 +6,9 @@ export default function Navbar() {
 
     return (
         <nav className='nav-style'>
-            <img src={Logoimage} alt='LOGO' className='nav-logo'></img>
+            <div>
+                <img src={Logoimage} alt='LOGO' className='nav-logo'></img>
+            </div>
             <div className='nav-searchbar'>
                 <input className='nav-searchinput' type='text' placeholder='관심있는 경매품을 검색해보세요!'></input>
             </div>
