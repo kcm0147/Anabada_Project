@@ -1,6 +1,6 @@
 import Footer from 'components/Footer'
 import Slidebox from 'components/home/Slidebox'
-import Navbar from 'components/Navbar.js'
+import Navbar from 'components/Navbar'
 
 export default function Homeview() {
     return (

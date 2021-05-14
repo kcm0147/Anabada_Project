@@ -1,0 +1,10 @@
+
+.sidebar-main-box {
+    height: 100%;
+    width: 200px;
+    background-color: rgb(218, 205, 205);
+    position: fixed;
+    right: -200px;
+    z-index: 999;
+    transition: all 0.5s;
+}
