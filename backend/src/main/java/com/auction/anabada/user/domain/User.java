@@ -1,6 +1,7 @@
 package com.auction.anabada.user.domain;
 
 
+import com.auction.anabada.buyItem.domain.BuyItem;
 import com.auction.anabada.saleItem.domain.SaleItem;
 import java.util.ArrayList;
 import java.util.List;

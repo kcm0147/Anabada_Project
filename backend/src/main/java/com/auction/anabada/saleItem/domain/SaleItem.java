@@ -1,23 +1,25 @@
-package com.auction.anabada.domain;
+package com.auction.anabada.saleItem.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import com.auction.anabada.item.domain.Item;
+import com.auction.anabada.user.domain.User;
+import javax.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
-@NoArgsStructor
+@NoArgsConstructor
 public class SaleItem {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name="sale_item_id")
-    Long id;
+    private Long saleItemId;
 
     @OneToOne(mappedBy = "saleItem")
-    Item item;
+    private Item item;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    User seller;
+    private User seller;
 }

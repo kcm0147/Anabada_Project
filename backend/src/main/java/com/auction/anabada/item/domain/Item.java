@@ -1,14 +1,14 @@
-package com.auction.anabada.domain;
+package com.auction.anabada.item.domain;
 
+import com.auction.anabada.buyItem.domain.BuyItem;
+import com.auction.anabada.saleItem.domain.SaleItem;
+import java.util.ArrayList;
 import java.util.Date;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import org.springframework.data.annotation.Id;
+import java.util.List;
+import javax.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 
 @Entity
 @Getter
@@ -17,7 +17,7 @@ public class Item {
 
     @Id @GeneratedValue
     @Column(name="item_id")
-    private long id;
+    private long itemId;
 
     private String itemName;
     private String category;
