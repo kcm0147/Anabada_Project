@@ -1,20 +1,21 @@
 import { useRef } from 'react'
-import 'assets/css/navbar.css'
+import 'assets/css/navbar.scss'
 import Logoimage from 'assets/image/logo.png'
 import { BsFillPersonLinesFill } from "react-icons/bs";
-import Sidebar from 'components/Sidebar'
+import Mymenu from 'components/nav/Mymenu'
 
 export default function Navbar() {
 
-    const SidebarRef = useRef()
+    const myMenuRef = useRef()
 
     const onClickMyProfile = () => {
-        SidebarRef.current.style.right = '0px'
+        console.log(myMenuRef.current.style.opacity)
+        myMenuRef.current.style.opacity = ((myMenuRef.current.style.opacity === '0' || myMenuRef.current.style.opacity === '') ? '1' : '0')
+        console.log(myMenuRef.current.style.opacity)
     }
 
     return (
         <>
-            <Sidebar sidebarref={SidebarRef} />
             <nav className='nav-style'>
                 <div>
                     <img src={Logoimage} alt='LOGO' className='nav-logo'></img>
@@ -22,11 +23,9 @@ export default function Navbar() {
                 <div className='nav-searchbar'>
                     <input className='nav-searchinput' type='text' placeholder='관심있는 경매품을 검색해보세요!'></input>
                 </div>
-                <div className='myprofile-icon' onClick={onClickMyProfile}>
-                    <BsFillPersonLinesFill style={{
-                        width: '160%',
-                        height: '160%'
-                    }} />
+                <div className='myprofile-icon'>
+                    <BsFillPersonLinesFill id='mymenu-icon-img' onClick={onClickMyProfile} />
+                    <Mymenu myMenuRef={myMenuRef} />
                 </div>
             </nav>
         </>

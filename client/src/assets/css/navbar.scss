@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1%;
+    padding-top: 1%;
     height: 5vh;
 }
 
@@ -40,7 +40,19 @@
 
 .myprofile-icon {
     margin-top: 1%;
-    padding: 2%;
+    padding: 0 20px;
+}
+
+#mymenu-icon-img {
+    width : 30px;
+    height : 30px;
+    padding : 5px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(221, 161, 151);
+    border-radius: 10px;
     cursor: pointer;
-    color: rgb(189, 108, 108);
+
+    &:hover {
+        background-color: rgb(207, 115, 115);
+    }
 }
