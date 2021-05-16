@@ -5,7 +5,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import org.springframework.data.annotation.Id;
 
 @Entity
@@ -26,7 +28,8 @@ public class Item {
     private String itemImage;
     private long interests;
 
-    @OneToOne(mappedBy = "item")
+    @OneToOne
+    @JoinColumn(name = "sale_item_id")
     private SaleItem saleItem;
 
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
