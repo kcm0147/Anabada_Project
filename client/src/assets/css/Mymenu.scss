@@ -1,0 +1,28 @@
+ol {
+    background-color: rgb(105, 102, 102);
+    right: 10px;
+    position: absolute;
+    list-style: none;
+    z-index: 100;
+    opacity: 0;
+    width: 200px;
+    text-align: center;
+    padding : 5px;
+    border-radius: 5px;
+    transition : all 0.5s;
+}
+
+li {
+    margin: 10px 0px;
+    padding-bottom: 10px;
+    padding-top: 5px;
+    border-bottom: rgb(190, 190, 190) 1px solid;
+    color: white;
+    font-weight: 550;
+
+    span {
+        position: absolute;
+        right: 10px;
+        font-weight: 700;
+    }
+}
