@@ -1,4 +1,4 @@
-ol {
+#mymenu {
     background-color: rgb(105, 102, 102);
     right: 10px;
     position: absolute;
@@ -12,7 +12,7 @@ ol {
     transition : all 0.5s;
 }
 
-li {
+#mymenu li {
     margin: 10px 0px;
     padding-bottom: 10px;
     padding-top: 5px;

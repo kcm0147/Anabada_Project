@@ -3,7 +3,7 @@ import 'assets/css/Mymenu.scss'
 export default function Mymenu(props) {
 
     return (
-        <ol ref={props.myMenuRef}>
+        <ol id='mymenu' ref={props.myMenuRef}>
             <li>
                 경매 참여 현황
                 <span>&#62;</span>
