@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class User {
 
-
     @Id
     @GeneratedValue
     @Column(name = "user_id")
@@ -28,7 +27,7 @@ public class User {
 
     private Category interest;
 
-    @OneToMany(mappedBy="item")
+    @OneToMany(mappedBy="user")
     private List<BuyItem> buyItems;
 
     @OneToMany(mappedBy="user")
