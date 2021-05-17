@@ -35,9 +35,9 @@ public class UserApiController {
     }
 
     @GetMapping("/api/user/checkSession")
-    public long checkSession(HttpServletRequest req){
+    public Long checkSession(HttpServletRequest req){
         Object userId = req.getSession().getAttribute("userId");
-        return (long)userId;
+        return (Long)userId;
     }
 
     @PostMapping("/api/user/login")

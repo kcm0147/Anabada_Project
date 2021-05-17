@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @RequiredArgsConstructor
+@Transactional
 public class BuyItemRepository {
 
     private final EntityManager em;
@@ -25,13 +26,13 @@ public class BuyItemRepository {
             .getResultList();
     }
 
-    public long save(BuyItem buyItem) {
+    public Long save(BuyItem buyItem) {
         if(buyItem.getBuyItemId()==null) {
             em.persist(buyItem);
             return buyItem.getBuyItemId();
         }
 
-        return -1;
+        return null;
     }
 
     public void remove(BuyItem deleteBuyItem) {

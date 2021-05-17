@@ -19,14 +19,14 @@ public class BuyItemApiController {
 
     @ApiOperation(value="입찰하기", notes="item ID를 입력하여 해당 물품을 입찰한다.")
     @GetMapping("/api/buyItem/add/{itemId}")
-    public long addBuyItem(@PathVariable(name="itemId") Long itemId, HttpServletRequest req){
-        long userId = (long)req.getSession().getAttribute("userId");
+    public Long addBuyItem(@PathVariable(name="itemId") Long itemId, HttpServletRequest req){
+        Long userId = (Long)req.getSession().getAttribute("userId");
         return buyItemService.makeBid(userId, itemId);
     }
 
     @ApiOperation(value="입찰 수정", notes="item ID를 입력하여 해당 물품의 입찰 정보를 수정한다.")
     @PutMapping("/api/buyItem/update/{itemId}")
-    public long updateBuyItem(BidsDto bidsDto){
+    public Long updateBuyItem(BidsDto bidsDto){
         return buyItemService.update(bidsDto);
     }
 }
