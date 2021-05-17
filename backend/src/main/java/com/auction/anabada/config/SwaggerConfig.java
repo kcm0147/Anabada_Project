@@ -1,4 +1,4 @@
-package com.gongsung.gallery.config;
+package com.auction.anabada.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
