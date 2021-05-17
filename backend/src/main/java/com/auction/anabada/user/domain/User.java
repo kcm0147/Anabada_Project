@@ -1,6 +1,5 @@
 package com.auction.anabada.user.domain;
 
-
 import com.auction.anabada.buyItem.domain.BuyItem;
 import com.auction.anabada.saleItem.domain.SaleItem;
 import java.util.List;
@@ -26,6 +25,9 @@ public class User {
     private String password;
     private String address;
 
+    @Lob @Basic(fetch = FetchType.EAGER)
+    private String profileImage;
+
     private Category interest;
 
     @OneToMany(mappedBy="buyer")
@@ -44,6 +46,4 @@ public class User {
         this.address = address;
         this.interest = interest;
     }
-
-
 }
