@@ -1,5 +1,5 @@
 ul {
-    margin-top: 10vh;
+    margin-top: 11vh;
 }
 
 .slidebox{
@@ -14,15 +14,16 @@ ul {
 }
 
 .slide-list{
-    white-space: nowrap;
     padding-left: 0;
     list-style: none;
     overflow: hidden;
+    width: 300vw;
 }
 
 .slide-item{
+    float: left;
     display: inline-block;
-    width: 100%;
+    width: 100vw;
     height: 75vh;
 }
 
