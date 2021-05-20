@@ -1,5 +1,6 @@
 package com.auction.anabada.buyItem.dto;
 
+import com.auction.anabada.user.domain.Category;
 import java.time.LocalDateTime;
 import java.util.Date;
 import lombok.Builder;
@@ -14,7 +15,7 @@ public class BidsDto {
     private Long interestCnt;
     private long itemId;
     private String itemName;
-    private String category;
+    private Category category;
     private long lowerBoundPrice;
     private long currentPrice;
     private LocalDateTime auctionStartDate;
@@ -22,7 +23,7 @@ public class BidsDto {
     private String itemImage;
 
     @Builder
-    public BidsDto(Long interestCnt, long itemId, String itemName, String category,
+    public BidsDto(Long interestCnt, long itemId, String itemName, Category category,
         long lowerBoundPrice, long currentPrice, LocalDateTime auctionStartDate, LocalDateTime auctionEndDate,
         String itemImage) {
         this.interestCnt = interestCnt;
