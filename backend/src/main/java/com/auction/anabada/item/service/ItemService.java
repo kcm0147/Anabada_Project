@@ -3,6 +3,8 @@ package com.auction.anabada.item.service;
 import com.auction.anabada.item.domain.Item;
 import com.auction.anabada.item.dto.EnrollItemDto;
 import com.auction.anabada.item.repository.ItemRepository;
+import com.auction.anabada.user.domain.Category;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,5 +26,17 @@ public class ItemService {
 
     public Item findById(Long id) {
         return itemRepository.findById(id);
+    }
+
+    public List<Item> findAll(){
+        return itemRepository.findAll();
+    }
+
+    public List<Item> findWithCategory(List<Category> categories) {
+        return itemRepository.findWithCategory(categories);
+    }
+
+    public List<Item> findWithItemName(String includedName){
+        return itemRepository.findWithItemName(includedName);
     }
 }
