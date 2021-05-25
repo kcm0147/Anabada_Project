@@ -37,6 +37,7 @@ public class UserRepository {
 
     @Transactional(readOnly = true)
     public List<User> findByAccountId(String accountId) {
+        System.out.println(accountId);
         return em.createQuery("select u from User u where u.accountId = :accountId", User.class)
             .setParameter("accountId", accountId)
             .getResultList();

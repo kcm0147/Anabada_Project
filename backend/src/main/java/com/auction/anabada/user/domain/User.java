@@ -28,6 +28,7 @@ public class User {
     @Lob @Basic(fetch = FetchType.EAGER)
     private String profileImage;
 
+    @Enumerated(value = EnumType.STRING)
     private Category interest;
 
     @OneToMany(mappedBy="buyer")

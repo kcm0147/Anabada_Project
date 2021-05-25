@@ -23,13 +23,16 @@ public class Item {
     private Long itemId;
 
     private String itemName;
+
+    @Enumerated(EnumType.STRING)
     private Category category;
+
     private Long lowerBoundPrice;
     private Long currentPrice;
     private LocalDateTime auctionStartDate;
     private LocalDateTime auctionEndDate;
     private String itemImage;
-    private Long interests;
+    private Long interestCnt;
 
     @OneToOne
     @JoinColumn(name = "sale_item_id")
@@ -51,9 +54,8 @@ public class Item {
         item.auctionEndDate=LocalDateTime.parse(enrollItemDto.getAuctionEndDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         item.lowerBoundPrice=enrollItemDto.getLowerBoundPrice();
         item.currentPrice=item.lowerBoundPrice;
-        item.interests=0L;
+        item.interestCnt=0L;
 
         return item;
     }
-
 }
