@@ -3,12 +3,13 @@ package com.auction.anabada.biddetail.dto;
 //== 입찰 조회용(상) DTO ==//세
 
 import com.auction.anabada.user.domain.Category;
-import javax.persistence.Entity;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Entity
+
 @Data
+@NoArgsConstructor
 public class DetailBidsDto {
 
     private Long itemId;

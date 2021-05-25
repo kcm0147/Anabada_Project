@@ -3,7 +3,7 @@ package com.auction.anabada.buyItem.domain;
 import com.auction.anabada.biddetail.domain.BidDetail;
 import com.auction.anabada.item.domain.Item;
 import com.auction.anabada.user.domain.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,9 +35,8 @@ public class BuyItem {
     @JoinColumn(name="user_id")
     private User buyer;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "buyItem")
-    private List<BidDetail> bidDetails;
+    private List<BidDetail> bidDetails=new ArrayList<>();
 
 
     public BuyItem(User user, Item item){
