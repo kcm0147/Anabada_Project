@@ -1,7 +1,6 @@
 package com.auction.anabada.buyItem.service;
 
 import com.auction.anabada.buyItem.domain.BuyItem;
-import com.auction.anabada.buyItem.dto.BidsDto;
 import com.auction.anabada.buyItem.repository.BuyItemRepository;
 import com.auction.anabada.item.domain.Item;
 import com.auction.anabada.item.service.ItemService;
@@ -28,7 +27,7 @@ public class BuyItemService {
         return buyItemRepository.save(buyItem);
     }
 
-    public long update(BidsDto bidsDto) {
-        return bidsDto.getItemId();
-    }
+//    public long update(BidsDto bidsDto) {
+//        return bidsDto.getItemId();
+//    }
 }
