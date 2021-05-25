@@ -1,7 +1,6 @@
 package com.auction.anabada.biddetail.domain;
 
 import com.auction.anabada.buyItem.domain.BuyItem;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,6 +29,13 @@ public class BidDetail {
     @ManyToOne
     @JoinColumn(name="buy_item_id")
     private BuyItem buyItem;
+
+    public BidDetail(BuyItem buyItem,Long bidCost){
+        setBuyItem(buyItem);
+        this.bidCost=bidCost;
+        this.bidTime=LocalDateTime.now();
+        this.result=false;
+    }
 
     public void setBuyItem(BuyItem buyItem){
         if(this.buyItem!=null){
