@@ -23,8 +23,10 @@ public class UserDto {
     private String address;
     private Category interest;
 
+
     //private List<BuyItem> buyItems;
     //private List<SaleItem> saleItems;
+
 
     public UserDto(User user) {
         this.userId = user.getUserId();
@@ -35,6 +37,7 @@ public class UserDto {
         this.profileImage = user.getProfileImage();
         this.address = user.getAddress();
         this.interest = user.getInterest();
+
         //buyItems = user.getBuyItems();
         //saleItems = user.getSaleItems();
     }

@@ -1,6 +1,9 @@
 package com.auction.anabada.user.api;
 
-import com.auction.anabada.buyItem.dto.BidsDto;
+import com.auction.anabada.biddetail.domain.BidDetail;
+import com.auction.anabada.biddetail.dto.DetailBidsDto;
+import com.auction.anabada.biddetail.dto.SimpleBidsDto;
+import com.auction.anabada.biddetail.service.BidService;
 import com.auction.anabada.item.domain.Item;
 import com.auction.anabada.user.domain.User;
 import com.auction.anabada.user.dto.LoginRequestDto;
@@ -8,6 +11,7 @@ import com.auction.anabada.user.dto.SignupRequestDto;
 import com.auction.anabada.user.dto.UserDto;
 import com.auction.anabada.user.service.UserService;
 import io.swagger.annotations.ApiOperation;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,6 +22,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -25,6 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserApiController {
 
     private final UserService userService;
+    private final BidService bidService;
 
     @GetMapping("/api/user/all")
     public List<UserDto> showAll(){
@@ -75,29 +81,46 @@ public class UserApiController {
         return userDto;
     }
 
-    @ApiOperation(value="입찰내역 확인", notes="회원이 입찰한 내역을 조회한다.")
-    @GetMapping("/api/user/bids")
-    public List<BidsDto> getCurrentBidDto(HttpServletRequest req){
+    @ApiOperation(value="입찰내역 확인", notes="회원이 입찰한 내역을 아이템당 마지막 내역 조회")
+    @GetMapping("/api/user/simplebids")
+    public List<SimpleBidsDto> getCurrentSimpleBidDto(HttpServletRequest req){
         Long userId = (Long)req.getSession().getAttribute("userId");
         User user = userService.findById(userId);
 
-        List<BidsDto> itemDtoList = new ArrayList<>();
+        List<SimpleBidsDto> itemDtoList = new ArrayList<>();
         user.getBuyItems().forEach(o -> {
             Item item = o.getItem();
-            BidsDto bidsDto = BidsDto.builder()
-                .interestCnt(item.getInterestCnt())
+            BidDetail lastBidDetail = o.getBidDetails().get(o.getBidDetails().size()-1);
+            String lastTime=lastBidDetail.getBidTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            SimpleBidsDto bidsDto = SimpleBidsDto.builder()
                 .itemId(item.getItemId())
+                .buyItemId(o.getBuyItemId())
                 .itemName(item.getItemName())
                 .category(item.getCategory())
-                .lowerBoundPrice(item.getLowerBoundPrice())
-                .currentPrice(item.getCurrentPrice())
-                .auctionStartDate(item.getAuctionStartDate())
-                .auctionEndDate(item.getAuctionEndDate())
                 .itemImage(item.getItemImage())
+                .lastPrice(lastBidDetail.getBidCost())
+                .lastAuctionDate(lastTime)
+                .result(lastBidDetail.getResult())
                 .build();
 
             itemDtoList.add(bidsDto);
         });
         return itemDtoList;
     }
+
+    @ApiOperation(value="입찰 세부내역확", notes="회원이 입찰한 아이템에 대한 세부 내역 조회(buyItemId)")
+    @GetMapping("/api/user/{buyItemId}")
+    public List<DetailBidsDto> getCurrentDetailBidDto(HttpServletRequest req,@RequestParam("buyItemId") Long buyItemId) {
+
+        Long userId = (Long) req.getSession().getAttribute("userId");
+        User user = userService.findById(userId);
+
+        List<DetailBidsDto> bidDetails = bidService.findBidDetails(userId, buyItemId);
+
+        if (bidDetails != null)
+            return bidDetails;
+        else
+            return null;
+    }
+
 }
