@@ -123,4 +123,11 @@ public class UserApiController {
             return null;
     }
 
+    //== 비밀번호 변경 기능 ==//
+    @ApiOperation(value="비밀번호 변경", notes = "새로운 비밀번호로 변경할 수 있다.")
+    @PostMapping("/api/user/profile/password")
+    public void changePassowrd(HttpServletRequest req, @RequestBody @Valid String newPassword){
+        Long userId = (Long) req.getSession().getAttribute("userId");
+        userService.changePassword(userId, newPassword);
+    }
 }
