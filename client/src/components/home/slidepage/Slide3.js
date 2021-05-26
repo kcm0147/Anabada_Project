@@ -14,7 +14,7 @@ export default function Slide1() {
                     내 소장품들을 더 높은 가치로 평가받아보세요
                 </div>
             </div>
-            <img src={Slide3Img} />
+            <img src={Slide3Img} alt='slide3-img' />
         </div>
     );
 }

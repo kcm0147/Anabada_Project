@@ -8,10 +8,20 @@
     justify-content: center;
 }
 
+#sub-item-section {
+    width: 85%;
+    text-align: center;
+}
+
 #main-title {
     color: rgb(93, 88, 88);
+    margin-bottom: 20px;
     font: {
         weight: 750;
         size: 1.8rem;
     }
+}
+
+#row-style {
+    width: 100%;
 }
