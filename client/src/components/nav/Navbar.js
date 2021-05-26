@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import 'assets/css/navbar.scss'
 import Logoimage from 'assets/image/logo.png'
 import { BsFillPersonLinesFill } from "react-icons/bs";
+import { BiSearchAlt } from "react-icons/bi"
 import Mymenu from 'components/nav/Mymenu'
 
 export default function Navbar() {
@@ -23,6 +24,7 @@ export default function Navbar() {
                 </div>
                 <div className='nav-searchbar'>
                     <input className='nav-searchinput' type='text' placeholder='관심있는 경매품을 검색해보세요!'></input>
+                    <BiSearchAlt id='input-search-btn' />
                 </div>
                 <div className='myprofile-icon'>
                     <BsFillPersonLinesFill id='mymenu-icon-img' onClick={onClickMyProfile} />
