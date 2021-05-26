@@ -2,6 +2,7 @@ package com.auction.anabada.item.api;
 
 import com.auction.anabada.item.domain.Item;
 import com.auction.anabada.item.dto.EnrollItemDto;
+import com.auction.anabada.item.dto.ItemDto;
 import com.auction.anabada.item.service.ItemService;
 import com.auction.anabada.user.domain.Category;
 import io.swagger.annotations.ApiOperation;
@@ -44,6 +45,14 @@ public class ItemApiController {
     public List<EnrollItemDto> getItemByName(@RequestBody String includedName){
         return itemService.findWithItemName(includedName)
             .stream().map(i -> new EnrollItemDto(i))
+            .collect(Collectors.toList());
+    }
+
+    @ApiOperation(value="인기 경매품 조회", notes="인기도 기준 상위 8개 상품을 조회한다.")
+    @PostMapping("/api/item/best8")
+    public List<ItemDto> getBest8Items(){
+        return itemService.findBest8Items()
+            .stream().map(i-> new ItemDto(i))
             .collect(Collectors.toList());
     }
 }
