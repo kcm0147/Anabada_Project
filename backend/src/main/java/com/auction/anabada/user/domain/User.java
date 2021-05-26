@@ -47,4 +47,16 @@ public class User {
         this.address = address;
         this.interest = interest;
     }
+
+    public void changePassword(String newPassword) {
+        this.password = newPassword;
+    }
+
+    public void changeProfileImage(String newProfileImg){
+        this.profileImage = newProfileImg;
+    }
+
+    public void changeAddress(String newAddress){
+        this.address = newAddress;
+    }
 }
