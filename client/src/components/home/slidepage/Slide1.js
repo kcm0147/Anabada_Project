@@ -14,7 +14,7 @@ export default function Slide1() {
                     아나바다 경매 시스템에서 만나보세요
                 </div>
             </div>
-            <img src={Slide1Img} />
+            <img src={Slide1Img} alt='slide1-img' />
         </div>
     );
 }

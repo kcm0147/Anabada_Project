@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { Link } from 'react-router-dom'
 import 'assets/css/navbar.scss'
 import Logoimage from 'assets/image/logo.png'
 import { BsFillPersonLinesFill } from "react-icons/bs";
@@ -18,7 +19,7 @@ export default function Navbar() {
         <>
             <nav className='nav-style'>
                 <div>
-                    <img src={Logoimage} alt='LOGO' className='nav-logo'></img>
+                    <Link to='/'><img src={Logoimage} alt='LOGO' className='nav-logo'></img></Link>
                 </div>
                 <div className='nav-searchbar'>
                     <input className='nav-searchinput' type='text' placeholder='관심있는 경매품을 검색해보세요!'></input>

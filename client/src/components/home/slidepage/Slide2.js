@@ -4,7 +4,7 @@ import Slide2Img from 'assets/image/slide2.svg'
 export default function Slide1() {
     return (
         <div className='entire-slide2'>
-            <img src={Slide2Img} />
+            <img src={Slide2Img} alt='slide2-img' />
             <div>
                 <div id='title'>
                     실시간 경매 시스템으로 보다 공정하게
