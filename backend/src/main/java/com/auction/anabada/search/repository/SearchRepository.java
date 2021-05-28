@@ -14,8 +14,11 @@ public class SearchRepository {
     private final EntityManager em;
 
     public List<Search> findTop8SearchCount(){
-        String sql = "select s from Search s where rownum <= 8 order by s.count desc";
-        return em.createQuery(sql, Search.class).getResultList();
+        String sql = "select s from Search s order by s.count desc";
+        return em.createQuery(sql, Search.class)
+            .setFirstResult(0)
+            .setMaxResults(8)
+            .getResultList();
     }
 
     @Transactional

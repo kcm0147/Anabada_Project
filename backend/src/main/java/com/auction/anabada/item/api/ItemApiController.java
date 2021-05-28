@@ -40,7 +40,7 @@ public class ItemApiController {
             .collect(Collectors.toList());
     }
 
-    @ApiOperation(value="상품 이름 검색", notes = "입력한 이름이 포함된 상품을 조회한다. 스트링 형태로 상품 이름에 포함될 단어를 전송한다.")
+    @ApiOperation(value="상품 이름 검색", notes = "입력한 이름이 포함된 상품을 조회한다. 쌍따옴표 없는 스트링 형태로 상품 이름에 포함될 단어를 전송한다.")
     @PostMapping("/api/item/name")
     public List<EnrollItemDto> getItemByName(@RequestBody String includedName){
         return itemService.findWithItemName(includedName)

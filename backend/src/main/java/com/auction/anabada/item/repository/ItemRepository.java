@@ -51,13 +51,18 @@ public class ItemRepository {
 
     @Transactional(readOnly = true)
     public List<Item> findWithItemName(String includedName){
-        String sql = "select i from Item i where i.itemName LIKE '%" + includedName + "%'";
-        return em.createQuery(sql, Item.class).getResultList();
+        String sql = "select i from Item i where i.itemName LIKE :includedName";
+        return em.createQuery(sql, Item.class)
+            .setParameter("includedName", "%" + includedName + "%")
+            .getResultList();
     }
 
     @Transactional(readOnly = true)
     public List<Item> findBest8Items() {
-        String sql = "select i from Item i WHERE rownum <= 8 ORDER BY i.interestCnt desc ";
-        return em.createQuery(sql, Item.class).getResultList();
+        String sql = "select i from Item i ORDER BY i.interestCnt desc ";
+        return em.createQuery(sql, Item.class)
+            .setFirstResult(0)
+            .setMaxResults(8)
+            .getResultList();
     }
 }
