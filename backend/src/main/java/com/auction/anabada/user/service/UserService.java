@@ -41,7 +41,13 @@ public class UserService {
     }
 
     public UserDto login(LoginRequestDto req,  HttpSession session) {
-        User account = userRepository.findByAccountId(req.getAccountId()).get(0);
+        List<User> byAccountId = userRepository.findByAccountId(req.getAccountId());
+
+        if(byAccountId.isEmpty()){
+            return null;
+        }
+
+        User account=byAccountId.get(0);
 
         if(!account.getPassword().equals(req.getPassword())){
             return null;
