@@ -7,6 +7,6 @@ export default function UserReducer(state = { data: null }, action) {
         case LOGOUT:
             return { ...state, data: null }
         default:
-            return { ...state, data: null }
+            return state
     }   //추후 reducer 내용 바뀔 수 있음
 }
