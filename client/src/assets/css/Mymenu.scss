@@ -12,13 +12,22 @@
     transition : all 0.5s;
 }
 
+.link-style {
+    text-decoration: none;
+}
+
 #mymenu li {
     margin: 10px 0px;
     padding-bottom: 10px;
     padding-top: 5px;
     border-bottom: rgb(190, 190, 190) 1px solid;
     color: white;
-    font-weight: 550;
+    font-weight: 650;
+
+    &:hover {
+        font-weight: 900;
+        color: rgb(195, 205, 50);
+    }
 
     span {
         position: absolute;

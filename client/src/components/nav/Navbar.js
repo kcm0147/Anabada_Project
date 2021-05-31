@@ -1,19 +1,20 @@
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import 'assets/css/navbar.scss'
 import Logoimage from 'assets/image/logo.png'
 import { BsFillPersonLinesFill } from "react-icons/bs";
 import { BiSearchAlt } from "react-icons/bi"
 import Mymenu from 'components/nav/Mymenu'
+import Loginmenu from 'components/nav/Loginmenu'
 
 export default function Navbar() {
 
     const myMenuRef = useRef()
+    const userInfo = useSelector(state => state.UserReducer.data)
 
     const onClickMyProfile = () => {
-        console.log(myMenuRef.current.style.opacity)
         myMenuRef.current.style.opacity = ((myMenuRef.current.style.opacity === '0' || myMenuRef.current.style.opacity === '') ? '1' : '0')
-        console.log(myMenuRef.current.style.opacity)
     }
 
     return (
@@ -28,7 +29,7 @@ export default function Navbar() {
                 </div>
                 <div className='myprofile-icon'>
                     <BsFillPersonLinesFill id='mymenu-icon-img' onClick={onClickMyProfile} />
-                    <Mymenu myMenuRef={myMenuRef} />
+                    {(userInfo === null) ? <Loginmenu myMenuRef={myMenuRef} /> : <Mymenu myMenuRef={myMenuRef} />}
                 </div>
             </nav>
         </>
