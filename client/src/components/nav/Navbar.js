@@ -8,7 +8,7 @@ import { BiSearchAlt } from "react-icons/bi"
 import Mymenu from 'components/nav/Mymenu'
 import Loginmenu from 'components/nav/Loginmenu'
 
-export default function Navbar() {
+export default function Navbar({ match }) {
 
     const myMenuRef = useRef()
     const userInfo = useSelector(state => state.UserReducer.data)
@@ -29,7 +29,7 @@ export default function Navbar() {
                 </div>
                 <div className='myprofile-icon'>
                     <BsFillPersonLinesFill id='mymenu-icon-img' onClick={onClickMyProfile} />
-                    {(userInfo === null) ? <Loginmenu myMenuRef={myMenuRef} /> : <Mymenu myMenuRef={myMenuRef} />}
+                    {(userInfo === null) ? <Loginmenu myMenuRef={myMenuRef} /> : <Mymenu myMenuRef={myMenuRef} match={match} />}
                 </div>
             </nav>
         </>
