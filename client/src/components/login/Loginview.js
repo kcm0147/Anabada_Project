@@ -31,10 +31,7 @@ export default function Loginview() {
         })
             .then((res) => {
                 if (res.data === "") alert("잘못된 로그인 정보입니다")
-                else {
-                    dispatch(login(res.data))
-                    console.log("hi")
-                }
+                else dispatch(login(res.data))
             })
     }
 
