@@ -1,6 +1,21 @@
 import 'assets/css/PopularSearch.scss'
+import { useState, useEffect } from 'react'
+import axios from 'axios';
 
 export default function PopularSearch() {
+
+    const [favsearch, setFavsearch] = useState([])
+
+    useEffect(() => {
+        axios.post('/api/item/favoriteSearch', {}, {
+            headers: {
+                'Content-type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })
+            .then((res) => console.log(res))    // api request testing
+    }, [])
+
     return (
         <div id='popular-search-section'>
             <div id='popular-search-maintitle'>
