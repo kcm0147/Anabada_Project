@@ -22,6 +22,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -37,6 +38,7 @@
       <option name="presentableId" value="Default" />
       <updated>1615988300564</updated>
       <workItem from="1615988302367" duration="92000" />
+      <workItem from="1622027449825" duration="27000" />
     </task>
     <servers />
   </component>

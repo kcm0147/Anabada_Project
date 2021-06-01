@@ -4,7 +4,7 @@ import Slide1Img from 'assets/image/slide1.png'
 export default function Slide1() {
     return (
         <div className='entire-slide1'>
-            <div id='desc-section'>
+            <div>
                 <div id='title'>
                     합리적인 가격에 사고 팔자
                 </div>
@@ -14,7 +14,7 @@ export default function Slide1() {
                     아나바다 경매 시스템에서 만나보세요
                 </div>
             </div>
-            <img src={Slide1Img} />
+            <img src={Slide1Img} alt='slide1-img' />
         </div>
     );
 }

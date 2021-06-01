@@ -1,0 +1,22 @@
+
+.item-style {
+    display: inline-block;
+    width: 25%;
+    text-align: center;
+    margin: 20px 0;
+
+    & img {
+        width: 200px;
+        border: black solid 1px;
+        border-radius: 5%;
+    }
+}
+
+.item-description {
+    color: rgb(93, 88, 88);
+    margin-top: 5px;
+    font: {
+        weight: 600;
+        size: 1.1rem;
+    }
+}

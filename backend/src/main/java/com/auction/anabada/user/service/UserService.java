@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
@@ -65,5 +66,25 @@ public class UserService {
         return new UserDto(account);
     }
 
+    @Transactional
+    public boolean changePassword(Long id, String newPassword) {
+        User user = userRepository.findById(id);
+        user.changePassword(newPassword);
+        return true;
+    }
+
+    @Transactional
+    public boolean changeProfileImage(Long id, String newProfileImg) {
+        User user = userRepository.findById(id);
+        user.changeProfileImage(newProfileImg);
+        return true;
+    }
+
+    @Transactional
+    public boolean changeAddress(Long id, String newAddress) {
+        User user = userRepository.findById(id);
+        user.changeAddress(newAddress);
+        return true;
+    }
 }
 

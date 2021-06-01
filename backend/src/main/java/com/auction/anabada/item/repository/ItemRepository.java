@@ -1,6 +1,7 @@
 package com.auction.anabada.item.repository;
 
 import com.auction.anabada.item.domain.Item;
+import com.auction.anabada.item.dto.ItemDto;
 import com.auction.anabada.user.domain.Category;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -51,6 +52,12 @@ public class ItemRepository {
     @Transactional(readOnly = true)
     public List<Item> findWithItemName(String includedName){
         String sql = "select i from Item i where i.itemName LIKE '%" + includedName + "%'";
+        return em.createQuery(sql, Item.class).getResultList();
+    }
+
+    @Transactional(readOnly = true)
+    public List<Item> findBest8Items() {
+        String sql = "select i from Item i WHERE rownum <= 8 ORDER BY i.interestCnt desc ";
         return em.createQuery(sql, Item.class).getResultList();
     }
 }

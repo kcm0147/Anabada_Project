@@ -123,7 +123,30 @@ public class UserApiController {
             return null;
     }
 
-    @ApiOperation(value="ID 중복확인크 체", notes="회원가입시 중복로그인 체")
+
+    //== 유저 개인정보 변경 기능 ==//
+    @ApiOperation(value="비밀번호 변경", notes = "새로운 비밀번호로 변경할 수 있다.")
+    @PostMapping("/api/user/profile/password")
+    public boolean changePassowrd(HttpServletRequest req, @RequestBody @Valid String newPassword){
+        Long userId = (Long) req.getSession().getAttribute("userId");
+        return userService.changePassword(userId, newPassword);
+    }
+
+    @ApiOperation(value="프로필 변경", notes = "새로운 프로필 이미지로 변경할 수 있다.")
+    @PostMapping("/api/user/profile/image")
+    public boolean changeProfileImage(HttpServletRequest req, @RequestBody @Valid String newImage){
+        Long userId = (Long) req.getSession().getAttribute("userId");
+        return userService.changeProfileImage(userId, newImage);
+    }
+
+    @ApiOperation(value="주소 변경", notes = "새로운 주소로 변경할 수 있다.")
+    @PostMapping("/api/user/profile/address")
+    public boolean changeAddress(HttpServletRequest req, @RequestBody @Valid String newAddress){
+        Long userId = (Long) req.getSession().getAttribute("userId");
+        return userService.changeAddress(userId, newAddress);
+    }
+  
+   @ApiOperation(value="ID 중복확인크 체크", notes="회원가입시 중복로그인 체")
     @PostMapping("/api/user/idcheck")
     public boolean idCheck(@RequestBody @Valid String accountId){
         return userService.idCheck(accountId);
