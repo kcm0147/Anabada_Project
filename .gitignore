@@ -36,4 +36,7 @@ backend//.nb-gradle/
 ### VS Code ###
 backend/.vscode/
 
+### log ###
+backend/logs/
+
 .DS_Store
