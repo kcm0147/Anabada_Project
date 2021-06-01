@@ -123,6 +123,7 @@ public class UserApiController {
             return null;
     }
 
+
     //== 유저 개인정보 변경 기능 ==//
     @ApiOperation(value="비밀번호 변경", notes = "새로운 비밀번호로 변경할 수 있다.")
     @PostMapping("/api/user/profile/password")
@@ -144,4 +145,11 @@ public class UserApiController {
         Long userId = (Long) req.getSession().getAttribute("userId");
         return userService.changeAddress(userId, newAddress);
     }
+  
+   @ApiOperation(value="ID 중복확인크 체크", notes="회원가입시 중복로그인 체")
+    @PostMapping("/api/user/idcheck")
+    public boolean idCheck(@RequestBody @Valid String accountId){
+        return userService.idCheck(accountId);
+    }
+
 }
