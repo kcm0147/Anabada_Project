@@ -1,6 +1,7 @@
 import 'assets/css/Loginview.scss'
 import Logoimage from 'assets/image/logo.png'
 import axios from 'axios';
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from 'actions/ActionCreaters'
 import { Redirect } from 'react-router-dom'
@@ -35,9 +36,7 @@ export default function Loginview() {
                     console.log("hi")
                 }
             })
-
     }
-
 
     return (
         <>
@@ -55,12 +54,14 @@ export default function Loginview() {
                             <label className='label-box'>
                                 <RiLockPasswordLine className='login-icons' />
                                 <span className='input-text-box'>
-                                    <input type='text' placeholder='PASSWORD' onChange={onChangePW}></input>
+                                    <input type='password' placeholder='PASSWORD' onChange={onChangePW}></input>
                                 </span>
                             </label>
                         </div>
                         <div className='button-box'>
-                            <button id='join-btn' className='btns'>회원가입</button>
+                            <Link to='/register'>
+                                <button id='join-btn' className='btns'>회원가입</button>
+                            </Link>
                             <button id='login-btn' className='btns' onClick={onClickLogin}>로그인</button>
                             <button id='search-btn' className='btns'>ID/PW 찾기</button>
                         </div>
