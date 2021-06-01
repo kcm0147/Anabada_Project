@@ -4,10 +4,10 @@ import HotItemView from 'components/home/HotItemView'
 import Navbar from 'components/nav/Navbar'
 import PopularSearch from 'components/home/PopularSearch'
 
-export default function Homeview() {
+export default function Homeview({ match }) {
     return (
         <div>
-            <Navbar />
+            <Navbar match={match} />
             <Slidebox />
             <HotItemView />
             <PopularSearch />
