@@ -123,4 +123,10 @@ public class UserApiController {
             return null;
     }
 
+    @ApiOperation(value="ID 중복확인크 체", notes="회원가입시 중복로그인 체")
+    @PostMapping("/api/user/idcheck")
+    public boolean idCheck(@RequestBody @Valid String accountId){
+        return userService.idCheck(accountId);
+    }
+
 }

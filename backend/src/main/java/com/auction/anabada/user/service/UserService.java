@@ -39,6 +39,14 @@ public class UserService {
         return new UserDto(user);
     }
 
+    public boolean idCheck(String accountId){
+        List<User> byAccountId = userRepository.findByAccountId(accountId);
+        if(byAccountId.isEmpty()){
+            return true;
+        }
+        return false;
+    }
+
     public UserDto login(LoginRequestDto req,  HttpSession session) {
         List<User> byAccountId = userRepository.findByAccountId(req.getAccountId());
 
