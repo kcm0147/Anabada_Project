@@ -6,7 +6,7 @@ import {
   logoutRequest,
   logoutSuccess,
   logoutFailure,
-} from "./userSaga";
+} from "./userSlice";
 import * as api from "../../lib/api";
 
 function* loginSaga(action) {

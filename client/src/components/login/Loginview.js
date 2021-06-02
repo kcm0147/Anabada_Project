@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 import "assets/css/Loginview.scss";
 import Logoimage from "assets/image/logo.png";
-import axios from "axios";
 import { Link, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "actions/ActionCreaters";
 import { AiOutlineMail } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
+import { loginRequest } from "../../redux/user/userSlice";
 
 export default function Loginview() {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
-  const userinfo = useSelector((state) => state.UserReducer.data);
+  const userinfo = useSelector((state) => state.USER.data);
 
   const onChangeId = (e) => {
     setId(e.target.value);
@@ -23,6 +22,13 @@ export default function Loginview() {
   };
 
   const onLoginClick = () => {
+    dispatch(
+      loginRequest({
+        accountId: id,
+        password: password,
+      })
+    );
+
     // TODO Refactor to saga
     /*
     axios

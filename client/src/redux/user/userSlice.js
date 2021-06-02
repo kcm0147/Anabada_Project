@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const userSlice = createSlice({
-  name: `user`,
+  name: `USER`,
   initialState: {
     loading: false,
     data: null,
     error: null,
   },
   reducers: {
-    loginRequest: (state) => {
+    loginRequest: (state, action) => {
       state.loading = true;
       state.error = null;
     },
@@ -35,6 +35,7 @@ export const userSlice = createSlice({
   },
 });
 
+export const USER = userSlice.name;
 export const {
   loginRequest,
   loginSuccess,
@@ -43,4 +44,4 @@ export const {
   logoutSuccess,
   logoutFailure,
 } = userSlice.actions;
-export default userSlice.reducer;
+export const userReducer = userSlice.reducer;
