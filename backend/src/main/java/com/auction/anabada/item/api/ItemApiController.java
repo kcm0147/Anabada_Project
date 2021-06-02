@@ -40,7 +40,7 @@ public class ItemApiController {
             .collect(Collectors.toList());
     }
 
-    @ApiOperation(value="상품 이름 검색", notes = "입력한 이름이 포함된 상품을 조회한다. 스트링 형태로 상품 이름에 포함될 단어를 전송한다.")
+    @ApiOperation(value="상품 이름 검색", notes = "입력한 이름이 포함된 상품을 조회한다. 쌍따옴표 없는 스트링 형태로 상품 이름에 포함될 단어를 전송한다.")
     @PostMapping("/api/item/name")
     public List<EnrollItemDto> getItemByName(@RequestBody String includedName){
         return itemService.findWithItemName(includedName)
@@ -49,7 +49,7 @@ public class ItemApiController {
     }
 
     @ApiOperation(value="인기 경매품 조회", notes="인기도 기준 상위 8개 상품을 조회한다.")
-    @PostMapping("/api/item/best8")
+    @GetMapping("/api/item/best8")
     public List<ItemDto> getBest8Items(){
         return itemService.findBest8Items()
             .stream().map(i-> new ItemDto(i))
@@ -57,7 +57,7 @@ public class ItemApiController {
     }
 
     @ApiOperation(value="인기 검색어 조회", notes="인기 검색어 상위 8개를 조회한다.")
-    @PostMapping("/api/item/favoriteSearch")
+    @GetMapping("/api/item/favoriteSearch")
     public List<SearchDto> getfavoriteSearch(){
         return searchService.getTop8SearchWord()
             .stream().map(s-> new SearchDto(s))
