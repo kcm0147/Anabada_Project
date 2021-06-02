@@ -5,8 +5,12 @@ import { AiOutlineMail } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { BsFillPersonFill, BsPerson } from "react-icons/bs";
 import { MdPhoneIphone } from "react-icons/md";
+import { useDispatch } from "react-redux";
+import { registerRequest } from "redux/user/userSlice";
 
 export default function UserRegistration() {
+  const dispatch = useDispatch();
+
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -38,8 +42,15 @@ export default function UserRegistration() {
       return;
     }
 
-    // TODO Register logic
-    console.log(id, password, name, nickname, phone);
+    dispatch(
+      registerRequest({
+        accountId: id,
+        password,
+        name,
+        nickName: nickname,
+        phoneNum: phone,
+      })
+    );
   };
 
   return (
