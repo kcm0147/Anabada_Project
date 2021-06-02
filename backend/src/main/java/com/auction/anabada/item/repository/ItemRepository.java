@@ -51,9 +51,9 @@ public class ItemRepository {
 
     @Transactional(readOnly = true)
     public List<Item> findWithItemName(String includedName){
-        String sql = "select i from Item i where i.itemName LIKE :includedName";
+        String sql = "select i from Item i where i.itemName LIKE ?1";
         return em.createQuery(sql, Item.class)
-            .setParameter("includedName", "%" + includedName + "%")
+            .setParameter(1, includedName)
             .getResultList();
     }
 
