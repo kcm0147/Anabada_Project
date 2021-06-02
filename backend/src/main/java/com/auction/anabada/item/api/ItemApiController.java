@@ -49,7 +49,7 @@ public class ItemApiController {
     }
 
     @ApiOperation(value="인기 경매품 조회", notes="인기도 기준 상위 8개 상품을 조회한다.")
-    @PostMapping("/api/item/best8")
+    @GetMapping("/api/item/best8")
     public List<ItemDto> getBest8Items(){
         return itemService.findBest8Items()
             .stream().map(i-> new ItemDto(i))
@@ -57,7 +57,7 @@ public class ItemApiController {
     }
 
     @ApiOperation(value="인기 검색어 조회", notes="인기 검색어 상위 8개를 조회한다.")
-    @PostMapping("/api/item/favoriteSearch")
+    @GetMapping("/api/item/favoriteSearch")
     public List<SearchDto> getfavoriteSearch(){
         return searchService.getTop8SearchWord()
             .stream().map(s-> new SearchDto(s))
