@@ -12,7 +12,7 @@ export default function MypageView({ match }) {
     return (
         <>
             <Navbar match={match} />
-            <MypageSidebar />
+            <MypageSidebar match={match} />
             <Route path={`${match.path}/myinfo`} component={MyInfoContents} />
             <Route path={`${match.path}/mybuy`} component={BuyItemContents} />
             <Route path={`${match.path}/mysale`} component={SaleItemContents} />
