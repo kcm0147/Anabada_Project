@@ -5,7 +5,7 @@ import Navbar from 'components/nav/Navbar'
 import MypageSidebar from 'components/mypage/MypageSidebar'
 import MyInfoContents from 'components/mypage/mypage-contents/MyInfoContents'
 import SaleItemContents from 'components/mypage/mypage-contents/SaleItemContents'
-import BuyItemContents from 'components/mypage/mypage-contents/BuyItemContents'
+import ParticipationAuction from 'components/mypage/mypage-contents/ParticipationAuction'
 
 
 export default function MypageView({ match }) {
@@ -14,7 +14,7 @@ export default function MypageView({ match }) {
             <Navbar match={match} />
             <MypageSidebar match={match} />
             <Route path={`${match.path}/myinfo`} component={MyInfoContents} />
-            <Route path={`${match.path}/mybuy`} component={BuyItemContents} />
+            <Route path={`${match.path}/myparticipate`} component={ParticipationAuction} />
             <Route path={`${match.path}/mysale`} component={SaleItemContents} />
         </>
     )

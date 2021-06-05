@@ -6,7 +6,7 @@ export default function MypageSidebar({ match }) {
     return (
         <div id='mypage-sidebar-section'>
             <div className='mypage-subtitle'>경매 참여</div>
-            <Link to={`${match.url}/mybuy`} className='sidebar-item'>
+            <Link to={`${match.url}/myparticipate`} className='sidebar-item'>
                 경매 참여 내역
             </Link>
             <Link to={`${match.url}/mybuy`} className='sidebar-item'>

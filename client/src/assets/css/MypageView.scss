@@ -1,9 +1,14 @@
 
 .mypage-contents {
     float: right;
-    border: black 1px solid;
     width: 80%;
     height: 100%;
     margin-top: 12vh;
-    background-color: burlywood;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    h4{
+        font-weight: 700;
+        margin-bottom: 30px;
+    }
 }

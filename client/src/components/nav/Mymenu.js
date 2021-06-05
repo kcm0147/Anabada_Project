@@ -14,7 +14,7 @@ export default function Mymenu(props) {
 
   return (
     <ol id="mymenu" ref={props.myMenuRef}>
-      <Link to={`${matchUrl}/mybuy`} className="link-style">
+      <Link to={`${matchUrl}/myparticipate`} className="link-style">
         <li>
           경매 참여 현황
           <span>&#62;</span>
