@@ -6,7 +6,8 @@ import MypageSidebar from 'components/mypage/MypageSidebar'
 import MyInfoContents from 'components/mypage/mypage-contents/MyInfoContents'
 import SaleItemContents from 'components/mypage/mypage-contents/SaleItemContents'
 import ParticipationAuction from 'components/mypage/mypage-contents/ParticipationAuction'
-import LikeItems from './mypage-contents/LikeItems'
+import LikeItems from 'components/mypage/mypage-contents/LikeItems'
+import EnrollItem from 'components/mypage/mypage-contents/EnrollItem'
 
 
 export default function MypageView({ match }) {
@@ -14,10 +15,11 @@ export default function MypageView({ match }) {
         <>
             <Navbar match={match} />
             <MypageSidebar match={match} />
-            <Route path={`${match.path}/myinfo`} component={MyInfoContents} />
             <Route path={`${match.path}/myparticipate`} component={ParticipationAuction} />
             <Route path={`${match.path}/mylike`} component={LikeItems} />
             <Route path={`${match.path}/mysale`} component={SaleItemContents} />
+            <Route path={`${match.path}/enroll`} component={EnrollItem} />
+            <Route path={`${match.path}/myinfo`} component={MyInfoContents} />
         </>
     )
 }
