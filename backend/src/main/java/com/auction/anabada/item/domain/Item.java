@@ -63,19 +63,7 @@ public class Item {
         return item;
     }
 
-    public static Item updatePrice(Item pre,Long newCost){
-        Item item = new Item();
-
-        item.itemId=pre.getItemId();
-        item.itemName=pre.getItemName();
-        item.itemImage=pre.getItemImage();
-        item.category=pre.getCategory();
-        item.auctionStartDate=pre.getAuctionStartDate();
-        item.auctionEndDate=pre.getAuctionEndDate();
-        item.currentPrice=newCost;
-        item.lowerBoundPrice=pre.getLowerBoundPrice();
-        item.interestCnt=pre.getInterestCnt();
-
-        return item;
+    public void updatePrice(Long newCost){
+        this.currentPrice=newCost;
     }
 }

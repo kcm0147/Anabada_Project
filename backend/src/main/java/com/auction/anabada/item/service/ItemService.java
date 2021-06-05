@@ -28,9 +28,8 @@ public class ItemService {
     @Transactional
     public Boolean updatePrice(Item item,Long nCost){
         if(item.getItemId()!=null){
-            Item item1=Item.updatePrice(item, nCost);
-            itemRepository.save(item1);
-
+            item.updatePrice(nCost);
+            itemRepository.save(item);
             return true;
         }
 
