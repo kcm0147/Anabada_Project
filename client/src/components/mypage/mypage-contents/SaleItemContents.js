@@ -9,7 +9,7 @@ export default function SaleItemContents() {
     const [curpagenum, setCurpagenum] = useState(1)
     const [contentary, setContentary] = useState([])
 
-    const headary = ['상품 사진', '상품명', '카테고리', '경매 하한가', '경매 시작일시', '경매 종료일시']
+    const headary = ['상품 사진', '상품명', '카테고리', '경매 하한가(원)', '경매 시작일시', '경매 종료일시']
 
     useEffect(async () => {
         const result = await enrolledItemsAPI()
@@ -19,7 +19,7 @@ export default function SaleItemContents() {
     return (
         <div className='mypage-contents'>
             <h4>내 물품 등록 내역 조회</h4>
-            <Table headary={headary} contentary={contentary} />
+            <Table headary={headary} contentary={contentary} resultPage={false} />
             <TablePagenumSection startpagenum={startpagenum} curpagenum={curpagenum}
                 setCurpagenum={setCurpagenum} />
         </div>

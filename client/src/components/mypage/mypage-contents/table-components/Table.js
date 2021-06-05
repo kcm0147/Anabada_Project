@@ -1,19 +1,36 @@
 import 'assets/css/Table.scss'
 
-export default function Table({ headary, contentary }) {
+export default function Table({ headary, contentary, resultPage }) {
 
     const renderingContent = () => {
         const result = [];
-        for (const comp of contentary) {
-            result.push(<tr>
-                <td>{comp.itemImage}</td>
-                <td>{comp.itemName}</td>
-                <td>{comp.category}</td>
-                <td>{comp.lowerBoundPrice}</td>
-                <td>{comp.auctionStartDate}</td>
-                <td>{comp.auctionEndDate}</td>
-            </tr>)
-        }
+        if (contentary === null || contentary === undefined) return;
+
+        if (resultPage)
+            for (const comp of contentary) {
+                result.push(<tr>
+                    <td>{comp.itemImage}</td>
+                    <td>{comp.itemName}</td>
+                    <td>{comp.category}</td>
+                    <td>{comp.lastAuctionDate}</td>
+                    <td>{comp.lastPrice}</td>
+                    <td>{comp.result ?
+                        <span className='success-span'>낙찰</span> :
+                        <span className='fail-span'>패찰</span>}</td>
+                </tr>)
+            }
+
+        else
+            for (const comp of contentary) {
+                result.push(<tr>
+                    <td>{comp.itemImage}</td>
+                    <td>{comp.itemName}</td>
+                    <td>{comp.category}</td>
+                    <td>{comp.lowerBoundPrice}</td>
+                    <td>{comp.auctionStartDate}</td>
+                    <td>{comp.auctionEndDate}</td>
+                </tr>)
+            }
         return result
     }
 

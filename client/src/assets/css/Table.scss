@@ -25,4 +25,16 @@
 	padding: 20px;
 	vertical-align: middle;
 	border-top-color: #eee;
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+}
+
+.fail-span {
+    color: red;
+    font-weight: 800;
+}
+
+.success-span {
+    color: blue;
+    font-weight: 800;
 }
