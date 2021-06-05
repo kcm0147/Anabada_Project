@@ -34,7 +34,7 @@ public class Item {
     private LocalDateTime auctionEndDate;
 
     @Lob @Basic(fetch = FetchType.EAGER)
-    private Blob itemImage;
+    private String itemImage;
 
     private Long interestCnt;
 

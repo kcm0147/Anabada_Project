@@ -20,7 +20,7 @@ public class SimpleBidsDto {
     private Category category;
 
     @Lob
-    private Blob itemImage;
+    private String itemImage;
 
     private String lastAuctionDate;
 
@@ -29,7 +29,7 @@ public class SimpleBidsDto {
     private Boolean result;
 
     @Builder
-    public SimpleBidsDto(Long itemId,Long buyItemId,String itemName, Category category,Blob itemImage,
+    public SimpleBidsDto(Long itemId,Long buyItemId,String itemName, Category category,String itemImage,
         String lastAuctionDate,Long lastPrice,Boolean result) {
         this.itemId = itemId;
         this.buyItemId= buyItemId;
@@ -37,7 +37,7 @@ public class SimpleBidsDto {
         this.category = category;
         this.itemImage = itemImage;
         this.lastAuctionDate = lastAuctionDate;
-        this.lastPrice = lastPrice;
+        this.lastPrice=lastPrice;
         this.result=result;
     }
 }
