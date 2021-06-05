@@ -8,20 +8,19 @@ export default function ParticipationAuction() {
 
     const [startpagenum, setStartpagenum] = useState(1)
     const [curpagenum, setCurpagenum] = useState(1)
+    const [contentary, setContentary] = useState([])
 
-    const headary = ['상품 사진', '상품명', '경매 날짜', '최종 경매가(원)', '낙찰 여부']
-    const contentary = []
+    const headary = ['상품 사진', '상품명', '카테고리', '경매 날짜', '최종 경매가(원)', '낙찰 여부']
 
     useEffect(async () => {
-        participationlistAPI().then((res) =>
-            console.log(res)
-        )
+        const result = await participationlistAPI()
+        setContentary(result)
     }, [])
 
     return (
         <div className='mypage-contents'>
             <h4>경매 참여 내역 조회</h4>
-            <Table headary={headary} contentary={contentary} />
+            <Table headary={headary} contentary={contentary} resultPage={true} />
             <TablePagenumSection startpagenum={startpagenum} curpagenum={curpagenum}
                 setCurpagenum={setCurpagenum} />
         </div >
