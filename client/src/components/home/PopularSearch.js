@@ -7,14 +7,16 @@ export default function PopularSearch() {
     const [favsearch, setFavsearch] = useState([])
 
     useEffect(async () => {
-        bestSearchAPI().then((res) => {
-            console.log(res)
-        });
+        const searchresult = await bestSearchAPI();
+        setFavsearch(searchresult)
     }, [])
 
-    useEffect(() => {
-        console.log(favsearch)
-    })
+    const renderingSearchWord = () => {
+        const result = [];
+        for (const comp of favsearch)
+            result.push(<span>{comp.word}</span>)
+        return result;
+    }
 
     return (
         <div id='popular-search-section'>
@@ -22,6 +24,7 @@ export default function PopularSearch() {
                 인기 경매 검색어
             </div>
             <div id='rank-section'>
+                {renderingSearchWord()}
             </div>
         </div>
     )
