@@ -4,6 +4,7 @@ import com.auction.anabada.buyItem.domain.BuyItem;
 import com.auction.anabada.item.dto.EnrollItemDto;
 import com.auction.anabada.saleItem.domain.SaleItem;
 import com.auction.anabada.user.domain.Category;
+import java.sql.Blob;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class Item {
     private LocalDateTime auctionEndDate;
 
     @Lob @Basic(fetch = FetchType.EAGER)
-    private String itemImage;
+    private Blob itemImage;
 
     private Long interestCnt;
 

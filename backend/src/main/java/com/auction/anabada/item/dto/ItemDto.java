@@ -2,9 +2,11 @@ package com.auction.anabada.item.dto;
 
 import com.auction.anabada.item.domain.Item;
 import com.auction.anabada.user.domain.Category;
+import java.sql.Blob;
 import java.time.LocalDateTime;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Lob;
 import lombok.Data;
 
 @Data
@@ -19,7 +21,9 @@ public class ItemDto {
     private Long currentPrice;
     private LocalDateTime auctionStartDate;
     private LocalDateTime auctionEndDate;
-    private String itemImage;
+
+    @Lob
+    private Blob itemImage;
     private Long interestCnt;
 
     public ItemDto(Item item) {

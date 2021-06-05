@@ -1,7 +1,9 @@
 package com.auction.anabada.biddetail.dto;
 
 import com.auction.anabada.user.domain.Category;
+import java.sql.Blob;
 import java.time.LocalDateTime;
+import javax.persistence.Lob;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +18,9 @@ public class SimpleBidsDto {
 
     private String itemName;
     private Category category;
-    private String itemImage;
+
+    @Lob
+    private Blob itemImage;
 
     private String lastAuctionDate;
 
@@ -25,7 +29,7 @@ public class SimpleBidsDto {
     private Boolean result;
 
     @Builder
-    public SimpleBidsDto(Long itemId,Long buyItemId,String itemName, Category category,String itemImage,
+    public SimpleBidsDto(Long itemId,Long buyItemId,String itemName, Category category,Blob itemImage,
         String lastAuctionDate,Long lastPrice,Boolean result) {
         this.itemId = itemId;
         this.buyItemId= buyItemId;
