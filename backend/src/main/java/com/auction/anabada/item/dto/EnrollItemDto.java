@@ -20,7 +20,7 @@ public class EnrollItemDto {
     private String auctionEndDate;
 
     @Lob
-    private Blob itemImage;
+    private String itemImage;
 
     public EnrollItemDto(Item item) {
         this.itemName = item.getItemName();
