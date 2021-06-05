@@ -6,6 +6,7 @@ import { USER, userReducer } from "../redux/user/userSlice";
 import { userSaga } from "../redux/user/userSaga";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const rootReducer = combineReducers({
   [USER]: userReducer,

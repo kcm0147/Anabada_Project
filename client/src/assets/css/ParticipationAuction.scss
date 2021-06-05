@@ -1,0 +1,44 @@
+
+.table-filter {
+	border-bottom: 1px solid #eee;
+    border-top: 1px solid #eee;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    thead tr th {
+        border-bottom: 1px solid #eee;
+        background-color: rgb(236, 234, 231);
+        padding: 10px 0px;
+    }
+}
+
+.table-filter tbody tr:hover {
+	cursor: pointer;
+	background-color: #eee;
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+}
+
+.table-filter tbody tr td {
+	padding: 20px;
+	vertical-align: middle;
+	border-top-color: #eee;
+}
+
+.table-page-section {
+    text-align: center;
+    margin: 20px 0;
+
+    span {
+        margin: 0 10px;
+        padding: 0 20px;
+        font-weight: 600;
+        color: rgb(160, 156, 156);
+        cursor: pointer;
+
+        &:hover {
+            color: black;
+        }
+    }
+}
