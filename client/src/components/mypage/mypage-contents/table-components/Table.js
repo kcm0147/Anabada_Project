@@ -1,6 +1,22 @@
 import 'assets/css/Table.scss'
 
 export default function Table({ headary, contentary }) {
+
+    const renderingContent = () => {
+        const result = [];
+        for (const comp of contentary) {
+            result.push(<tr>
+                <td>{comp.itemImage}</td>
+                <td>{comp.itemName}</td>
+                <td>{comp.category}</td>
+                <td>{comp.lowerBoundPrice}</td>
+                <td>{comp.auctionStartDate}</td>
+                <td>{comp.auctionEndDate}</td>
+            </tr>)
+        }
+        return result
+    }
+
     return (
         <table className='table-filter'>
             <thead>
@@ -9,13 +25,7 @@ export default function Table({ headary, contentary }) {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>아이폰 max</td>
-                    <td>2021.06.05</td>
-                    <td>1,000,000</td>
-                    <td>입찰 완료</td>
-                </tr>
+                {renderingContent()}
             </tbody>
         </table>
     )
