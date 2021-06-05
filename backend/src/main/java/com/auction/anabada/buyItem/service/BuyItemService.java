@@ -8,6 +8,7 @@ import com.auction.anabada.item.domain.Item;
 import com.auction.anabada.item.service.ItemService;
 import com.auction.anabada.user.domain.User;
 import com.auction.anabada.user.service.UserService;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +30,8 @@ public class BuyItemService {
         Item item = itemService.findById(itemId);
         BuyItem buyItem;
 
+//        if((item.getSaleItem().getSeller().getUserId())==userId) return false; 테스트를 위한 주석
+//        if(LocalDateTime.now().isAfter(item.getAuctionEndDate())) return false; 테스트를 위한 주석
         if(bidCost<item.getCurrentPrice() || bidCost<item.getLowerBoundPrice())
             return false;
 
@@ -42,6 +45,8 @@ public class BuyItemService {
         }
         else
             buyItem=first.get();
+
+        itemService.updatePrice(item,bidCost);
 
         BidDetail bidDetail = new BidDetail(buyItem,bidCost);
         bidRepository.save(bidDetail);
