@@ -5,6 +5,7 @@ import com.auction.anabada.biddetail.dto.DetailBidsDto;
 import com.auction.anabada.biddetail.dto.SimpleBidsDto;
 import com.auction.anabada.biddetail.service.BidService;
 import com.auction.anabada.item.domain.Item;
+import com.auction.anabada.item.dto.EnrollItemDto;
 import com.auction.anabada.user.domain.User;
 import com.auction.anabada.user.dto.LoginRequestDto;
 import com.auction.anabada.user.dto.SignupRequestDto;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
+@Slf4j
 public class UserApiController {
 
     private final UserService userService;
@@ -89,6 +92,7 @@ public class UserApiController {
 
         List<SimpleBidsDto> itemDtoList = new ArrayList<>();
         user.getBuyItems().forEach(o -> {
+            log.info("buyItems 획득");
             Item item = o.getItem();
             BidDetail lastBidDetail = o.getBidDetails().get(o.getBidDetails().size()-1);
             String lastTime=lastBidDetail.getBidTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
@@ -108,7 +112,7 @@ public class UserApiController {
         return itemDtoList;
     }
 
-    @ApiOperation(value="입찰 세부내역확", notes="회원이 입찰한 아이템에 대한 세부 내역 조회(buyItemId)")
+    @ApiOperation(value="입찰 세부내역확인", notes="회원이 입찰한 아이템에 대한 세부 내역 조회(buyItemId)")
     @GetMapping("/api/user/{buyItemId}")
     public List<DetailBidsDto> getCurrentDetailBidDto(HttpServletRequest req,@RequestParam("buyItemId") Long buyItemId) {
 
@@ -121,6 +125,13 @@ public class UserApiController {
             return bidDetails;
         else
             return null;
+    }
+
+    @ApiOperation(value="개인별 등록 경매물품 조회", notes="자신이 등록한 모든 물품을 조회할 수 있다.")
+    @GetMapping("/api/user/enrolledItems")
+    public List<EnrollItemDto> getEnrolledItems(HttpServletRequest req){
+        Long userId = (Long) req.getSession().getAttribute("userId");
+        return userService.getEnrolledItems(userId);
     }
 
 
@@ -146,7 +157,7 @@ public class UserApiController {
         return userService.changeAddress(userId, newAddress);
     }
   
-   @ApiOperation(value="ID 중복확인크 체크", notes="회원가입시 중복로그인 체")
+   @ApiOperation(value="ID 중복확인 체크", notes="회원가입시 중복로그인 체크")
     @PostMapping("/api/user/idcheck")
     public boolean idCheck(@RequestBody @Valid String accountId){
         return userService.idCheck(accountId);
