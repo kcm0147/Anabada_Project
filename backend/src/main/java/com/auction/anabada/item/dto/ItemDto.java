@@ -23,7 +23,7 @@ public class ItemDto {
     private LocalDateTime auctionEndDate;
 
     @Lob
-    private Blob itemImage;
+    private String itemImage;
     private Long interestCnt;
 
     public ItemDto(Item item) {
