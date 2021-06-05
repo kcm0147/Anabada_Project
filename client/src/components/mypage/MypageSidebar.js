@@ -13,7 +13,7 @@ export default function MypageSidebar({ match }) {
                 찜한 목록
             </Link>
             <div className='mypage-subtitle'>경매 등록</div>
-            <Link to={`${match.url}/mysale`} className='sidebar-item'>
+            <Link to={`${match.url}/enroll`} className='sidebar-item'>
                 물품 등록하기
             </Link>
             <Link to={`${match.url}/mysale`} className='sidebar-item'>

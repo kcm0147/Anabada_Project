@@ -27,3 +27,17 @@ export const register = async (payload) => {
     console.error(e);
   }
 };
+
+export const participationlistAPI = async () => {
+  try {
+    const response = await axios.get('/api/user/simplebids', {
+      headers: {
+        "Content-type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    return response.data;
+  } catch (e) {
+    console.error(e);
+  }
+}

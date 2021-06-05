@@ -7,11 +7,18 @@
         margin: 0 10px;
         padding: 0 20px;
         font-weight: 600;
-        color: rgb(160, 156, 156);
         cursor: pointer;
 
         &:hover {
             color: black;
         }
     }
+}
+
+.inactive-span {
+    color: rgb(160, 156, 156);
+}
+
+.active-span {
+    color: black;
 }
