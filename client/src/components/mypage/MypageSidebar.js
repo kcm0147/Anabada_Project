@@ -9,7 +9,7 @@ export default function MypageSidebar({ match }) {
             <Link to={`${match.url}/myparticipate`} className='sidebar-item'>
                 경매 참여 내역
             </Link>
-            <Link to={`${match.url}/mybuy`} className='sidebar-item'>
+            <Link to={`${match.url}/mylike`} className='sidebar-item'>
                 찜한 목록
             </Link>
             <div className='mypage-subtitle'>경매 등록</div>
