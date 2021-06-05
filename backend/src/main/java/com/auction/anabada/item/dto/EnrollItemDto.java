@@ -4,6 +4,7 @@ package com.auction.anabada.item.dto;
 import com.auction.anabada.item.domain.Item;
 import com.auction.anabada.user.domain.Category;
 import java.sql.Blob;
+import java.time.format.DateTimeFormatter;
 import javax.persistence.Lob;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,8 +27,8 @@ public class EnrollItemDto {
         this.itemName = item.getItemName();
         this.category = item.getCategory();
         this.lowerBoundPrice = item.getLowerBoundPrice();
-        this.auctionStartDate = item.getAuctionStartDate().toLocalTime().toString();
-        this.auctionEndDate = item.getAuctionEndDate().toLocalTime().toString();
+        this.auctionStartDate = item.getAuctionStartDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        this.auctionEndDate = item.getAuctionEndDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         this.itemImage = item.getItemImage();
     }
 }
