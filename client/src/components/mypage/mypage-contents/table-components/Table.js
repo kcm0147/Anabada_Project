@@ -13,7 +13,8 @@ export default function Table({ headary, contentary, resultPage }) {
                     <td>{comp.itemName}</td>
                     <td>{comp.category}</td>
                     <td>{comp.lastAuctionDate}</td>
-                    <td>{comp.lastPrice}</td>
+                    <td>{comp.lastAuctionPrice}</td>
+                    <td>{comp.lastUserPrice}</td>
                     <td>{comp.result ?
                         <span className='success-span'>낙찰</span> :
                         <span className='fail-span'>패찰</span>}</td>

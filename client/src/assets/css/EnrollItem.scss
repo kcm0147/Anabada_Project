@@ -1,0 +1,44 @@
+
+#required-text {
+    text-align: right;
+    padding-right: 40px;
+    color: red;
+    font-size:1.1rem;
+    font-weight:600;
+}
+
+#top-hr {
+    height: 2px;
+    background: black;
+}
+
+.sub-hr {
+    height: 2px;
+}
+
+.required-check {
+    margin: 5px;
+    color: red;
+    font-size: 1.4rem;
+    font-weight: 750;
+}
+
+#enroll-ul {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+        margin: 20px 0px;
+    }
+
+    li div {
+        display: inline-block;
+    }
+}
+
+.li-title {
+    color: rgb(90, 89, 89);
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-right: 20px;
+}

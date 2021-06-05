@@ -10,10 +10,11 @@ export default function ParticipationAuction() {
     const [curpagenum, setCurpagenum] = useState(1)
     const [contentary, setContentary] = useState([])
 
-    const headary = ['상품 사진', '상품명', '카테고리', '경매 날짜', '최종 경매가(원)', '낙찰 여부']
+    const headary = ['상품 사진', '상품명', '카테고리', '경매 날짜', '최종 낙찰가(원)', '최종 입찰가(원)', '낙찰 여부']
 
     useEffect(async () => {
         const result = await participationlistAPI()
+        console.log(result)
         setContentary(result)
     }, [])
 

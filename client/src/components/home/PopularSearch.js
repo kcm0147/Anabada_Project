@@ -13,6 +13,7 @@ export default function PopularSearch() {
 
     const renderingSearchWord = () => {
         const result = [];
+        if (favsearch === null || favsearch === undefined) return result
         for (const comp of favsearch)
             result.push(<span>{comp.word}</span>)
         return result;
