@@ -24,22 +24,20 @@ public class SimpleBidsDto {
 
     private String lastAuctionDate;
 
-    private Long lastUserPrice;
-    private Long lastAuctionPrice;
+    private Long lastPrice;
 
     private Boolean result;
 
     @Builder
     public SimpleBidsDto(Long itemId,Long buyItemId,String itemName, Category category,String itemImage,
-        String lastAuctionDate,Long lastUserPrice,Long lastAuctionPrice,Boolean result) {
+        String lastAuctionDate,Long lastPrice,Boolean result) {
         this.itemId = itemId;
         this.buyItemId= buyItemId;
         this.itemName = itemName;
         this.category = category;
         this.itemImage = itemImage;
         this.lastAuctionDate = lastAuctionDate;
-        this.lastUserPrice = lastUserPrice;
-        this.lastAuctionPrice=lastAuctionPrice;
+        this.lastPrice=lastPrice;
         this.result=result;
     }
 }
