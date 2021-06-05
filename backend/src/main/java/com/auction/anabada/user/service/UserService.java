@@ -89,6 +89,7 @@ public class UserService {
         return true;
     }
 
+    @Transactional
     public List<EnrollItemDto> getEnrolledItems(Long userId) {
         User user = userRepository.findById(userId);
         return user.getSaleItems().stream()
