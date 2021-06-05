@@ -88,28 +88,8 @@ public class UserApiController {
     @GetMapping("/api/user/simplebids")
     public List<SimpleBidsDto> getCurrentSimpleBidDto(HttpServletRequest req){
         Long userId = (Long)req.getSession().getAttribute("userId");
-        User user = userService.findById(userId);
 
-        List<SimpleBidsDto> itemDtoList = new ArrayList<>();
-        user.getBuyItems().forEach(o -> {
-            log.info("buyItems 획득");
-            Item item = o.getItem();
-            BidDetail lastBidDetail = o.getBidDetails().get(o.getBidDetails().size()-1);
-            String lastTime=lastBidDetail.getBidTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-            SimpleBidsDto bidsDto = SimpleBidsDto.builder()
-                .itemId(item.getItemId())
-                .buyItemId(o.getBuyItemId())
-                .itemName(item.getItemName())
-                .category(item.getCategory())
-                .itemImage(item.getItemImage())
-                .lastPrice(lastBidDetail.getBidCost())
-                .lastAuctionDate(lastTime)
-                .result(lastBidDetail.getResult())
-                .build();
-
-            itemDtoList.add(bidsDto);
-        });
-        return itemDtoList;
+        return bidService.findSimpleBids(userId);
     }
 
     @ApiOperation(value="입찰 세부내역확인", notes="회원이 입찰한 아이템에 대한 세부 내역 조회(buyItemId)")
