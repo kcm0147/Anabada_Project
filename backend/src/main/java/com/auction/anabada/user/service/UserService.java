@@ -1,10 +1,12 @@
 package com.auction.anabada.user.service;
 
+import com.auction.anabada.item.dto.EnrollItemDto;
 import com.auction.anabada.user.domain.User;
 import com.auction.anabada.user.dto.LoginRequestDto;
 import com.auction.anabada.user.dto.UserDto;
 import com.auction.anabada.user.repository.UserRepository;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -85,6 +87,13 @@ public class UserService {
         User user = userRepository.findById(id);
         user.changeAddress(newAddress);
         return true;
+    }
+
+    public List<EnrollItemDto> getEnrolledItems(Long userId) {
+        User user = userRepository.findById(userId);
+        return user.getSaleItems().stream()
+            .map(o -> new EnrollItemDto(o.getItem()))
+            .collect(Collectors.toList());
     }
 }
 
