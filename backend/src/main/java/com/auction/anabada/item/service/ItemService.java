@@ -2,12 +2,10 @@ package com.auction.anabada.item.service;
 
 import com.auction.anabada.item.domain.Item;
 import com.auction.anabada.item.dto.EnrollItemDto;
-import com.auction.anabada.item.dto.ItemDto;
 import com.auction.anabada.item.repository.ItemRepository;
 import com.auction.anabada.search.service.SearchService;
 import com.auction.anabada.user.domain.Category;
 import java.util.List;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
