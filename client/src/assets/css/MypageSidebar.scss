@@ -14,10 +14,17 @@
     margin-left: 1.5%;
 }
 
+.mypage-subtitle {
+    margin: 20px 0px 5px 0px;
+    color: rgb(0, 0, 0);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
 .sidebar-item {
     text-decoration: none;
-    margin: 10px 0px;
-    color: rgb(105, 99, 99);
+    margin: 5px 0px;
+    color: rgb(134, 131, 131);
     font-weight: 600;
 
     &::after {
