@@ -31,7 +31,10 @@ public class Item {
     private Long currentPrice;
     private LocalDateTime auctionStartDate;
     private LocalDateTime auctionEndDate;
+
+    @Lob @Basic(fetch = FetchType.EAGER)
     private String itemImage;
+
     private Long interestCnt;
 
     @OneToOne
