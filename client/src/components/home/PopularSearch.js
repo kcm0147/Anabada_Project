@@ -6,16 +6,20 @@ export default function PopularSearch() {
 
     const [favsearch, setFavsearch] = useState([])
 
-    useEffect(async () => {
-        const searchresult = await bestSearchAPI();
-        setFavsearch(searchresult)
+    useEffect(() => {
+        const axiosing = async () => {
+            const searchresult = await bestSearchAPI();
+            setFavsearch(searchresult)
+        }
+        axiosing()
     }, [])
 
     const renderingSearchWord = () => {
         const result = [];
+        let key = 0;
         if (favsearch === null || favsearch === undefined) return result
         for (const comp of favsearch)
-            result.push(<span>{comp.word}</span>)
+            result.push(<span key={key++}>{comp.word}</span>)
         return result;
     }
 

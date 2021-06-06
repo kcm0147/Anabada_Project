@@ -6,16 +6,27 @@ import { participationlistAPI } from 'lib/api'
 
 export default function ParticipationAuction() {
 
+    const [endpagenum, setEndpagenum] = useState(0)
     const [startpagenum, setStartpagenum] = useState(1)
     const [curpagenum, setCurpagenum] = useState(1)
     const [contentary, setContentary] = useState([])
 
     const headary = ['상품 사진', '상품명', '카테고리', '경매 날짜', '최종 낙찰가(원)', '최종 입찰가(원)', '낙찰 여부']
 
-    useEffect(async () => {
-        const result = await participationlistAPI()
-        console.log(result)
-        setContentary(result)
+    const changeCurpagenum = (number) => {
+        if (number > endpagenum || number < startpagenum) return
+        setCurpagenum(number)
+        if (number > startpagenum + 4) setStartpagenum(startpagenum + 5)
+    }
+
+    useEffect(() => {
+        const axiosing = async () => {
+            const result = await participationlistAPI()
+            const endnum = result.length / 10 + ((result.length % 10 > 0) ? 1 : 0)
+            setEndpagenum((endnum === 0) ? 1 : endnum)
+            setContentary(result)
+        }
+        axiosing()
     }, [])
 
     return (
@@ -23,7 +34,7 @@ export default function ParticipationAuction() {
             <h4>경매 참여 내역 조회</h4>
             <Table headary={headary} contentary={contentary} resultPage={true} />
             <TablePagenumSection startpagenum={startpagenum} curpagenum={curpagenum}
-                setCurpagenum={setCurpagenum} />
+                endpagenum={endpagenum} changeCurpagenum={changeCurpagenum} />
         </div >
     )
 }
