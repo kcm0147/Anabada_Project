@@ -95,3 +95,27 @@
         width: 100%;
     }
 }
+
+.li-sub-title {
+    margin: 0 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgb(70, 68, 68);
+}
+
+.li-time-sub {
+    width: 300px;
+    padding: 10px;
+}
+
+#li-submit {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+    Button {
+        font-size: 1.3rem;
+        font-weight: 700;
+        padding: 10px 30px;
+    }
+}
