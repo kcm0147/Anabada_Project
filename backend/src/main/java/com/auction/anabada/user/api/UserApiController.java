@@ -109,6 +109,13 @@ public class UserApiController {
         return userService.getEnrolledItems(userId);
     }
 
+    @ApiOperation(value="개인별 위시 리스트 조회", notes="자신이 찜해놓은 물품을  조회할 수 있다.")
+    @GetMapping("/api/user/wishItems")
+    public List<ItemDto> getWishItems(HttpServletRequest req){
+        Long userId = (Long) req.getSession().getAttribute("userId");
+        return userService.getWishItems(userId);
+    }
+
 
     //== 유저 개인정보 변경 기능 ==//
     @ApiOperation(value="비밀번호 변경", notes = "새로운 비밀번호로 변경할 수 있다.")

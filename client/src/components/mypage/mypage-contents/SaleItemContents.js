@@ -5,15 +5,27 @@ import { enrolledItemsAPI } from 'lib/api'
 
 export default function SaleItemContents() {
 
+    const [endpagenum, setEndpagenum] = useState(0)
     const [startpagenum, setStartpagenum] = useState(1)
     const [curpagenum, setCurpagenum] = useState(1)
     const [contentary, setContentary] = useState([])
 
     const headary = ['상품 사진', '상품명', '카테고리', '경매 하한가(원)', '경매 시작일시', '경매 종료일시']
 
-    useEffect(async () => {
-        const result = await enrolledItemsAPI()
-        setContentary(result)
+    const changeCurpagenum = (number) => {
+        if (number > endpagenum || number < startpagenum) return
+        setCurpagenum(number)
+        if (number > startpagenum + 4) setStartpagenum(startpagenum + 5)
+    }
+
+    useEffect(() => {
+        const axiosing = async () => {
+            const result = await enrolledItemsAPI()
+            const endnum = result.length / 10 + ((result.length % 10 > 0) ? 1 : 0)
+            setEndpagenum((endnum === 0) ? 1 : endnum)
+            setContentary(result)
+        }
+        axiosing()
     }, [])
 
     return (
@@ -21,7 +33,7 @@ export default function SaleItemContents() {
             <h4>내 물품 등록 내역 조회</h4>
             <Table headary={headary} contentary={contentary} resultPage={false} />
             <TablePagenumSection startpagenum={startpagenum} curpagenum={curpagenum}
-                setCurpagenum={setCurpagenum} />
+                endpagenum={endpagenum} changeCurpagenum={changeCurpagenum} />
         </div>
     )
 }

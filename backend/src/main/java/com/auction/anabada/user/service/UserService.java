@@ -96,5 +96,13 @@ public class UserService {
             .map(o -> new ItemDto(o.getItem()))
             .collect(Collectors.toList());
     }
+
+    @Transactional
+    public List<ItemDto> getWishItems(Long userId) {
+        User user = userRepository.findById(userId);
+        return user.getWishItems().stream()
+            .map(o -> new ItemDto(o.getItem()))
+            .collect(Collectors.toList());
+    }
 }
 
