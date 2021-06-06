@@ -34,8 +34,7 @@ public class Item {
     private LocalDateTime auctionStartDate;
     private LocalDateTime auctionEndDate;
 
-    @Lob @Basic(fetch = FetchType.EAGER)
-    private String itemImage;
+    private String imagePath;
 
     private Long interestCnt;
 
@@ -58,7 +57,7 @@ public class Item {
     public static Item createItem(EnrollItemDto enrollItemDto){
         Item item = new Item();
         item.itemName=enrollItemDto.getItemName();
-        item.itemImage=enrollItemDto.getItemImage();
+        item.imagePath=enrollItemDto.getImagePath();
         item.category=enrollItemDto.getCategory();
         item.auctionStartDate=LocalDateTime.parse(enrollItemDto.getAuctionStartDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         item.auctionEndDate=LocalDateTime.parse(enrollItemDto.getAuctionEndDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));

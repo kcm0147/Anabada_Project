@@ -1,6 +1,5 @@
 package com.auction.anabada.user.service;
 
-import com.auction.anabada.item.dto.EnrollItemDto;
 import com.auction.anabada.item.dto.ItemDto;
 import com.auction.anabada.user.domain.User;
 import com.auction.anabada.user.dto.LoginRequestDto;
@@ -91,10 +90,10 @@ public class UserService {
     }
 
     @Transactional
-    public List<EnrollItemDto> getEnrolledItems(Long userId) {
+    public List<ItemDto> getEnrolledItems(Long userId) {
         User user = userRepository.findById(userId);
         return user.getSaleItems().stream()
-            .map(o -> new EnrollItemDto(o.getItem()))
+            .map(o -> new ItemDto(o.getItem()))
             .collect(Collectors.toList());
     }
 

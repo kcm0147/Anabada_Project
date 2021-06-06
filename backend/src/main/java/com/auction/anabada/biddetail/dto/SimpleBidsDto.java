@@ -1,6 +1,9 @@
 package com.auction.anabada.biddetail.dto;
 
 import com.auction.anabada.user.domain.Category;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Blob;
 import java.time.LocalDateTime;
 import javax.persistence.Lob;
@@ -19,8 +22,7 @@ public class SimpleBidsDto {
     private String itemName;
     private Category category;
 
-    @Lob
-    private String itemImage;
+    private byte[] itemImage;
 
     private String lastAuctionDate;
 
@@ -30,16 +32,29 @@ public class SimpleBidsDto {
     private Boolean result;
 
     @Builder
-    public SimpleBidsDto(Long itemId,Long buyItemId,String itemName, Category category,String itemImage,
+    public SimpleBidsDto(Long itemId,Long buyItemId,String itemName, Category category,String itemPath,
         String lastAuctionDate,Long lastUserPrice,Long lastAuctionPrice,Boolean result) {
         this.itemId = itemId;
         this.buyItemId= buyItemId;
         this.itemName = itemName;
         this.category = category;
-        this.itemImage = itemImage;
+        this.itemImage = encodingFile(itemPath);
         this.lastAuctionDate = lastAuctionDate;
         this.lastUserPrice=lastUserPrice;
         this.lastAuctionPrice=lastAuctionPrice;
         this.result=result;
+    }
+
+    private byte[] encodingFile(String filePath){
+        InputStream imageStream = null;
+        byte[] imageByteArray = new byte[0];
+        try {
+            imageStream = new FileInputStream(filePath);
+            imageByteArray = imageStream.readAllBytes();
+            imageStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return imageByteArray;
     }
 }
