@@ -40,6 +40,7 @@ public class WishItem {
         if(this.item!=null){
             this.item.getWishItems().remove(this);
         }
+        this.item=item;
         item.getWishItems().add(this);
     }
 
@@ -49,5 +50,13 @@ public class WishItem {
         }
         this.user=user;
         user.getWishItems().add(this);
+    }
+
+
+    public void removeRelated(){
+        this.user.getWishItems().remove(this);
+        this.item.getWishItems().remove(this);
+        this.item=null;
+        this.user=null;
     }
 }
