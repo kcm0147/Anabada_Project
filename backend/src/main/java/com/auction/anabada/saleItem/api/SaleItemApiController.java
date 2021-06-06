@@ -18,11 +18,11 @@ public class SaleItemApiController {
 
     @ApiOperation(value="물품등록",notes="2018-08-04 12:05:12 와 같은 형식으로 넣어줘야합니다.")
     @PostMapping("/api/saleItem/enrollItem")
-    public Long enrollItem(@RequestBody @Valid EnrollItemDto enrollItemDto,HttpServletRequest req){
+    public Long enrollItem(@RequestBody @Valid EnrollItemDto enrollItemDto, HttpServletRequest req){
         long userId = (Long)req.getSession().getAttribute("userId");
-
+        String uploadPath = req.getSession().getServletContext().getRealPath("/").concat("resources");
+        enrollItemDto.makeImagePath(uploadPath);
         return saleItemService.addSaleItem(userId,enrollItemDto);
     }
-
 
 }
