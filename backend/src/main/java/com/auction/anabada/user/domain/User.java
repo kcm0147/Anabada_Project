@@ -2,6 +2,7 @@ package com.auction.anabada.user.domain;
 
 import com.auction.anabada.buyItem.domain.BuyItem;
 import com.auction.anabada.saleItem.domain.SaleItem;
+import com.auction.anabada.wishitem.domain.WishItem;
 import java.util.List;
 import javax.persistence.*;
 import lombok.Builder;
@@ -36,6 +37,9 @@ public class User {
 
     @OneToMany(mappedBy="seller")
     private List<SaleItem> saleItems;
+
+    @OneToMany(mappedBy="user")
+    private List<WishItem> wishItems;
 
     @Builder
     public User(String name, String phoneNum, String nickName, String accountId, String password, String address, Category interest){
