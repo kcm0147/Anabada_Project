@@ -83,3 +83,17 @@ export const enrollItemAPI = async (payload) => {  //물품 등록 api
     console.error(e);
   }
 }
+
+export const wishItemsAPI = async () => {  // 찜한 목록 데이터 api
+  try {
+    const response = await axios.get('/api/user/wishItems', {
+      headers: {
+        "Content-type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    return response.data;
+  } catch (e) {
+    console.error(e);
+  }
+}
