@@ -9,7 +9,7 @@ export default function Table({ headary, contentary, resultPage }) {
         if (resultPage)
             for (const comp of contentary) {
                 result.push(<tr>
-                    <td>{comp.itemImage}</td>
+                    {/* <td>{comp.itemImage}</td> */}
                     <td>{comp.itemName}</td>
                     <td>{comp.category}</td>
                     <td>{comp.lastAuctionDate}</td>
