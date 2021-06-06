@@ -19,6 +19,7 @@ public class EnrollItemDto {
     private Long lowerBoundPrice;
     private String auctionStartDate;
     private String auctionEndDate;
+    private String description;
 
     @Lob
     private String itemImage;
@@ -30,5 +31,6 @@ public class EnrollItemDto {
         this.auctionStartDate = item.getAuctionStartDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         this.auctionEndDate = item.getAuctionEndDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         this.itemImage = item.getItemImage();
+        this.description = item.getDescription();
     }
 }
