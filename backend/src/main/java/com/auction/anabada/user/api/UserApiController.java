@@ -6,6 +6,7 @@ import com.auction.anabada.biddetail.dto.SimpleBidsDto;
 import com.auction.anabada.biddetail.service.BidService;
 import com.auction.anabada.item.domain.Item;
 import com.auction.anabada.item.dto.EnrollItemDto;
+import com.auction.anabada.item.dto.ItemDto;
 import com.auction.anabada.user.domain.User;
 import com.auction.anabada.user.dto.LoginRequestDto;
 import com.auction.anabada.user.dto.SignupRequestDto;
@@ -112,6 +113,13 @@ public class UserApiController {
     public List<EnrollItemDto> getEnrolledItems(HttpServletRequest req){
         Long userId = (Long) req.getSession().getAttribute("userId");
         return userService.getEnrolledItems(userId);
+    }
+
+    @ApiOperation(value="개인별 위시 리스트 조회", notes="자신이 찜해놓은 물품을  조회할 수 있다.")
+    @GetMapping("/api/user/wishItems")
+    public List<ItemDto> getWishItems(HttpServletRequest req){
+        Long userId = (Long) req.getSession().getAttribute("userId");
+        return userService.getWishItems(userId);
     }
 
 
