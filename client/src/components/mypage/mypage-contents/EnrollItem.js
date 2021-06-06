@@ -3,6 +3,7 @@ import { useState } from 'react'
 import UploadImg from 'assets/image/upload-image.png'
 import DatePicker from 'react-datepicker'
 import TimePicker from 'react-time-picker'
+import Button from 'react-bootstrap/Button'
 import { getFormatDate } from 'lib/dateFormer'
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -11,11 +12,14 @@ export default function EnrollItem() {
     const [imgBase64, setImgBase64] = useState('')
     const [imgFile, setImgFile] = useState(UploadImg)
     const [startdate, setStartdate] = useState('')
+    const [enddate, setEnddate] = useState('')
 
-    let starttime;
+    let starttime, endtime;
 
     const onChangeStartDate = (date) => setStartdate(date)
+    const onChangeEndDate = (date) => setEnddate(date)
     const onChangeStartTime = (time) => starttime = time
+    const onChangeEndTime = (time) => endtime = time
 
     const onChangeFile = (e) => {
         const reader = new FileReader();
@@ -76,14 +80,29 @@ export default function EnrollItem() {
                 <hr className='sub-hr' />
                 <li>
                     <div className='li-title'>경매 시작일시<span className='required-check'>*</span></div>
-                    <div>날짜</div>
-                    <DatePicker selected={startdate} onChange={onChangeStartDate}></DatePicker>
-                    <div>시간</div>
-                    <TimePicker value={starttime} onChange={(time) => console.log(time)}></TimePicker>
+                    <div className='li-time-sub'>
+                        <span className='li-sub-title'>날짜</span>
+                        <DatePicker selected={startdate} onChange={onChangeStartDate}></DatePicker>
+                    </div>
+                    <div className='li-time-sub'>
+                        <span className='li-sub-title'>시간</span>
+                        <TimePicker value={starttime} onChange={onChangeStartTime}></TimePicker>
+                    </div>
                 </li>
                 <hr className='sub-hr' />
                 <li>
                     <div className='li-title'>경매 종료일시<span className='required-check'>*</span></div>
+                    <div className='li-time-sub'>
+                        <span className='li-sub-title'>날짜</span>
+                        <DatePicker selected={enddate} onChange={onChangeEndDate}></DatePicker>
+                    </div>
+                    <div className='li-time-sub'>
+                        <span className='li-sub-title'>시간</span>
+                        <TimePicker value={endtime} onChange={onChangeEndTime}></TimePicker>
+                    </div>
+                </li>
+                <li id='li-submit'>
+                    <Button size='lg' variant='danger'>등록하기</Button>
                 </li>
             </ul>
         </div>
