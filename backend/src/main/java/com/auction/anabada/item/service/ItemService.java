@@ -36,6 +36,17 @@ public class ItemService {
         return false;
     }
 
+    @Transactional
+    public Boolean updateInterestCnt(Item item,Long nCnt){
+        if(item.getItemId()!=null){
+            item.updateInterestCnt(nCnt);
+            itemRepository.save(item);
+            return true;
+        }
+
+        return false;
+    }
+
 
     public Item findById(Long id) {
         return itemRepository.findById(id);

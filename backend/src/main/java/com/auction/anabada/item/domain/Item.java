@@ -72,4 +72,6 @@ public class Item {
     public void updatePrice(Long newCost){
         this.currentPrice=newCost;
     }
+
+    public void updateInterestCnt(Long nInterestCnt){this.interestCnt=nInterestCnt;}
 }

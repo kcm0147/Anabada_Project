@@ -6,7 +6,6 @@ import com.auction.anabada.item.service.ItemService;
 import com.auction.anabada.user.domain.User;
 import com.auction.anabada.user.service.UserService;
 import com.auction.anabada.wishitem.domain.WishItem;
-import com.auction.anabada.wishitem.dto.WishItemDto;
 import com.auction.anabada.wishitem.repository.WishItemRepository;
 import java.util.List;
 import java.util.Optional;
@@ -33,9 +32,11 @@ public class WishItemService {
             .filter(o -> o.getItem().getItemId() == itemId).findAny();
         if(wishItems.isPresent()) return false;
 
-        WishItem wishItem = new WishItem(user,item);
+        itemService.updateInterestCnt(item,item.getInterestCnt()+1);
 
+        WishItem wishItem = new WishItem(user,item);
         wishItemRepository.save(wishItem);
+
 
         return true;
     }
@@ -43,6 +44,7 @@ public class WishItemService {
     @Transactional
     public boolean removeWishItem(Long userId,Long itemId) {
         User user = userService.findById(userId);
+        Item item = itemService.findById(itemId);
 
         Optional<WishItem> wishItems = user.getWishItems().stream()
             .filter(o -> o.getItem().getItemId() == itemId)
@@ -50,9 +52,9 @@ public class WishItemService {
 
         if (wishItems.isEmpty())
             return false;
+        itemService.updateInterestCnt(item,item.getInterestCnt()-1);
 
         WishItem wishItem = wishItems.get();
-
         wishItem.removeRelated();
 
         wishItemRepository.remove(wishItem.getWishItemId());
