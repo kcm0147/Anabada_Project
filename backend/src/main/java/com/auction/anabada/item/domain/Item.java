@@ -38,6 +38,8 @@ public class Item {
 
     private Long interestCnt;
 
+    private String description;
+
     @OneToOne
     @JoinColumn(name = "sale_item_id")
     private SaleItem saleItem;
@@ -59,6 +61,7 @@ public class Item {
         item.lowerBoundPrice=enrollItemDto.getLowerBoundPrice();
         item.currentPrice=item.lowerBoundPrice;
         item.interestCnt=0L;
+        item.description=enrollItemDto.getDescription();
 
         return item;
     }
