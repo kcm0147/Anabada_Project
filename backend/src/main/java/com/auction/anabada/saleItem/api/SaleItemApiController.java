@@ -20,8 +20,8 @@ public class SaleItemApiController {
     @PostMapping("/api/saleItem/enrollItem")
     public Long enrollItem(@RequestBody @Valid EnrollItemDto enrollItemDto, HttpServletRequest req){
         long userId = (Long)req.getSession().getAttribute("userId");
-        String uploadPath = req.getSession().getServletContext().getRealPath("/").concat("resources");
-        enrollItemDto.makeImagePath(uploadPath);
+        //String uploadPath = req.getSession().getServletContext().getRealPath("/").concat("resources");
+        //enrollItemDto.makeImagePath(uploadPath);
         return saleItemService.addSaleItem(userId,enrollItemDto);
     }
 
