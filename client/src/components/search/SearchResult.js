@@ -16,16 +16,15 @@ const SearchResult = () => {
     const search = location.search;
     setSearchQuery(search.split(`=`)[1]);
     dispatch(getAllItemsRequest());
-    if (searchData) {
-      setSearchResult(
-        searchData.filter((item) => item.itemName.contains(searchQuery))
-      );
-    }
-  }, [location, searchQuery, dispatch, searchData]);
+  }, [dispatch, location]);
 
   useEffect(() => {
-    console.log(searchData);
-  }, [searchData]);
+    if (searchData) {
+      setSearchResult(
+        searchData.filter((item) => item.itemName.includes(searchQuery))
+      );
+    }
+  }, [searchData, searchQuery]);
 
   const searchResultNode = useMemo(() => {
     return (
