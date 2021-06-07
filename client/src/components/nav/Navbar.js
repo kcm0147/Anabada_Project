@@ -1,5 +1,5 @@
-import { useRef } from "react";
-import { Link } from "react-router-dom";
+import { useRef, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "assets/css/navbar.scss";
 import Logoimage from "assets/image/logo.png";
@@ -11,13 +11,23 @@ import Loginmenu from "components/nav/Loginmenu";
 export default function Navbar({ match }) {
   const myMenuRef = useRef();
   const userInfo = useSelector((state) => state.USER.data);
+  const [searchQuery, setSearchQuery] = useState("");
+  const history = useHistory();
 
   const onClickMyProfile = () => {
     myMenuRef.current.style.opacity =
       myMenuRef.current.style.opacity === "0" ||
-        myMenuRef.current.style.opacity === ""
+      myMenuRef.current.style.opacity === ""
         ? "1"
         : "0";
+  };
+
+  const handleSearchButtonClick = (e) => {
+    e.preventDefault();
+    history.push({
+      pathname: `/search`,
+      search: `?query=${searchQuery}`,
+    });
   };
 
   return (
@@ -33,8 +43,13 @@ export default function Navbar({ match }) {
             className="nav-searchinput"
             type="text"
             placeholder="관심있는 경매품을 검색해보세요!"
-          ></input>
-          <BiSearchAlt id="input-search-btn" />
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <BiSearchAlt
+            id="input-search-btn"
+            onClick={handleSearchButtonClick}
+          />
         </div>
         <div className="myprofile-icon">
           <BsFillPersonLinesFill
