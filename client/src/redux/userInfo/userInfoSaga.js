@@ -3,6 +3,9 @@ import {
   getUserInfoRequest,
   getUserInfoSuccess,
   getUserInfoFailure,
+  modifyUserInfoRequest,
+  modifyUserInfoSuccess,
+  modifyUserInfoFailure,
 } from "./userInfoSlice";
 import * as api from "../../lib/api";
 
@@ -19,6 +22,17 @@ function* getUserInfoSaga() {
   }
 }
 
+function* modifyUserInfoSaga(action) {
+  try {
+    yield call(api.modifyUserInfo, action.payload);
+    alert("정보를 수정했습니다.");
+    yield put(modifyUserInfoSuccess());
+  } catch (e) {
+    yield put(modifyUserInfoFailure(e));
+  }
+}
+
 export function* userInfoSaga() {
   yield takeLatest(getUserInfoRequest.type, getUserInfoSaga);
+  yield takeLatest(modifyUserInfoRequest.type, modifyUserInfoSaga);
 }

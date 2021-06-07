@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserInfoRequest } from "redux/userInfo/userInfoSlice";
+import {
+  getUserInfoRequest,
+  modifyUserInfoRequest,
+} from "redux/userInfo/userInfoSlice";
 import { InputGroup, FormControl, Button } from "react-bootstrap";
 
 const MyInfoContents = () => {
@@ -21,21 +24,24 @@ const MyInfoContents = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    setAccountId(userInfoData.accountId || "");
-    setAddress(userInfoData.address || "");
-    setInterest(userInfoData.interest || "");
-    setName(userInfoData.name || "");
-    setNickName(userInfoData.nickName || "");
-    setPhoneNum(userInfoData.phoneNum || "");
-    setProfileImage(userInfoData.profileImage || "");
+    if (userInfoData) {
+      setAccountId(userInfoData.accountId || "");
+      setAddress(userInfoData.address || "");
+      setInterest(userInfoData.interest || "");
+      setName(userInfoData.name || "");
+      setNickName(userInfoData.nickName || "");
+      setPhoneNum(userInfoData.phoneNum || "");
+      setProfileImage(userInfoData.profileImage || "");
+    }
   }, [userInfoData]);
 
   const handleSaveButtonClick = (e) => {
     e.preventDefault();
-    // TODO Implement "Edit my info"
-    /*dispatch(modifyUserInfoRequest({
-
-      }));*/
+    dispatch(
+      modifyUserInfoRequest({
+        address,
+      })
+    );
   };
 
   return (

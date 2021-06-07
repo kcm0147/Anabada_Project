@@ -42,6 +42,26 @@ export const getUserInfo = async () => {
   }
 };
 
+export const modifyUserInfo = async (payload) => {
+  try {
+    const response = await axios.post(
+      "/api/user/address",
+      {
+        newAddress: payload.address,
+      },
+      {
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+        },
+      }
+    );
+    return response.data;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
 export const participationlistAPI = async () => {
   // 유저 경매 참여 내역 api
   try {

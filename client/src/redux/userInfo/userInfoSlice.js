@@ -20,6 +20,21 @@ export const userInfoSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    modifyUserInfoRequest: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    modifyUserInfoSuccess: (state, action) => {
+      state.loading = false;
+      state.data = {
+        ...state.data,
+        ...action.payload,
+      };
+    },
+    modifyUserInfoFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
   },
 });
 
@@ -28,5 +43,8 @@ export const {
   getUserInfoRequest,
   getUserInfoSuccess,
   getUserInfoFailure,
+  modifyUserInfoRequest,
+  modifyUserInfoSuccess,
+  modifyUserInfoFailure,
 } = userInfoSlice.actions;
 export const userInfoReducer = userInfoSlice.reducer;
