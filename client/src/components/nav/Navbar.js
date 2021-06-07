@@ -15,7 +15,7 @@ export default function Navbar({ match }) {
   const onClickMyProfile = () => {
     myMenuRef.current.style.opacity =
       myMenuRef.current.style.opacity === "0" ||
-      myMenuRef.current.style.opacity === ""
+        myMenuRef.current.style.opacity === ""
         ? "1"
         : "0";
   };

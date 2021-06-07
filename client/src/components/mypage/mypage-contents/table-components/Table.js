@@ -4,11 +4,12 @@ export default function Table({ headary, contentary, resultPage }) {
 
     const renderingContent = () => {
         const result = [];
+        let key = 1;
         if (contentary === null || contentary === undefined) return;
 
         if (resultPage)
             for (const comp of contentary) {
-                result.push(<tr>
+                result.push(<tr key={key}>
                     <td>{comp.itemImage}</td>
                     <td>{comp.itemName}</td>
                     <td>{comp.category}</td>
@@ -19,11 +20,12 @@ export default function Table({ headary, contentary, resultPage }) {
                         <span className='success-span'>낙찰</span> :
                         <span className='fail-span'>패찰</span>}</td>
                 </tr>)
+                key++;
             }
 
         else
             for (const comp of contentary) {
-                result.push(<tr>
+                result.push(<tr key={key}>
                     <td>{comp.itemImage}</td>
                     <td>{comp.itemName}</td>
                     <td>{comp.category}</td>
@@ -31,6 +33,7 @@ export default function Table({ headary, contentary, resultPage }) {
                     <td>{comp.auctionStartDate}</td>
                     <td>{comp.auctionEndDate}</td>
                 </tr>)
+                key++;
             }
         return result
     }
@@ -39,7 +42,7 @@ export default function Table({ headary, contentary, resultPage }) {
         <table className='table-filter'>
             <thead>
                 <tr>
-                    {headary.map((value) => <th>{value}</th>)}
+                    {headary.map((value) => <th key={value}>{value}</th>)}
                 </tr>
             </thead>
             <tbody>

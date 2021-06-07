@@ -1,19 +1,15 @@
 package com.auction.anabada.user.api;
 
-import com.auction.anabada.biddetail.domain.BidDetail;
 import com.auction.anabada.biddetail.dto.DetailBidsDto;
 import com.auction.anabada.biddetail.dto.SimpleBidsDto;
 import com.auction.anabada.biddetail.service.BidService;
-import com.auction.anabada.item.domain.Item;
-import com.auction.anabada.item.dto.EnrollItemDto;
+import com.auction.anabada.item.dto.ItemDto;
 import com.auction.anabada.user.domain.User;
 import com.auction.anabada.user.dto.LoginRequestDto;
 import com.auction.anabada.user.dto.SignupRequestDto;
 import com.auction.anabada.user.dto.UserDto;
 import com.auction.anabada.user.service.UserService;
 import io.swagger.annotations.ApiOperation;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
@@ -97,7 +93,6 @@ public class UserApiController {
     public List<DetailBidsDto> getCurrentDetailBidDto(HttpServletRequest req,@RequestParam("buyItemId") Long buyItemId) {
 
         Long userId = (Long) req.getSession().getAttribute("userId");
-        User user = userService.findById(userId);
 
         List<DetailBidsDto> bidDetails = bidService.findBidDetails(userId, buyItemId);
 
@@ -109,9 +104,16 @@ public class UserApiController {
 
     @ApiOperation(value="개인별 등록 경매물품 조회", notes="자신이 등록한 모든 물품을 조회할 수 있다.")
     @GetMapping("/api/user/enrolledItems")
-    public List<EnrollItemDto> getEnrolledItems(HttpServletRequest req){
+    public List<ItemDto> getEnrolledItems(HttpServletRequest req){
         Long userId = (Long) req.getSession().getAttribute("userId");
         return userService.getEnrolledItems(userId);
+    }
+
+    @ApiOperation(value="개인별 위시 리스트 조회", notes="자신이 찜해놓은 물품을  조회할 수 있다.")
+    @GetMapping("/api/user/wishItems")
+    public List<ItemDto> getWishItems(HttpServletRequest req){
+        Long userId = (Long) req.getSession().getAttribute("userId");
+        return userService.getWishItems(userId);
     }
 
 

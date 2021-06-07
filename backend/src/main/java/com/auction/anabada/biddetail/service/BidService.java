@@ -80,7 +80,7 @@ public class BidService {
                 .buyItemId(o.getBuyItemId())
                 .itemName(item.getItemName())
                 .category(item.getCategory())
-                .itemImage(item.getItemImage())
+                .itemPath(item.getImagePath())
                 .lastUserPrice(lastBidDetail.getBidCost())
                 .lastAuctionPrice(lastAuctionPrice)
                 .lastAuctionDate(lastTime)
