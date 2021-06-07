@@ -5,6 +5,7 @@ import Loginview from "components/login/Loginview.js";
 import UserRegistration from "components/login/UserRegistration.js";
 import MypageView from "components/mypage/MypageView.js";
 import SearchView from "components/search/SearchView.js";
+import ItemDetailView from "components/item/ItemDetailView.js";
 import { Route, Switch } from "react-router";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path="/register" component={UserRegistration} />
         <Route path="/mypage" component={MypageView} />
         <Route path="/search" component={SearchView} />
+        <Route path="/item/:itemId" component={ItemDetailView} />
         <Route path="/" component={Homeview} />
       </Switch>
     </div>

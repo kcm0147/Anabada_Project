@@ -5,7 +5,6 @@ import { logoutRequest } from "../../redux/user/userSlice";
 
 export default function Mymenu(props) {
   const dispatch = useDispatch();
-  const matchUrl = props.match.url === "/" ? "mypage" : props.match.url;
 
   const onClickLogout = () => {
     dispatch(logoutRequest());
@@ -14,19 +13,19 @@ export default function Mymenu(props) {
 
   return (
     <ol id="mymenu" ref={props.myMenuRef}>
-      <Link to={`${matchUrl}/myparticipate`} className="link-style">
+      <Link to={`/mypage/myparticipate`} className="link-style">
         <li>
           경매 참여 현황
           <span>&#62;</span>
         </li>
       </Link>
-      <Link to={`${matchUrl}/mysale`} className="link-style">
+      <Link to={`/mypage/mysale`} className="link-style">
         <li>
           물품 등록 현황
           <span>&#62;</span>
         </li>
       </Link>
-      <Link to={`${matchUrl}/myinfo`} className="link-style">
+      <Link to={`/mypage/myinfo`} className="link-style">
         <li>
           회원 정보 수정
           <span>&#62;</span>
