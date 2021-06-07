@@ -21,6 +21,7 @@ public class SaleItemApiController {
     @PostMapping("/api/saleItem/enrollItem")
     public Long enrollItem(@ModelAttribute EnrollItemDto enrollItemDto, HttpServletRequest req){
         long userId = (Long)req.getSession().getAttribute("userId");
+
         enrollItemDto.makeImagePath("/src/main/resources");
         return saleItemService.addSaleItem(userId,enrollItemDto);
     }

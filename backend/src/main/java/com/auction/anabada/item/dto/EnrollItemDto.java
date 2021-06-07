@@ -57,4 +57,5 @@ public class EnrollItemDto {
         log.info("파일이 저장된 경로 : " + newPath);
         this.itemInfo.setImagePath(newPath);
     }
+
 }
