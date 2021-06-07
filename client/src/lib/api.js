@@ -136,3 +136,17 @@ export const wishItemsAPI = async () => {
     console.error(e);
   }
 };
+
+export const getAllItems = async () => {
+  try {
+    const response = await axios.get("/api/item/all", {
+      headers: {
+        "Content-type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    return response.data;
+  } catch (e) {
+    console.error(e);
+  }
+};
