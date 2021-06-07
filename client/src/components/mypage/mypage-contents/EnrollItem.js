@@ -10,11 +10,10 @@ import { enrollItemAPI } from 'lib/api'
 import "react-datepicker/dist/react-datepicker.css";
 
 export default function EnrollItem({ match }) {
-
     const [itemName, setItemName] = useState('')
     const [itemDesc, setItemDesc] = useState('')
     const [lowestPrice, setLowestPrice] = useState('')
-    const [imgBase64, setImgBase64] = useState('')
+    const [imgFormData, setImgFormData] = useState(null)
     const [imgFile, setImgFile] = useState(UploadImg)
     const [startdate, setStartdate] = useState(null)
     const [enddate, setEnddate] = useState(null)
@@ -31,7 +30,7 @@ export default function EnrollItem({ match }) {
     const onChangeEndTime = (time) => setEndtime(time)
 
     const validationFunc = () => {
-        if (itemName === '' || lowestPrice === '' || imgBase64 === '' || startdate === null
+        if (itemName === '' || lowestPrice === '' || imgFormData === null || startdate === null
             || starttime === '' || enddate === null || endtime === '')
             return false;
         return true;
@@ -40,16 +39,29 @@ export default function EnrollItem({ match }) {
     const onClickSubmit = async () => {
         if (!validationFunc()) alert('필수항목을 모두 입력해주세요.')
         else {
-            const payload = {
-                itemName: itemName,
-                itemImage: imgBase64,
-                description: itemDesc,
-                lowerBoundPrice: lowestPrice,
-                category: 'ELECTRONIC',
-                auctionStartDate: getFormatDate(startdate) + ' ' + starttime + ':00',
-                auctionEndDate: getFormatDate(enddate) + ' ' + endtime + ':00'
-            }
-            const result = await enrollItemAPI(payload)
+            const formdata = new FormData();
+            formdata.append('itemName', itemName);
+            formdata.append('category', 'ELECTRONIC');
+            formdata.append('lowerBoundPrice', lowestPrice);
+            formdata.append('auctionStartDate', getFormatDate(startdate) + ' ' + starttime + ':00');
+            formdata.append('auctionEndDate', getFormatDate(enddate) + ' ' + endtime + ':00');
+            formdata.append('description', itemDesc);
+            formdata.append('imagePath', 'default');
+            formdata.append('imageFile', imgFormData);
+
+            // const payload = {
+            //     itemName: itemName,
+            //     category: 'ELECTRONIC',
+            //     lowerBoundPrice: lowestPrice,
+            //     auctionStartDate: getFormatDate(startdate) + ' ' + starttime + ':00',
+            //     auctionEndDate: getFormatDate(enddate) + ' ' + endtime + ':00',
+            //     description: itemDesc,
+            //     imagePath: 'default',
+            //     imageFile: imgFile,
+            // }
+            // const result = await enrollItemAPI(payload)
+
+            const result = await enrollItemAPI(formdata)
             setSubmitResult(result)
             alert('경매품 등록이 완료되었습니다.')
         }
@@ -61,8 +73,8 @@ export default function EnrollItem({ match }) {
 
         reader.onloadend = () => {
             const base64 = reader.result;
-            if (base64) setImgBase64(base64.toString());
-            if (file) setImgFile(base64)
+            if (file) setImgFormData(file);
+            if (base64) setImgFile(base64)
         }
         reader.readAsDataURL(file);
     }
