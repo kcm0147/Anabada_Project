@@ -5,7 +5,6 @@ import com.auction.anabada.item.dto.EnrollItemDto;
 import com.auction.anabada.saleItem.domain.SaleItem;
 import com.auction.anabada.user.domain.Category;
 import com.auction.anabada.wishitem.domain.WishItem;
-import java.sql.Blob;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -56,15 +55,15 @@ public class Item {
 
     public static Item createItem(EnrollItemDto enrollItemDto){
         Item item = new Item();
-        item.itemName=enrollItemDto.getItemName();
-        item.imagePath=enrollItemDto.getImagePath();
-        item.category=enrollItemDto.getCategory();
-        item.auctionStartDate=LocalDateTime.parse(enrollItemDto.getAuctionStartDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        item.auctionEndDate=LocalDateTime.parse(enrollItemDto.getAuctionEndDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        item.lowerBoundPrice=enrollItemDto.getLowerBoundPrice();
+        item.itemName=enrollItemDto.getItemInfo().getItemName();
+        item.imagePath=enrollItemDto.getItemInfo().getImagePath();
+        item.category=enrollItemDto.getItemInfo().getCategory();
+        item.auctionStartDate=LocalDateTime.parse(enrollItemDto.getItemInfo().getAuctionStartDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        item.auctionEndDate=LocalDateTime.parse(enrollItemDto.getItemInfo().getAuctionEndDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        item.lowerBoundPrice=enrollItemDto.getItemInfo().getLowerBoundPrice();
         item.currentPrice=item.lowerBoundPrice;
         item.interestCnt=0L;
-        item.description=enrollItemDto.getDescription();
+        item.description=enrollItemDto.getItemInfo().getDescription();
 
         return item;
     }
