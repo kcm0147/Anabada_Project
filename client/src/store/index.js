@@ -3,13 +3,19 @@ import createSagaMiddleware from "redux-saga";
 import { all } from "redux-saga/effects";
 import { createLogger } from "redux-logger";
 import { USER, userReducer } from "../redux/user/userSlice";
+import { USER_INFO, userInfoReducer } from "../redux/userInfo/userInfoSlice";
+import { SEARCH, searchReducer } from "../redux/search/searchSlice";
 import { userSaga } from "../redux/user/userSaga";
+import { userInfoSaga } from "../redux/userInfo/userInfoSaga";
+import { searchSaga } from "../redux/search/searchSaga";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const rootReducer = combineReducers({
   [USER]: userReducer,
+  [USER_INFO]: userInfoReducer,
+  [SEARCH]: searchReducer,
 });
 
 const persistConfig = {
@@ -23,7 +29,7 @@ const logger = createLogger();
 const sagaMiddleware = createSagaMiddleware();
 
 function* rootSaga() {
-  yield all([userSaga()]);
+  yield all([userSaga(), userInfoSaga(), searchSaga()]);
 }
 
 const createStore = () => {
