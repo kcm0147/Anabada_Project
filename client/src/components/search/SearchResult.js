@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { getAllItemsRequest } from "redux/search/searchSlice";
 import Item from "./Item";
 
@@ -16,7 +16,7 @@ const SearchResult = () => {
     const search = location.search;
     setSearchQuery(search.split(`=`)[1]);
     dispatch(getAllItemsRequest());
-  }, [dispatch, location]);
+  }, [dispatch, location.search]);
 
   useEffect(() => {
     if (searchData) {
@@ -30,7 +30,9 @@ const SearchResult = () => {
     return (
       <ul id="row-style">
         {searchResult.map((item, idx) => (
-          <Item name={item.itemName} key={idx} />
+          <Link to={`/item/${item.itemId}`}>
+            <Item name={item.itemName} key={idx} />
+          </Link>
         ))}
       </ul>
     );
