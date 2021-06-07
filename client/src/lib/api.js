@@ -112,7 +112,7 @@ export const enrollItemAPI = async (payload) => {
   try {
     const response = await axios.post("/api/saleItem/enrollItem", payload, {
       headers: {
-        "Content-type": "application/json",
+        "Content-type": "multipart/form-data",
         Accept: "application/json",
       },
     });

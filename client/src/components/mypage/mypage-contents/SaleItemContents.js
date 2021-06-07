@@ -21,6 +21,7 @@ export default function SaleItemContents() {
     useEffect(() => {
         const axiosing = async () => {
             const result = await enrolledItemsAPI()
+            console.log(result)
             const endnum = result.length / 10 + ((result.length % 10 > 0) ? 1 : 0)
             setEndpagenum((endnum === 0) ? 1 : endnum)
             setContentary(result)
