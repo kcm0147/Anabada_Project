@@ -9,7 +9,7 @@ import { BsClock, BsClockHistory, BsHeart, BsHammer } from "react-icons/bs";
 
 const ItemDetailView = ({ match }) => {
   const dispatch = useDispatch();
-  const searchData = useSelector((s) => s.SEARCH.data);
+  const allItemsData = useSelector((s) => s.ITEM.data);
   const [item, setItem] = useState(null);
 
   useEffect(() => {
@@ -18,11 +18,11 @@ const ItemDetailView = ({ match }) => {
 
   useEffect(() => {
     setItem(
-      searchData.find(
+      allItemsData.find(
         (item) => Number(item.itemId) === Number(match.params.itemId)
       )
     );
-  }, [match, searchData]);
+  }, [match, allItemsData]);
 
   const itemDetailNode = useMemo(() => {
     return !item ? (
