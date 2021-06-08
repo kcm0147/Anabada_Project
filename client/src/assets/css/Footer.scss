@@ -1,0 +1,44 @@
+
+.footer-section {
+    padding: 40px 110px;
+    font-size: 0.85rem;
+    background-color: rgb(122, 118, 118);
+    color: rgb(246, 243, 243);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#footer-main-title {
+    font-size: 1.3rem;
+    font-weight: 650;
+}
+
+#footer-dev {
+    font-size: 1.2rem;
+    font-weight: 650;
+}
+
+#footer-main-desc {
+    font-weight: 500;
+}
+
+#footer-first-section {
+    display: flex;
+    justify-content: space-between;
+}
+#footer-second-section {
+    margin-top: 30px;
+    text-align: center;
+}
+
+#github-icon {
+    margin-top: 5px;
+    width: 50px;
+    height: 50px;
+    color: rgb(246, 243, 243);
+
+    &:hover {
+        color: rgb(202, 198, 198);
+    }
+}
