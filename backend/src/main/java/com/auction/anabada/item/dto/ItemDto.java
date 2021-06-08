@@ -26,7 +26,8 @@ public class ItemDto {
     private String auctionEndDate;
     private Long interestCnt;
     private String description;
-    private byte[] itemImage;
+    private String itemImage;
+//    private byte[] itemImage;
 
 
     public ItemDto(Item item) {
@@ -38,7 +39,8 @@ public class ItemDto {
         this.auctionStartDate = item.getAuctionStartDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         this.auctionEndDate = item.getAuctionEndDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         this.interestCnt = item.getInterestCnt();
-        this.itemImage = encodingFile(item.getImagePath());
+      //  this.itemImage = encodingFile(item.getImagePath());
+        this.itemImage=item.getImagePath();
         this.description = item.getDescription();
     }
 
