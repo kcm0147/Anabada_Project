@@ -1,3 +1,4 @@
+import LoadingView from 'components/LoadingView'
 import Table from 'components/mypage/mypage-contents/table-components/Table'
 import TablePagenumSection from 'components/mypage/mypage-contents/table-components/TablePagenumSection'
 import { useEffect, useState } from 'react'
@@ -5,6 +6,7 @@ import { wishItemsAPI } from 'lib/api'
 
 export default function LikeItems() {
 
+    const [loading, setLoading] = useState(true)
     const [endpagenum, setEndpagenum] = useState(0)
     const [startpagenum, setStartpagenum] = useState(1)
     const [curpagenum, setCurpagenum] = useState(1)
@@ -22,6 +24,7 @@ export default function LikeItems() {
         const axiosing = async () => {
             const result = await wishItemsAPI()
             const endnum = result.length / 10 + ((result.length % 10 > 0) ? 1 : 0)
+            setLoading(false)
             setEndpagenum((endnum === 0) ? 1 : endnum)
             setContentary(result)
         }
@@ -31,9 +34,14 @@ export default function LikeItems() {
     return (
         <div className='mypage-contents'>
             <h4>나의 찜한 목록 조회</h4>
-            <Table headary={headary} contentary={contentary} resultPage={false} />
-            <TablePagenumSection startpagenum={startpagenum} curpagenum={curpagenum}
-                endpagenum={endpagenum} changeCurpagenum={changeCurpagenum} />
+            {
+                loading ? <LoadingView /> :
+                    <div>
+                        <Table headary={headary} contentary={contentary} resultPage={false} />
+                        <TablePagenumSection startpagenum={startpagenum} curpagenum={curpagenum}
+                            endpagenum={endpagenum} changeCurpagenum={changeCurpagenum} />
+                    </div>
+            }
         </div>
     )
 }
