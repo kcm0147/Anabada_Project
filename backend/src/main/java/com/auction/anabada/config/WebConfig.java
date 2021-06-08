@@ -13,6 +13,6 @@ public class WebConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
             .addResourceHandler("/images/**") // (1)
-            .addResourceLocations("file:/C:/Users/ggolo/Desktop/2021/Anabada_Project/backend/src/main/resources/static/images/"); // (2)
+            .addResourceLocations("file:"+System.getProperty("user.dir")+"/src/main/resources/static/images/"); // (2)
     }
 }
