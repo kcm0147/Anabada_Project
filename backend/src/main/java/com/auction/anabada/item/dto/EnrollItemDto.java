@@ -4,13 +4,11 @@ import com.auction.anabada.user.domain.Category;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Date;
-import java.util.UUID;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.util.FileCopyUtils;
-import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -20,7 +18,14 @@ import org.springframework.web.multipart.MultipartFile;
 @Slf4j
 public class EnrollItemDto {
 
-    private ItemInfo itemInfo;
+    private String itemName;
+    @Enumerated(EnumType.STRING)
+    private Category category;
+    private Long lowerBoundPrice;
+    private String auctionStartDate;
+    private String auctionEndDate;
+    private String description;
+    private String imagePath;
     private MultipartFile imageFile;
 
      public void makeImagePath(String path) {
@@ -37,8 +42,8 @@ public class EnrollItemDto {
             log.info("파일이 정상적으로 첨부되었습니다.");
             fileName= imageFile.getOriginalFilename();
 
-            File dir = new File(path);
-            File target = new File(absolutePath+path+'/'+fileName);
+            File dir = new File(absolutePath+path);
+            File target = new File(absolutePath+path+'/'+ fileName+System.nanoTime());
 
             if(!dir.exists()){
                 dir.mkdirs();
@@ -48,14 +53,14 @@ public class EnrollItemDto {
             try {
                 imageFile.transferTo(target);
                 log.info("파일 생성");
-                newPath = absolutePath+path+'/'+fileName;
+                newPath = absolutePath+path+'/'+fileName+System.nanoTime();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
         log.info("파일이 저장된 경로 : " + newPath);
-        this.itemInfo.setImagePath(newPath);
+        this.setImagePath(newPath);
     }
 
 }
