@@ -150,3 +150,17 @@ export const getAllItems = async () => {
     console.error(e);
   }
 };
+
+export const getItemsWithName = async (payload) => {
+  try {
+    const response = await axios.post("/api/item/name", payload.includedName, {
+      headers: {
+        "Content-type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    return response.data;
+  } catch (e) {
+    console.error(e);
+  }
+};
