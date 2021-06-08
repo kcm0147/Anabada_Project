@@ -26,8 +26,8 @@ public class ItemDto {
     private String auctionEndDate;
     private Long interestCnt;
     private String description;
-//    private byte[] itemImage;
-    private String itemImage;
+    private byte[] itemImage;
+
 
     public ItemDto(Item item) {
         this.itemId = item.getItemId();
@@ -38,21 +38,20 @@ public class ItemDto {
         this.auctionStartDate = item.getAuctionStartDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         this.auctionEndDate = item.getAuctionEndDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         this.interestCnt = item.getInterestCnt();
-//        this.itemImage = encodingFile(item.getImagePath());
-        this.itemImage=item.getImagePath();
+        this.itemImage = encodingFile(item.getImagePath());
         this.description = item.getDescription();
     }
 
-//    private byte[] encodingFile(String filePath){
-//        InputStream imageStream = null;
-//        byte[] imageByteArray = new byte[0];
-//        try {
-//            imageStream = new FileInputStream(filePath);
-//            imageByteArray = imageStream.readAllBytes();
-//            imageStream.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return imageByteArray;
-//    }
+    private byte[] encodingFile(String filePath){
+        InputStream imageStream = null;
+        byte[] imageByteArray = new byte[0];
+        try {
+            imageStream = new FileInputStream(filePath);
+            imageByteArray = imageStream.readAllBytes();
+            imageStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return imageByteArray;
+    }
 }
