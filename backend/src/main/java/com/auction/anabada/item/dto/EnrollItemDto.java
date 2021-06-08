@@ -31,19 +31,19 @@ public class EnrollItemDto {
      public void makeImagePath(String path) {
         path = path +File.separator + "static" + File.separator + "images"; // 이미지 업로드 폴더 /resources/static/images
         log.info("이미지 저장 경로 : " + path);
-        String fileName;
-        String newPath = null;
+        String filePath;
         String absolutePath = System.getProperty("user.dir");;
 
         if(this.imageFile.isEmpty()) { // 애초에 모든 물품은 사진 등록을 완료해야 함
             log.error("파일이 첨부되지 않았습니다.");
-            newPath = path + File.separator + "default.jpg";
+            filePath = path + File.separator + "default.jpg";
         } else { // 파일이 존재할 경우 정상 로직 수행
             log.info("파일이 정상적으로 첨부되었습니다.");
-            fileName= imageFile.getOriginalFilename();
+            filePath= absolutePath+path+'/'+System.nanoTime()+imageFile.getOriginalFilename();
 
             File dir = new File(absolutePath+path);
-            File target = new File(absolutePath+path+'/'+ fileName+System.nanoTime());
+            File target = new File(filePath);
+            log.info(filePath);
 
             if(!dir.exists()){
                 dir.mkdirs();
@@ -53,14 +53,13 @@ public class EnrollItemDto {
             try {
                 imageFile.transferTo(target);
                 log.info("파일 생성");
-                newPath = absolutePath+path+'/'+fileName+System.nanoTime();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
-        log.info("파일이 저장된 경로 : " + newPath);
-        this.setImagePath(newPath);
+        log.info("파일이 저장된 경로 : " + filePath);
+        this.setImagePath(filePath);
     }
 
 }
