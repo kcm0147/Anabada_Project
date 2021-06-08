@@ -9,7 +9,7 @@ export default function Footer() {
                     <div id='footer-main-title'>ANABADA</div>
                     <div id='footer-main-desc'>당신의 상품들에 상상하지 못할 가격을 매겨 보세요</div>
                     <div>
-                        <a href='https://github.com/kcm0147/Anabada_Project' target='_blank'>
+                        <a href='https://github.com/kcm0147/Anabada_Project' target='_blank' rel='noopener noreferrer'>
                             <FaGithubSquare id='github-icon' />
                         </a>
                     </div>
