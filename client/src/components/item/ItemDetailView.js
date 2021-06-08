@@ -3,7 +3,7 @@ import Footer from "components/Footer";
 import Navbar from "components/nav/Navbar";
 import { Container, Row, Col, Badge, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllItemsRequest } from "redux/search/searchSlice";
+import { getAllItemsRequest } from "redux/item/itemSlice";
 import NoImg from "assets/image/no-image.png";
 import { BsClock, BsClockHistory, BsHeart, BsHammer } from "react-icons/bs";
 
