@@ -4,10 +4,10 @@ import { all } from "redux-saga/effects";
 import { createLogger } from "redux-logger";
 import { USER, userReducer } from "../redux/user/userSlice";
 import { USER_INFO, userInfoReducer } from "../redux/userInfo/userInfoSlice";
-import { SEARCH, searchReducer } from "../redux/search/searchSlice";
+import { ITEM, itemReducer } from "../redux/item/itemSlice";
 import { userSaga } from "../redux/user/userSaga";
 import { userInfoSaga } from "../redux/userInfo/userInfoSaga";
-import { searchSaga } from "../redux/search/searchSaga";
+import { itemSaga } from "../redux/item/itemSaga";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -15,7 +15,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 const rootReducer = combineReducers({
   [USER]: userReducer,
   [USER_INFO]: userInfoReducer,
-  [SEARCH]: searchReducer,
+  [ITEM]: itemReducer,
 });
 
 const persistConfig = {
@@ -29,7 +29,7 @@ const logger = createLogger();
 const sagaMiddleware = createSagaMiddleware();
 
 function* rootSaga() {
-  yield all([userSaga(), userInfoSaga(), searchSaga()]);
+  yield all([userSaga(), userInfoSaga(), itemSaga()]);
 }
 
 const createStore = () => {

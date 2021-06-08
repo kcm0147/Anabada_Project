@@ -1,53 +1,39 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, Link } from "react-router-dom";
-import { getAllItemsRequest } from "redux/search/searchSlice";
+import { getItemsWithNameRequest } from "redux/item/itemSlice";
 import Item from "./Item";
 
 const SearchResult = () => {
   const location = useLocation();
   const dispatch = useDispatch();
-  const searchLoading = useSelector((s) => s.SEARCH.loading);
-  const searchData = useSelector((s) => s.SEARCH.data);
+  const itemsSearchLoading = useSelector((s) => s.ITEM.loading);
+  const itemsSearchData = useSelector((s) => s.ITEM.data);
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResult, setSearchResult] = useState([]);
 
   useEffect(() => {
     const search = location.search;
-    setSearchQuery(search.split(`=`)[1]);
-    dispatch(getAllItemsRequest());
-  }, [dispatch, location.search]);
-
-  useEffect(() => {
-    if (searchData) {
-      setSearchResult(
-        searchData.filter((item) => item.itemName.includes(searchQuery))
-      );
-    }
-  }, [searchData, searchQuery]);
-
-  const searchResultNode = useMemo(() => {
-    return (
-      <ul id="row-style">
-        {searchResult.map((item, idx) => (
-          <Link to={`/item/${item.itemId}`}>
-            <Item name={item.itemName} key={idx} />
-          </Link>
-        ))}
-      </ul>
-    );
-  }, [searchResult]);
-
-  const noResultNode = useMemo(() => {
-    return <p>검색 결과가 없습니다.</p>;
-  }, []);
+    setSearchQuery(decodeURI(search.split(`=`)[1]));
+    dispatch(getItemsWithNameRequest({ includedName: searchQuery }));
+  }, [dispatch, location.search, searchQuery]);
 
   return (
     <div id="hot-item-section">
       <div id="sub-item-section">
-        <div id="main-title">"{decodeURI(searchQuery)}" 검색 결과</div>
-        {searchLoading ? "로딩중..." : searchResultNode}
-        {!searchLoading && searchResult.length === 0 && noResultNode}
+        <div id="main-title">"{searchQuery}" 검색 결과</div>
+        {itemsSearchLoading ? (
+          <p>로딩중...</p>
+        ) : itemsSearchData.length === 0 ? (
+          <p>검색 결과가 없습니다.</p>
+        ) : (
+          <ul id="row-style">
+            {itemsSearchData.map((item, idx) => (
+              <Link to={`/item/${item.itemId}`}>
+                <Item name={item.itemName} key={idx} />
+              </Link>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );
