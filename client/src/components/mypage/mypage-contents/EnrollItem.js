@@ -49,18 +49,6 @@ export default function EnrollItem({ match }) {
             formdata.append('imagePath', 'default');
             formdata.append('imageFile', imgFormData);
 
-            // const payload = {
-            //     itemName: itemName,
-            //     category: 'ELECTRONIC',
-            //     lowerBoundPrice: lowestPrice,
-            //     auctionStartDate: getFormatDate(startdate) + ' ' + starttime + ':00',
-            //     auctionEndDate: getFormatDate(enddate) + ' ' + endtime + ':00',
-            //     description: itemDesc,
-            //     imagePath: 'default',
-            //     imageFile: imgFile,
-            // }
-            // const result = await enrollItemAPI(payload)
-
             const result = await enrollItemAPI(formdata)
             setSubmitResult(result)
             alert('경매품 등록이 완료되었습니다.')

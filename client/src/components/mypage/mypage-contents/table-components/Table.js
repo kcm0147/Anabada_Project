@@ -4,11 +4,18 @@ export default function Table({ headary, contentary, resultPage }) {
 
     const renderingContent = () => {
         const result = [];
+        // const reader = new FileReader();
+        // let base64 = null;
         let key = 1;
         if (contentary === null || contentary === undefined) return;
 
+        // reader.onloadend = () => {
+        //     base64 = reader.result;
+        // }
+
         if (resultPage)
             for (const comp of contentary) {
+
                 result.push(<tr key={key}>
                     <td>{comp.itemImage}</td>
                     <td>{comp.itemName}</td>
@@ -23,8 +30,16 @@ export default function Table({ headary, contentary, resultPage }) {
                 key++;
             }
 
-        else
+        else {
             for (const comp of contentary) {
+                // if (comp.itemImage !== null) {
+                //     reader.readAsDataURL(new File([comp.itemImage], 'item-img.png', {
+                //         type: 'image/png'
+                //     })
+                //     );
+                //     console.log(reader.result);
+                // }
+
                 result.push(<tr key={key}>
                     <td>{comp.itemImage}</td>
                     <td>{comp.itemName}</td>
@@ -35,6 +50,7 @@ export default function Table({ headary, contentary, resultPage }) {
                 </tr>)
                 key++;
             }
+        }
         return result
     }
 
