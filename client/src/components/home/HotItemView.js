@@ -1,4 +1,3 @@
-import { Row, Col } from 'react-bootstrap'
 import HotItem from 'components/home/HotItem'
 import 'assets/css/HotItemView.scss'
 
