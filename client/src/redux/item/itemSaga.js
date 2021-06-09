@@ -44,6 +44,7 @@ function* getItemsWithNameSaga(action) {
 function* addWishItemSaga(action) {
   try {
     yield call(api.addWishItem, action.payload);
+    alert("찜 목록에 추가되었습니다.");
     yield put(addWishItemSuccess());
   } catch (e) {
     yield put(addWishItemFailure(e));
@@ -53,9 +54,10 @@ function* addWishItemSaga(action) {
 function* removeWishItemSaga(action) {
   try {
     yield call(api.removeWishItem, action.payload);
-    yield put(addWishItemSuccess());
+    alert("찜 목록에서 제거되었습니다.");
+    yield put(removeWishItemSuccess());
   } catch (e) {
-    yield put(addWishItemFailure(e));
+    yield put(removeWishItemFailure(e));
   }
 }
 

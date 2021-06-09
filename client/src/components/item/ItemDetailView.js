@@ -11,7 +11,7 @@ import {
   Modal,
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllItemsRequest } from "redux/item/itemSlice";
+import { getAllItemsRequest, addWishItemRequest } from "redux/item/itemSlice";
 import NoImg from "assets/image/no-image.png";
 import { BsClock, BsClockHistory, BsHeart, BsHammer } from "react-icons/bs";
 
@@ -32,17 +32,17 @@ const ItemDetailView = ({ match }) => {
         (item) => Number(item.itemId) === Number(match.params.itemId)
       )
     );
-    setBuyPrice(item.currentPrice);
+    if (item) {
+      setBuyPrice(item.currentPrice);
+    }
   }, [match, allItemsData, item]);
 
   const handleOpenBuyModal = () => setShowBuyModal(true);
   const handleCloseBuyModal = () => setShowBuyModal(false);
 
-  const handleInterestButtonClick = () => {};
-
-  const handleBuyItem = () => {};
-
   const buyModal = useMemo(() => {
+    const handleBuyItem = () => {};
+
     return (
       <Modal show={showBuyModal} onHide={handleCloseBuyModal}>
         <Modal.Header>
@@ -72,6 +72,10 @@ const ItemDetailView = ({ match }) => {
   }, [buyPrice, item, showBuyModal]);
 
   const itemDetailNode = useMemo(() => {
+    const handleInterestButtonClick = () => {
+      dispatch(addWishItemRequest({ ItemId: item.itemId }));
+    };
+
     return !item ? (
       "로딩중..."
     ) : (

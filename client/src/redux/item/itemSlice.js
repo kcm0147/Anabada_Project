@@ -43,14 +43,14 @@ export const itemSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
-    removeWithItemRequest: (state) => {
+    removeWishItemRequest: (state) => {
       state.loading = true;
       state.error = null;
     },
-    removeWithItemSuccess: (state) => {
+    removeWishItemSuccess: (state) => {
       state.loading = false;
     },
-    removeWithItemFailure: (state, action) => {
+    removeWishItemFailure: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },
