@@ -20,6 +20,11 @@ export default function Navbar({ match }) {
       myMenuRef.current.style.opacity === ""
         ? "1"
         : "0";
+    myMenuRef.current.style.display =
+      myMenuRef.current.style.opacity === "0" ||
+      myMenuRef.current.style.opacity === ""
+        ? "none"
+        : "block";
   };
 
   const handleSearchButtonClick = (e) => {

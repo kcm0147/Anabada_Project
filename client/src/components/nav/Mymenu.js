@@ -12,7 +12,13 @@ export default function Mymenu(props) {
   };
 
   return (
-    <ol id="mymenu" ref={props.myMenuRef}>
+    <ol
+      id="mymenu"
+      ref={props.myMenuRef}
+      style={{
+        display: "none",
+      }}
+    >
       <Link to={`/mypage/myparticipate`} className="link-style">
         <li>
           경매 참여 현황
