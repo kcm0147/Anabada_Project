@@ -20,6 +20,7 @@ const ItemDetailView = ({ match }) => {
   const allItemsData = useSelector((s) => s.ITEM.data);
   const [item, setItem] = useState(null);
   const [showBuyModal, setShowBuyModal] = useState(false);
+  const [buyPrice, setBuyPrice] = useState(0);
 
   useEffect(() => {
     dispatch(getAllItemsRequest());
@@ -31,7 +32,7 @@ const ItemDetailView = ({ match }) => {
         (item) => Number(item.itemId) === Number(match.params.itemId)
       )
     );
-    console.log(item);
+    setBuyPrice(item.currentPrice);
   }, [match, allItemsData, item]);
 
   const handleOpenBuyModal = () => setShowBuyModal(true);
@@ -39,24 +40,36 @@ const ItemDetailView = ({ match }) => {
 
   const handleInterestButtonClick = () => {};
 
+  const handleBuyItem = () => {};
+
   const buyModal = useMemo(() => {
     return (
       <Modal show={showBuyModal} onHide={handleCloseBuyModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+        <Modal.Header>
+          <Modal.Title>{item && item.itemName} 입찰하기</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Body>
+          입찰 가격을 입력하세요. 입찰 가격은 현재 가격인{" "}
+          {item && item.currentPrice}원 보다 높아야 합니다.
+          <br />
+          <input
+            type="number"
+            placeholder="입찰 가격"
+            value={buyPrice}
+            onChange={(e) => setBuyPrice(e.target.value)}
+          />
+        </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseBuyModal}>
-            Close
+          <Button variant="light" onClick={handleCloseBuyModal}>
+            취소
           </Button>
-          <Button variant="primary" onClick={handleCloseBuyModal}>
-            Save Changes
+          <Button variant="success" onClick={handleBuyItem}>
+            이 가격에 입찰하기
           </Button>
         </Modal.Footer>
       </Modal>
     );
-  }, [showBuyModal]);
+  }, [buyPrice, item, showBuyModal]);
 
   const itemDetailNode = useMemo(() => {
     return !item ? (
@@ -151,14 +164,16 @@ const ItemDetailView = ({ match }) => {
   }, [item]);
 
   return (
-    <div>
-      <Navbar />
-      <div id="hot-item-section">
-        <div id="sub-item-section">{itemDetailNode}</div>
+    <>
+      <div>
+        <Navbar />
+        <div id="hot-item-section">
+          <div id="sub-item-section">{itemDetailNode}</div>
+        </div>
+        <Footer />
       </div>
       {buyModal}
-      <Footer />
-    </div>
+    </>
   );
 };
 
