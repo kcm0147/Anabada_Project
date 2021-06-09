@@ -8,8 +8,7 @@ import {
   Badge,
   Button,
   ButtonGroup,
-  DropdownButton,
-  Dropdown,
+  Modal,
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllItemsRequest } from "redux/item/itemSlice";
@@ -20,6 +19,7 @@ const ItemDetailView = ({ match }) => {
   const dispatch = useDispatch();
   const allItemsData = useSelector((s) => s.ITEM.data);
   const [item, setItem] = useState(null);
+  const [showBuyModal, setShowBuyModal] = useState(false);
 
   useEffect(() => {
     dispatch(getAllItemsRequest());
@@ -33,6 +33,30 @@ const ItemDetailView = ({ match }) => {
     );
     console.log(item);
   }, [match, allItemsData, item]);
+
+  const handleOpenBuyModal = () => setShowBuyModal(true);
+  const handleCloseBuyModal = () => setShowBuyModal(false);
+
+  const handleInterestButtonClick = () => {};
+
+  const buyModal = useMemo(() => {
+    return (
+      <Modal show={showBuyModal} onHide={handleCloseBuyModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseBuyModal}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleCloseBuyModal}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }, [showBuyModal]);
 
   const itemDetailNode = useMemo(() => {
     return !item ? (
@@ -95,15 +119,27 @@ const ItemDetailView = ({ match }) => {
               </p>
               <br />
               <ButtonGroup>
-                <Button variant="danger" size="lg">
+                <Button
+                  variant="danger"
+                  size="lg"
+                  onClick={handleInterestButtonClick}
+                >
                   <BsHeart /> 찜하기
                 </Button>
-                <Button variant="danger" size="lg">
+                <Button
+                  variant="danger"
+                  size="lg"
+                  onClick={handleInterestButtonClick}
+                >
                   {item.interestCnt}
                 </Button>
               </ButtonGroup>{" "}
               <ButtonGroup>
-                <Button variant="success" size="lg">
+                <Button
+                  variant="success"
+                  size="lg"
+                  onClick={handleOpenBuyModal}
+                >
                   <BsHammer /> 입찰하기
                 </Button>
               </ButtonGroup>
@@ -120,6 +156,7 @@ const ItemDetailView = ({ match }) => {
       <div id="hot-item-section">
         <div id="sub-item-section">{itemDetailNode}</div>
       </div>
+      {buyModal}
       <Footer />
     </div>
   );
