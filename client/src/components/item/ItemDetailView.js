@@ -1,7 +1,16 @@
 import React, { useState, useEffect, useMemo } from "react";
 import Footer from "components/Footer";
 import Navbar from "components/nav/Navbar";
-import { Container, Row, Col, Badge, Button } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Badge,
+  Button,
+  ButtonGroup,
+  DropdownButton,
+  Dropdown,
+} from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllItemsRequest } from "redux/item/itemSlice";
 import NoImg from "assets/image/no-image.png";
@@ -22,7 +31,8 @@ const ItemDetailView = ({ match }) => {
         (item) => Number(item.itemId) === Number(match.params.itemId)
       )
     );
-  }, [match, allItemsData]);
+    console.log(item);
+  }, [match, allItemsData, item]);
 
   const itemDetailNode = useMemo(() => {
     return !item ? (
@@ -44,8 +54,8 @@ const ItemDetailView = ({ match }) => {
                 textAlign: "left",
               }}
             >
-              <h2>{item.itemName} </h2>
-              <h4>
+              <h1>{item.itemName} </h1>
+              <h5>
                 <Badge
                   style={{
                     backgroundColor: "pink",
@@ -53,8 +63,30 @@ const ItemDetailView = ({ match }) => {
                 >
                   {item.category}
                 </Badge>
-              </h4>
+              </h5>
               <p>{item.description || "상세 설명이 없습니다."}</p>
+              <br />
+              <h4>
+                시작가{" "}
+                <span
+                  style={{
+                    color: "red",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {item.lowerBoundPrice}
+                </span>
+                원 → 현재가{" "}
+                <span
+                  style={{
+                    color: "red",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {item.currentPrice}
+                </span>
+                원!
+              </h4>
               <br />
               <p>
                 <BsClockHistory /> 경매 시작일: {item.auctionStartDate}
@@ -62,12 +94,19 @@ const ItemDetailView = ({ match }) => {
                 <BsClock /> 경매 마감일: {item.auctionEndDate}
               </p>
               <br />
-              <Button variant="danger" size="lg">
-                <BsHeart /> 찜하기
-              </Button>{" "}
-              <Button variant="success" size="lg">
-                <BsHammer /> 입찰하기
-              </Button>
+              <ButtonGroup>
+                <Button variant="danger" size="lg">
+                  <BsHeart /> 찜하기
+                </Button>
+                <Button variant="danger" size="lg">
+                  {item.interestCnt}
+                </Button>
+              </ButtonGroup>{" "}
+              <ButtonGroup>
+                <Button variant="success" size="lg">
+                  <BsHammer /> 입찰하기
+                </Button>
+              </ButtonGroup>
             </Col>
           </Row>
         </Container>
