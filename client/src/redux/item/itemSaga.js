@@ -41,9 +41,23 @@ function* getItemsWithNameSaga(action) {
   }
 }
 
-function* addWishItemSaga() {}
+function* addWishItemSaga(action) {
+  try {
+    yield call(api.addWishItem, action.payload);
+    yield put(addWishItemSuccess());
+  } catch (e) {
+    yield put(addWishItemFailure(e));
+  }
+}
 
-function* removeWishItemSaga() {}
+function* removeWishItemSaga(action) {
+  try {
+    yield call(api.removeWishItem, action.payload);
+    yield put(addWishItemSuccess());
+  } catch (e) {
+    yield put(addWishItemFailure(e));
+  }
+}
 
 export function* itemSaga() {
   yield takeLatest(getAllItemsRequest.type, getAllItemsSaga);
