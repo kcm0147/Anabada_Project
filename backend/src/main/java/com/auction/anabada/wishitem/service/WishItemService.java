@@ -1,6 +1,5 @@
 package com.auction.anabada.wishitem.service;
 
-
 import com.auction.anabada.item.domain.Item;
 import com.auction.anabada.item.service.ItemService;
 import com.auction.anabada.user.domain.User;
@@ -33,12 +32,14 @@ public class WishItemService {
 
         wishItemRepository.save(wishItem);
 
+
         return true;
     }
 
     @Transactional
     public boolean removeWishItem(Long userId,Long itemId) {
         User user = userService.findById(userId);
+        Item item = itemService.findById(itemId);
 
         Optional<WishItem> wishItems = user.getWishItems().stream()
             .filter(o -> o.getItem().getItemId() == itemId)
@@ -48,14 +49,10 @@ public class WishItemService {
             return false;
 
         WishItem wishItem = wishItems.get();
-
         wishItem.removeRelated();
-
         wishItemRepository.remove(wishItem.getWishItemId());
 
         return true;
 
     }
-
-
 }

@@ -36,7 +36,6 @@ public class ItemService {
         return false;
     }
 
-
     public Item findById(Long id) {
         return itemRepository.findById(id);
     }

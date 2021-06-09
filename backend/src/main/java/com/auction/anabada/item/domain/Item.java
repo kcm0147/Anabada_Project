@@ -71,4 +71,12 @@ public class Item {
     public void updatePrice(Long newCost){
         this.currentPrice=newCost;
     }
+
+    public void addInterestCnt() { // wishItem 생성 시 자동으로 해당 메소드 호출
+        this.interestCnt += 1;
+    }
+
+    public void removeInterestCnt() { // wishItem 삭제 시 자동으로 해당 메소드 호출
+        this.interestCnt -= 1; 
+    }
 }
