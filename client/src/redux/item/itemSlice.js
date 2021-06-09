@@ -54,6 +54,17 @@ export const itemSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    buyItemRequest: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    buyItemSuccess: (state) => {
+      state.loading = false;
+    },
+    buyItemFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
   },
 });
 
@@ -71,5 +82,8 @@ export const {
   removeWishItemRequest,
   removeWishItemSuccess,
   removeWishItemFailure,
+  buyItemRequest,
+  buyItemSuccess,
+  buyItemFailure,
 } = itemSlice.actions;
 export const itemReducer = itemSlice.reducer;

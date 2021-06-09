@@ -12,6 +12,9 @@ import {
   removeWishItemRequest,
   removeWishItemSuccess,
   removeWishItemFailure,
+  buyItemRequest,
+  buyItemSuccess,
+  buyItemFailure,
 } from "./itemSlice";
 import * as api from "../../lib/api";
 
@@ -46,6 +49,7 @@ function* addWishItemSaga(action) {
     yield call(api.addWishItem, action.payload);
     alert("찜 목록에 추가되었습니다.");
     yield put(addWishItemSuccess());
+    yield put(getAllItemsRequest());
   } catch (e) {
     yield put(addWishItemFailure(e));
   }
@@ -56,8 +60,20 @@ function* removeWishItemSaga(action) {
     yield call(api.removeWishItem, action.payload);
     alert("찜 목록에서 제거되었습니다.");
     yield put(removeWishItemSuccess());
+    yield put(getAllItemsRequest());
   } catch (e) {
     yield put(removeWishItemFailure(e));
+  }
+}
+
+function* buyItemSaga(action) {
+  try {
+    yield call(api.buyItem, action.payload);
+    alert("입찰에 성공했습니다.");
+    yield put(buyItemSuccess());
+    yield put(getAllItemsRequest());
+  } catch (e) {
+    yield put(buyItemFailure(e));
   }
 }
 
@@ -66,4 +82,5 @@ export function* itemSaga() {
   yield takeLatest(getItemsWithNameRequest.type, getItemsWithNameSaga);
   yield takeLatest(addWishItemRequest.type, addWishItemSaga);
   yield takeLatest(removeWishItemRequest.type, removeWishItemSaga);
+  yield takeLatest(buyItemRequest.type, buyItemSaga);
 }

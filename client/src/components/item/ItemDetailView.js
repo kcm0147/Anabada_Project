@@ -11,7 +11,11 @@ import {
   Modal,
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllItemsRequest, addWishItemRequest } from "redux/item/itemSlice";
+import {
+  getAllItemsRequest,
+  addWishItemRequest,
+  buyItemRequest,
+} from "redux/item/itemSlice";
 import NoImg from "assets/image/no-image.png";
 import { BsClock, BsClockHistory, BsHeart, BsHammer } from "react-icons/bs";
 
@@ -20,7 +24,7 @@ const ItemDetailView = ({ match }) => {
   const allItemsData = useSelector((s) => s.ITEM.data);
   const [item, setItem] = useState(null);
   const [showBuyModal, setShowBuyModal] = useState(false);
-  const [buyPrice, setBuyPrice] = useState(0);
+  const [buyPrice, setBuyPrice] = useState("");
 
   useEffect(() => {
     dispatch(getAllItemsRequest());
@@ -41,7 +45,19 @@ const ItemDetailView = ({ match }) => {
   const handleCloseBuyModal = () => setShowBuyModal(false);
 
   const buyModal = useMemo(() => {
-    const handleBuyItem = () => {};
+    const handleBuyItem = () => {
+      if (item.currentPrice >= Number(buyPrice)) {
+        alert("입찰 가격은 현재 가격보다 높아야 합니다.");
+        return;
+      }
+      dispatch(
+        buyItemRequest({
+          itemId: item.itemId,
+          price: Number(buyPrice),
+        })
+      );
+      handleCloseBuyModal();
+    };
 
     return (
       <Modal show={showBuyModal} onHide={handleCloseBuyModal}>
@@ -69,11 +85,11 @@ const ItemDetailView = ({ match }) => {
         </Modal.Footer>
       </Modal>
     );
-  }, [buyPrice, item, showBuyModal]);
+  }, [buyPrice, item, showBuyModal, dispatch]);
 
   const itemDetailNode = useMemo(() => {
     const handleInterestButtonClick = () => {
-      dispatch(addWishItemRequest({ ItemId: item.itemId }));
+      dispatch(addWishItemRequest({ itemId: item.itemId }));
     };
 
     return !item ? (
@@ -165,7 +181,7 @@ const ItemDetailView = ({ match }) => {
         </Container>
       </>
     );
-  }, [item]);
+  }, [item, dispatch]);
 
   return (
     <>

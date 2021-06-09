@@ -167,7 +167,7 @@ export const getItemsWithName = async (payload) => {
 
 export const addWishItem = async (payload) => {
   try {
-    const response = await axios.post("/api/wishitem/add", payload, {
+    const response = await axios.post("/api/wishitem/add", payload.itemId, {
       headers: {
         "Content-type": "application/json",
         Accept: "application/json",
@@ -181,7 +181,21 @@ export const addWishItem = async (payload) => {
 
 export const removeWishItem = async (payload) => {
   try {
-    const response = await axios.post("/api/wishitem/remove", payload, {
+    const response = await axios.post("/api/wishitem/remove", payload.itemId, {
+      headers: {
+        "Content-type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    return response.data;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+export const buyItem = async (payload) => {
+  try {
+    const response = await axios.post("/buyItem/add", payload, {
       headers: {
         "Content-type": "application/json",
         Accept: "application/json",
