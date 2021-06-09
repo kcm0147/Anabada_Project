@@ -42,6 +42,7 @@ public class WishItem {
         }
         this.item=item;
         item.getWishItems().add(this);
+        item.addInterestCnt();
     }
 
     public void setUser(User user){
@@ -54,6 +55,7 @@ public class WishItem {
 
 
     public void removeRelated(){
+        this.item.removeInterestCnt();
         this.user.getWishItems().remove(this);
         this.item.getWishItems().remove(this);
         this.item=null;

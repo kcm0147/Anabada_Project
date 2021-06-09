@@ -1,6 +1,5 @@
 package com.auction.anabada.wishitem.api;
 
-
 import com.auction.anabada.wishitem.service.WishItemService;
 import io.swagger.annotations.ApiOperation;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +14,6 @@ public class WishItemApiController {
 
     private final WishItemService wishItemService;
 
-
     @ApiOperation(value="찜목록추가", notes="아이템 번호를 넣으면 찜목록에 추가한다")
     @PostMapping("/api/wishitem/add")
     public boolean wishItemAdd(HttpServletRequest req,@RequestBody Long ItemId){
@@ -29,7 +27,4 @@ public class WishItemApiController {
         Long userId = (Long) req.getSession().getAttribute("userId");
         return wishItemService.removeWishItem(userId,ItemId);
     }
-
-
-
 }

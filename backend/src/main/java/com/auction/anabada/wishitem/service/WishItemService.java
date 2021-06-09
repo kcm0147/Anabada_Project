@@ -1,6 +1,5 @@
 package com.auction.anabada.wishitem.service;
 
-
 import com.auction.anabada.item.domain.Item;
 import com.auction.anabada.item.service.ItemService;
 import com.auction.anabada.user.domain.User;
@@ -28,7 +27,6 @@ public class WishItemService {
         Optional<WishItem> wishItems = user.getWishItems().stream()
             .filter(o -> o.getItem().getItemId() == itemId).findAny();
         if(wishItems.isPresent()) return false;
-
         WishItem wishItem = new WishItem(user,item);
 
         wishItemRepository.save(wishItem);
@@ -56,6 +54,4 @@ public class WishItemService {
         return true;
 
     }
-
-
 }
