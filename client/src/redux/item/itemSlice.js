@@ -32,6 +32,28 @@ export const itemSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    addWishItemRequest: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    addWishItemSuccess: (state) => {
+      state.loading = false;
+    },
+    addWishItemFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    removeWithItemRequest: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    removeWithItemSuccess: (state) => {
+      state.loading = false;
+    },
+    removeWithItemFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
   },
 });
 
@@ -43,5 +65,11 @@ export const {
   getItemsWithNameRequest,
   getItemsWithNameSuccess,
   getItemsWithNameFailure,
+  addWishItemRequest,
+  addWishItemSuccess,
+  addWishItemFailure,
+  removeWishItemRequest,
+  removeWishItemSuccess,
+  removeWishItemFailure,
 } = itemSlice.actions;
 export const itemReducer = itemSlice.reducer;

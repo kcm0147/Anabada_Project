@@ -164,3 +164,31 @@ export const getItemsWithName = async (payload) => {
     console.error(e);
   }
 };
+
+export const addWishItem = async (payload) => {
+  try {
+    const response = await axios.post("/api/wishitem/add", payload, {
+      headers: {
+        "Content-type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    return response.data;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+export const removeWishItem = async (payload) => {
+  try {
+    const response = await axios.post("/api/wishitem/remove", payload, {
+      headers: {
+        "Content-type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    return response.data;
+  } catch (e) {
+    console.error(e);
+  }
+};

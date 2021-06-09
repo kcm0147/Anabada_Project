@@ -6,6 +6,12 @@ import {
   getItemsWithNameRequest,
   getItemsWithNameSuccess,
   getItemsWithNameFailure,
+  addWishItemRequest,
+  addWishItemSuccess,
+  addWishItemFailure,
+  removeWishItemRequest,
+  removeWishItemSuccess,
+  removeWishItemFailure,
 } from "./itemSlice";
 import * as api from "../../lib/api";
 
@@ -35,7 +41,13 @@ function* getItemsWithNameSaga(action) {
   }
 }
 
+function* addWishItemSaga() {}
+
+function* removeWishItemSaga() {}
+
 export function* itemSaga() {
   yield takeLatest(getAllItemsRequest.type, getAllItemsSaga);
   yield takeLatest(getItemsWithNameRequest.type, getItemsWithNameSaga);
+  yield takeLatest(addWishItemRequest.type, addWishItemSaga);
+  yield takeLatest(removeWishItemRequest.type, removeWishItemSaga);
 }
