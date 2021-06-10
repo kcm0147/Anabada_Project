@@ -25,6 +25,7 @@ const ItemDetailView = ({ match }) => {
   const [item, setItem] = useState(null);
   const [showBuyModal, setShowBuyModal] = useState(false);
   const [buyPrice, setBuyPrice] = useState("");
+  const [isEndBid, setIsEndBid] = useState(false);
 
   useEffect(() => {
     dispatch(getAllItemsRequest());
@@ -38,6 +39,7 @@ const ItemDetailView = ({ match }) => {
     );
     if (item) {
       setBuyPrice(item.currentPrice);
+      setIsEndBid(new Date(item.auctionEndDate) < new Date());
     }
   }, [match, allItemsData, item]);
 
@@ -111,7 +113,16 @@ const ItemDetailView = ({ match }) => {
                 textAlign: "left",
               }}
             >
-              <h1>{item.itemName} </h1>
+              {isEndBid ? (
+                <>
+                  <h1>
+                    <strike>{item.itemName}</strike>
+                  </h1>
+                  <h3>종료된 경매입니다.</h3>
+                </>
+              ) : (
+                <h1>{item.itemName} </h1>
+              )}
               <h5>
                 <Badge
                   style={{
@@ -156,6 +167,7 @@ const ItemDetailView = ({ match }) => {
                   variant="danger"
                   size="lg"
                   onClick={handleInterestButtonClick}
+                  disabled={isEndBid}
                 >
                   <BsHeart /> 찜하기
                 </Button>
@@ -163,6 +175,7 @@ const ItemDetailView = ({ match }) => {
                   variant="danger"
                   size="lg"
                   onClick={handleInterestButtonClick}
+                  disabled={isEndBid}
                 >
                   {item.interestCnt}
                 </Button>
@@ -172,6 +185,7 @@ const ItemDetailView = ({ match }) => {
                   variant="success"
                   size="lg"
                   onClick={handleOpenBuyModal}
+                  disabled={isEndBid}
                 >
                   <BsHammer /> 입찰하기
                 </Button>
@@ -181,7 +195,7 @@ const ItemDetailView = ({ match }) => {
         </Container>
       </>
     );
-  }, [item, dispatch]);
+  }, [item, isEndBid, dispatch]);
 
   return (
     <>
