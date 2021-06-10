@@ -22,7 +22,7 @@ public class SimpleBidsDto {
     private String itemName;
     private Category category;
 
-    private byte[] itemImage;
+    private String itemImage;
 
     private String lastAuctionDate;
 
@@ -38,7 +38,7 @@ public class SimpleBidsDto {
         this.buyItemId= buyItemId;
         this.itemName = itemName;
         this.category = category;
-        this.itemImage = encodingFile(itemPath);
+        this.itemImage = itemPath;
         this.lastAuctionDate = lastAuctionDate;
         this.lastUserPrice=lastUserPrice;
         this.lastAuctionPrice=lastAuctionPrice;
