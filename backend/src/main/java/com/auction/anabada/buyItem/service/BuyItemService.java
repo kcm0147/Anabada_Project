@@ -32,7 +32,7 @@ public class BuyItemService {
 
 //        if((item.getSaleItem().getSeller().getUserId())==userId) return false; 테스트를 위한 주석
 //        if(LocalDateTime.now().isAfter(item.getAuctionEndDate())) return false; 테스트를 위한 주석
-        if(bidCost<item.getCurrentPrice() || bidCost<item.getLowerBoundPrice())
+        if(bidCost <= item.getCurrentPrice() || bidCost < item.getLowerBoundPrice())
             return false;
 
         Optional<BuyItem> first = user.getBuyItems().stream()
