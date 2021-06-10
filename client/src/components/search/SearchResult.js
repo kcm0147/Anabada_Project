@@ -23,7 +23,7 @@ const SearchResult = () => {
         <div id="main-title">"{searchQuery}" 검색 결과</div>
         {itemsSearchLoading ? (
           <p>로딩중...</p>
-        ) : itemsSearchData.length === 0 ? (
+        ) : itemsSearchData === null || itemsSearchData.length === 0 ? (
           <p>검색 결과가 없습니다.</p>
         ) : (
           <ul id="row-style">
