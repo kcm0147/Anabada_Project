@@ -2,7 +2,7 @@ package com.auction.anabada.biddetail.dto;
 
 //== 입찰 조회용(상세) DTO ==//
 
-import com.auction.anabada.user.domain.Category;
+import com.auction.anabada.item.domain.Category;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;

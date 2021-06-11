@@ -1,11 +1,7 @@
 package com.auction.anabada.user.dto;
 
-import com.auction.anabada.buyItem.domain.BuyItem;
-import com.auction.anabada.saleItem.domain.SaleItem;
-import com.auction.anabada.user.domain.Category;
+import com.auction.anabada.item.domain.Category;
 import com.auction.anabada.user.domain.User;
-import java.util.List;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import lombok.Data;
 

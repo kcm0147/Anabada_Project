@@ -1,11 +1,10 @@
 package com.auction.anabada.item.dto;
 
 import com.auction.anabada.item.domain.Item;
-import com.auction.anabada.user.domain.Category;
+import com.auction.anabada.item.domain.Category;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;

@@ -1,12 +1,9 @@
 package com.auction.anabada.biddetail.dto;
 
-import com.auction.anabada.user.domain.Category;
+import com.auction.anabada.item.domain.Category;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Blob;
-import java.time.LocalDateTime;
-import javax.persistence.Lob;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
