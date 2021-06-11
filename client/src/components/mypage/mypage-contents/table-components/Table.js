@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 export default function Table({ headary, contentary, resultPage }) {
 
     const history = useHistory();
+    const srcPrefix = 'http://18.222.240.132:8089/images/'
 
     const onClickTableRow = (e) => {
         history.push(`/item/${e.target.parentElement.id}`)
@@ -11,21 +12,18 @@ export default function Table({ headary, contentary, resultPage }) {
 
     const renderingContent = () => {
         const result = [];
-        // const reader = new FileReader();
-        // let base64 = null;
+
         let key = 1;
         if (contentary === null || contentary === undefined) return;
-
-        // reader.onloadend = () => {
-        //     base64 = reader.result;
-        // }
 
         if (resultPage) {
             for (const comp of contentary) {
 
                 result.push(
                     <tr key={key} id={comp.itemId} onClick={onClickTableRow}>
-                        <td>{comp.itemImage}</td>
+                        <td>
+                            <img src={srcPrefix + comp.itemImage} alt='itemImage' />
+                        </td>
                         <td>{comp.itemName}</td>
                         <td>{comp.category}</td>
                         <td>{comp.lastAuctionDate}</td>
@@ -41,17 +39,12 @@ export default function Table({ headary, contentary, resultPage }) {
 
         else {
             for (const comp of contentary) {
-                // if (comp.itemImage !== null) {
-                //     reader.readAsDataURL(new File([comp.itemImage], 'item-img.png', {
-                //         type: 'image/png'
-                //     })
-                //     );
-                //     console.log(reader.result);
-                // }
 
                 result.push(
                     <tr key={key} id={comp.itemId} onClick={onClickTableRow}>
-                        <td>{comp.itemImage}</td>
+                        <td>
+                            <img src={srcPrefix + comp.itemImage} alt='itemImage' />
+                        </td>
                         <td>{comp.itemName}</td>
                         <td>{comp.category}</td>
                         <td>{comp.lowerBoundPrice}</td>
