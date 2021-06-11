@@ -105,7 +105,12 @@ const ItemDetailView = ({ match }) => {
         >
           <Row>
             <Col>
-              <img src={NoImg} width="256px" height="256px" alt="" />
+              <img
+                src={`http://18.222.240.132:8089/images/${item.itemImage}`}
+                width="256px"
+                height="256px"
+                alt=""
+              />
             </Col>
             <Col
               xs={7}

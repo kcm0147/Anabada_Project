@@ -1,14 +1,13 @@
 import React from "react";
 import { Col } from "react-bootstrap";
 import "assets/css/Item.scss";
-import NoImg from "assets/image/no-image.png";
 
-const Item = (props) => {
+const Item = ({ name, img }) => {
   return (
     <Col className="item-style">
       <div>
-        <img src={NoImg} alt="임시 이미지" />
-        <div className="item-description">{props.name}</div>
+        <img src={img} alt="상품 이미지" width="200px" height="200px" />
+        <div className="item-description">{name}</div>
       </div>
     </Col>
   );
