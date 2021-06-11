@@ -206,3 +206,17 @@ export const buyItem = async (payload) => {
     console.error(e);
   }
 };
+
+export const getBest8Items = async () => {
+  try {
+    const response = await axios.get("/api/item/best8", {
+      headers: {
+        "Content-type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    return response.data;
+  } catch (e) {
+    console.error(e);
+  }
+};
