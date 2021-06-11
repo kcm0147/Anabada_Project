@@ -40,6 +40,7 @@ export default function EnrollItem({ match }) {
 
     const onClickSubmit = async () => {
         if (!validationFunc()) alert('필수항목을 모두 입력해주세요.')
+        else if (new Date(getFormatDate(startdate) + ' ' + starttime + ':00') >= new Date(getFormatDate(enddate) + ' ' + endtime + ':00')) alert('시작일시와 종료일시가 올바르지 않습니다.')
         else {
             const formdata = new FormData();
             formdata.append('itemName', itemName);
