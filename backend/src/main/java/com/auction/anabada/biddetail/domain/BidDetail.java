@@ -23,7 +23,7 @@ public class BidDetail {
 
     private LocalDateTime bidTime;
     private Long bidCost;
-    private Boolean result;
+    private String result;
 
 
     @ManyToOne
@@ -34,7 +34,7 @@ public class BidDetail {
         setBuyItem(buyItem);
         this.bidCost=bidCost;
         this.bidTime=LocalDateTime.now();
-        this.result=false;
+        this.result="진행중";
     }
 
     public void setBuyItem(BuyItem buyItem){

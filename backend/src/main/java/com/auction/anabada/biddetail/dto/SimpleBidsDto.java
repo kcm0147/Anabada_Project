@@ -29,11 +29,11 @@ public class SimpleBidsDto {
     private Long lastUserPrice;
     private Long lastAuctionPrice;
 
-    private Boolean result;
+    private String result;
 
     @Builder
     public SimpleBidsDto(Long itemId,Long buyItemId,String itemName, Category category,String itemPath,
-        String lastAuctionDate,Long lastUserPrice,Long lastAuctionPrice,Boolean result) {
+        String lastAuctionDate,Long lastUserPrice,Long lastAuctionPrice,String result) {
         this.itemId = itemId;
         this.buyItemId= buyItemId;
         this.itemName = itemName;
@@ -45,16 +45,4 @@ public class SimpleBidsDto {
         this.result=result;
     }
 
-    private byte[] encodingFile(String filePath){
-        InputStream imageStream = null;
-        byte[] imageByteArray = new byte[0];
-        try {
-            imageStream = new FileInputStream(filePath);
-            imageByteArray = imageStream.readAllBytes();
-            imageStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return imageByteArray;
-    }
 }

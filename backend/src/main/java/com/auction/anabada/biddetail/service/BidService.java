@@ -36,6 +36,7 @@ public class BidService {
         BuyItem buyItem = buyItemRepository.findById(buyItemId);
         if(userId==buyItem.getBuyer().getUserId()){
             List<DetailBidsDto> itemDtoList = new ArrayList<>();
+            Boolean result=false;
 
             buyItem.getBidDetails().forEach(o -> {
 
@@ -48,7 +49,7 @@ public class BidService {
                     .AuctionDate(auctionTime)
                     .category(item.getCategory())
                     .curPrice(o.getBidCost())
-                    .result(o.getResult())
+                    .result(result)
                     .build();
 
                 itemDtoList.add(bidsDto);
@@ -68,12 +69,20 @@ public class BidService {
         user.getBuyItems().forEach(o -> {
             Item item = o.getItem();
             Long lastAuctionPrice=0L;
+            String result="진행중";
+            BidDetail lastBidDetail = o.getBidDetails().get(o.getBidDetails().size()-1);
 
             if(LocalDateTime.now().isAfter(item.getAuctionEndDate())){
                 lastAuctionPrice=item.getCurrentPrice();
+                if(lastBidDetail.getBidCost()==item.getCurrentPrice()){
+                    result="낙찰";
+                }
+                else
+                    result="패찰";
             }
 
-            BidDetail lastBidDetail = o.getBidDetails().get(o.getBidDetails().size()-1);
+
+
             String lastTime=lastBidDetail.getBidTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
             SimpleBidsDto bidsDto = SimpleBidsDto.builder()
                 .itemId(item.getItemId())
@@ -84,7 +93,7 @@ public class BidService {
                 .lastUserPrice(lastBidDetail.getBidCost())
                 .lastAuctionPrice(lastAuctionPrice)
                 .lastAuctionDate(lastTime)
-                .result(lastBidDetail.getResult())
+                .result(result)
                 .build();
 
             itemDtoList.add(bidsDto);
