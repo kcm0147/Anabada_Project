@@ -58,15 +58,18 @@ export default function Table({ headary, contentary, resultPage }) {
     }
 
     return (
-        <table className='table-filter'>
-            <thead>
-                <tr>
-                    {headary.map((value) => <th key={value}>{value}</th>)}
-                </tr>
-            </thead>
-            <tbody>
-                {renderingContent()}
-            </tbody>
-        </table>
+        <>
+            <div class='item-count-div'>Items : {contentary.length}</div>
+            <table className='table-filter'>
+                <thead>
+                    <tr>
+                        {headary.map((value) => <th key={value}>{value}</th>)}
+                    </tr>
+                </thead>
+                <tbody>
+                    {renderingContent()}
+                </tbody>
+            </table>
+        </>
     )
 }
