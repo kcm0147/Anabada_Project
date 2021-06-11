@@ -15,6 +15,7 @@ export default function EnrollItem({ match }) {
     const [lowestPrice, setLowestPrice] = useState('')
     const [imgFormData, setImgFormData] = useState(null)
     const [imgFile, setImgFile] = useState(UploadImg)
+    const [category, setCategory] = useState('')
     const [startdate, setStartdate] = useState(null)
     const [enddate, setEnddate] = useState(null)
     const [starttime, setStarttime] = useState('')
@@ -24,6 +25,7 @@ export default function EnrollItem({ match }) {
     const onChangeItemName = (e) => setItemName(e.target.value)
     const onChangeItemDesc = (e) => setItemDesc(e.target.value)
     const onChangeLowestPrice = (e) => setLowestPrice(e.target.value)
+    const onChangeCategory = (category) => setCategory(category)
     const onChangeStartDate = (date) => setStartdate(date)
     const onChangeEndDate = (date) => setEnddate(date)
     const onChangeStartTime = (time) => setStarttime(time)
@@ -31,7 +33,7 @@ export default function EnrollItem({ match }) {
 
     const validationFunc = () => {
         if (itemName === '' || lowestPrice === '' || imgFormData === null || startdate === null
-            || starttime === '' || enddate === null || endtime === '')
+            || category === '' || starttime === '' || enddate === null || endtime === '')
             return false;
         return true;
     }
@@ -41,7 +43,7 @@ export default function EnrollItem({ match }) {
         else {
             const formdata = new FormData();
             formdata.append('itemName', itemName);
-            formdata.append('category', 'ELECTRONIC');
+            formdata.append('category', category);
             formdata.append('lowerBoundPrice', lowestPrice);
             formdata.append('auctionStartDate', getFormatDate(startdate) + ' ' + starttime + ':00');
             formdata.append('auctionEndDate', getFormatDate(enddate) + ' ' + endtime + ':00');
@@ -104,6 +106,36 @@ export default function EnrollItem({ match }) {
                             <div className='li-title'>상품 소개</div>
                             <div className='li-input-textarea'>
                                 <input type='textarea' placeholder='상품 설명을 입력해주세요' onChange={onChangeItemDesc} />
+                            </div>
+                        </li>
+                        <hr className='sub-hr' />
+                        <li>
+                            <div className='li-title'>상품 카테고리<span className='required-check'>*</span></div>
+                            <div className='li-input-radio'>
+                                <span>
+                                    <label for='ELECTRONIC'>ELECTRONIC</label>
+                                    <input type='radio' id='ELECTRONIC' name='category' onClick={() => onChangeCategory('ELECTROLIC')} />
+                                </span>
+                                <span>
+                                    <label for='LIFE'>LIFE</label>
+                                    <input type='radio' id='LIFE' name='category' onClick={() => onChangeCategory('LIFE')} />
+                                </span>
+                                <span>
+                                    <label for='BEAUTY'>BEAUTY</label>
+                                    <input type='radio' id='BEAUTY' name='category' onClick={() => onChangeCategory('BEAUTY')} />
+                                </span>
+                                <span>
+                                    <label for='SPORTS'>SPORTS</label>
+                                    <input type='radio' id='SPORTS' name='category' onClick={() => onChangeCategory('SPORTS')} />
+                                </span>
+                                <span>
+                                    <label for='HEALTH'>HEALTH</label>
+                                    <input type='radio' id='HEALTH' name='category' onClick={() => onChangeCategory('HEALTH')} />
+                                </span>
+                                <span>
+                                    <label for='OFFICE'>OFFICE</label>
+                                    <input type='radio' id='OFFICE' name='category' onClick={() => onChangeCategory('OFFICE')} />
+                                </span>
                             </div>
                         </li>
                         <hr className='sub-hr' />

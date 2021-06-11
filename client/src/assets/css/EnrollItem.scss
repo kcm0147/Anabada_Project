@@ -52,6 +52,22 @@
     }
 }
 
+.li-input-radio {
+    width: 70vw;
+    padding: 7px 10px;
+
+    span {
+        margin-right: 50px;
+    }
+
+    label {
+        font-size: 1rem;
+        font-weight: 600;
+        color: rgb(107, 105, 105);
+        margin-right: 5px;
+    }
+}
+
 .li-input-file {
     width: 50vw;
     border: rgb(133, 130, 130) 2px solid;
