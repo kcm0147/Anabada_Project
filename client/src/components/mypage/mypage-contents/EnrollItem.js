@@ -113,27 +113,27 @@ export default function EnrollItem({ match }) {
                             <div className='li-title'>상품 카테고리<span className='required-check'>*</span></div>
                             <div className='li-input-radio'>
                                 <span>
-                                    <label for='ELECTRONIC'>ELECTRONIC</label>
-                                    <input type='radio' id='ELECTRONIC' name='category' onClick={() => onChangeCategory('ELECTROLIC')} />
+                                    <label htmlFor='ELECTRONIC'>ELECTRONIC</label>
+                                    <input type='radio' id='ELECTRONIC' name='category' onClick={() => onChangeCategory('ELECTRONIC')} />
                                 </span>
                                 <span>
-                                    <label for='LIFE'>LIFE</label>
+                                    <label htmlFor='LIFE'>LIFE</label>
                                     <input type='radio' id='LIFE' name='category' onClick={() => onChangeCategory('LIFE')} />
                                 </span>
                                 <span>
-                                    <label for='BEAUTY'>BEAUTY</label>
+                                    <label htmlFor='BEAUTY'>BEAUTY</label>
                                     <input type='radio' id='BEAUTY' name='category' onClick={() => onChangeCategory('BEAUTY')} />
                                 </span>
                                 <span>
-                                    <label for='SPORTS'>SPORTS</label>
+                                    <label htmlFor='SPORTS'>SPORTS</label>
                                     <input type='radio' id='SPORTS' name='category' onClick={() => onChangeCategory('SPORTS')} />
                                 </span>
                                 <span>
-                                    <label for='HEALTH'>HEALTH</label>
+                                    <label htmlFor='HEALTH'>HEALTH</label>
                                     <input type='radio' id='HEALTH' name='category' onClick={() => onChangeCategory('HEALTH')} />
                                 </span>
                                 <span>
-                                    <label for='OFFICE'>OFFICE</label>
+                                    <label htmlFor='OFFICE'>OFFICE</label>
                                     <input type='radio' id='OFFICE' name='category' onClick={() => onChangeCategory('OFFICE')} />
                                 </span>
                             </div>

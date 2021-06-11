@@ -59,7 +59,7 @@ export default function Table({ headary, contentary, resultPage }) {
 
     return (
         <>
-            <div class='item-count-div'>Items : {contentary.length}</div>
+            <div className='item-count-div'>Items : {contentary.length}</div>
             <table className='table-filter'>
                 <thead>
                     <tr>
