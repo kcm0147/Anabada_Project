@@ -1,11 +1,12 @@
 .item-style {
   display: inline-block;
   text-align: center;
-  margin: 20px 0;
+  margin: 20px 2.5%;
+  width: 20%;
 
   & img {
     width: 200px;
-    border: black solid 1px;
+    border: rgb(149, 145, 145) solid 2px;
     border-radius: 5%;
   }
 }
