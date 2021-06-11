@@ -29,7 +29,11 @@ const SearchResult = () => {
           <ul id="row-style">
             {itemsSearchData.map((item, idx) => (
               <Link to={`/item/${item.itemId}`}>
-                <Item name={item.itemName} key={idx} />
+                <Item
+                  name={item.itemName}
+                  img={`http://18.222.240.132:8089/images/${item.itemImage}`}
+                  key={idx}
+                />
               </Link>
             ))}
           </ul>
