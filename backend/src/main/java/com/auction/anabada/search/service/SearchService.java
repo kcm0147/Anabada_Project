@@ -2,7 +2,7 @@ package com.auction.anabada.search.service;
 
 import com.auction.anabada.search.domain.Search;
 import com.auction.anabada.search.repository.SearchRepository;
-import com.auction.anabada.user.domain.Category;
+import com.auction.anabada.item.domain.Category;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

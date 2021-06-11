@@ -1,7 +1,7 @@
 package com.auction.anabada.item.repository;
 
 import com.auction.anabada.item.domain.Item;
-import com.auction.anabada.user.domain.Category;
+import com.auction.anabada.item.domain.Category;
 import java.util.List;
 import javax.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;

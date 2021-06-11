@@ -1,6 +1,6 @@
 package com.auction.anabada.user.dto;
 
-import com.auction.anabada.user.domain.Category;
+import com.auction.anabada.item.domain.Category;
 import lombok.Data;
 
 @Data
