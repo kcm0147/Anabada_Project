@@ -52,6 +52,10 @@ const ItemDetailView = ({ match }) => {
         alert("입찰 가격은 현재 가격보다 높아야 합니다.");
         return;
       }
+      if (new Date(item.auctionStartDate) > new Date() || new Date() > new Date(item.auctionEndDate)) {
+        alert("지금은 입찰 기간이 아닙니다.");
+        return;
+      }
       dispatch(
         buyItemRequest({
           itemId: item.itemId,
