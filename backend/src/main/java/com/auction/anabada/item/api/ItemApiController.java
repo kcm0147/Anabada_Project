@@ -5,7 +5,7 @@ import com.auction.anabada.item.dto.ItemDto;
 import com.auction.anabada.item.service.ItemService;
 import com.auction.anabada.search.dto.SearchDto;
 import com.auction.anabada.search.service.SearchService;
-import com.auction.anabada.user.domain.Category;
+import com.auction.anabada.item.domain.Category;
 import io.swagger.annotations.ApiOperation;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,6 +28,12 @@ public class ItemApiController {
         List<Item> items = itemService.findAll();
         return items.stream().map(i -> new ItemDto(i))
             .collect(Collectors.toList());
+    }
+
+    @ApiOperation(value="카테고리 조회", notes = "모든 등록된 카테고리를 조회한다.")
+    @GetMapping("/api/item/categories")
+    public List<Category> getCategories(){
+        return itemService.getCategories();
     }
 
     @ApiOperation(value="카테고리 검색", notes = "선택한 카테고리 별로 상품을 조회한다. [~, ~] 안에 스트링 형태로 콤마로 구분하여 다중 선택이 가능하다.")

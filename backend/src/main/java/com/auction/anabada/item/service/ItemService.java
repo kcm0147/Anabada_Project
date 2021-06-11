@@ -4,8 +4,11 @@ import com.auction.anabada.item.domain.Item;
 import com.auction.anabada.item.dto.EnrollItemDto;
 import com.auction.anabada.item.repository.ItemRepository;
 import com.auction.anabada.search.service.SearchService;
-import com.auction.anabada.user.domain.Category;
+import com.auction.anabada.item.domain.Category;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -56,5 +59,9 @@ public class ItemService {
 
     public List<Item> findBest8Items() {
         return itemRepository.findBest8Items();
+    }
+
+    public List<Category> getCategories() {
+        return Arrays.stream(Category.values()).collect(Collectors.toList());
     }
 }
