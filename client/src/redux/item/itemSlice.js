@@ -20,6 +20,18 @@ export const itemSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    getBest8ItemsRequest: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    getBest8ItemsSuccess: (state, action) => {
+      state.loading = false;
+      state.data = action.payload;
+    },
+    getBest8ItemsFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
     getItemsWithNameRequest: (state) => {
       state.loading = true;
       state.error = null;
@@ -73,6 +85,9 @@ export const {
   getAllItemsRequest,
   getAllItemsSuccess,
   getAllItemsFailure,
+  getBest8ItemsRequest,
+  getBest8ItemsSuccess,
+  getBest8ItemsFailure,
   getItemsWithNameRequest,
   getItemsWithNameSuccess,
   getItemsWithNameFailure,
