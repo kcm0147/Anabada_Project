@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Redirect } from 'react-router-dom'
 import "assets/css/UserRegistration.scss";
 import Logoimage from "assets/image/logo.png";
 import { AiOutlineMail } from "react-icons/ai";
@@ -16,6 +17,7 @@ export default function UserRegistration() {
   const [name, setName] = useState("");
   const [nickname, setNickname] = useState("");
   const [phone, setPhone] = useState("");
+  const [success, setSuccess] = useState(false);
 
   const onChangeId = (e) => {
     setId(e.target.value);
@@ -51,81 +53,87 @@ export default function UserRegistration() {
         phoneNum: phone,
       })
     );
+    setSuccess(true);
   };
 
   return (
-    <div className="register-all-div">
-      <img src={Logoimage} alt="LOGO" className="login-logo-image" />
-      <div className="register-box">
-        <div>
-          <h4>회원정보를 입력해주세요</h4>
-          <label className="label-box">
-            <AiOutlineMail className="login-icons" />
-            <span className="input-text-box">
-              <input
-                type="text"
-                placeholder="아이디"
-                value={id}
-                onChange={onChangeId}
-                required
-              />
-            </span>
-          </label>
-          <label className="label-box">
-            <RiLockPasswordLine className="login-icons" />
-            <span className="input-text-box">
-              <input
-                type="password"
-                placeholder="비밀번호"
-                value={password}
-                onChange={onChangePW}
-                required
-              />
-            </span>
-          </label>
-          <label className="label-box">
-            <BsFillPersonFill className="login-icons" />
-            <span className="input-text-box">
-              <input
-                type="text"
-                placeholder="이름"
-                value={name}
-                onChange={onChangeName}
-                required
-              />
-            </span>
-          </label>
-          <label className="label-box">
-            <BsPerson className="login-icons" />
-            <span className="input-text-box">
-              <input
-                type="text"
-                placeholder="닉네임"
-                value={nickname}
-                onChange={onChangeNickname}
-                required
-              />
-            </span>
-          </label>
-          <label className="label-box">
-            <MdPhoneIphone className="login-icons" />
-            <span className="input-text-box">
-              <input
-                type="text"
-                placeholder="휴대폰 번호"
-                value={phone}
-                onChange={onChangePhone}
-                required
-              />
-            </span>
-          </label>
-        </div>
-        <div className="button-box">
-          <button id="register-btn" className="btns" onClick={onRegisterClick}>
-            회원가입
-          </button>
-        </div>
-      </div>
-    </div>
+    <>
+      {
+        success ? <Redirect to='/login' /> :
+          <div className="register-all-div">
+            <img src={Logoimage} alt="LOGO" className="login-logo-image" />
+            <div className="register-box">
+              <div>
+                <h4>회원정보를 입력해주세요</h4>
+                <label className="label-box">
+                  <AiOutlineMail className="login-icons" />
+                  <span className="input-text-box">
+                    <input
+                      type="text"
+                      placeholder="아이디"
+                      value={id}
+                      onChange={onChangeId}
+                      required
+                    />
+                  </span>
+                </label>
+                <label className="label-box">
+                  <RiLockPasswordLine className="login-icons" />
+                  <span className="input-text-box">
+                    <input
+                      type="password"
+                      placeholder="비밀번호"
+                      value={password}
+                      onChange={onChangePW}
+                      required
+                    />
+                  </span>
+                </label>
+                <label className="label-box">
+                  <BsFillPersonFill className="login-icons" />
+                  <span className="input-text-box">
+                    <input
+                      type="text"
+                      placeholder="이름"
+                      value={name}
+                      onChange={onChangeName}
+                      required
+                    />
+                  </span>
+                </label>
+                <label className="label-box">
+                  <BsPerson className="login-icons" />
+                  <span className="input-text-box">
+                    <input
+                      type="text"
+                      placeholder="닉네임"
+                      value={nickname}
+                      onChange={onChangeNickname}
+                      required
+                    />
+                  </span>
+                </label>
+                <label className="label-box">
+                  <MdPhoneIphone className="login-icons" />
+                  <span className="input-text-box">
+                    <input
+                      type="text"
+                      placeholder="휴대폰 번호"
+                      value={phone}
+                      onChange={onChangePhone}
+                      required
+                    />
+                  </span>
+                </label>
+              </div>
+              <div className="button-box">
+                <button id="register-btn" className="btns" onClick={onRegisterClick}>
+                  회원가입
+                </button>
+              </div>
+            </div>
+          </div>
+      }
+    </>
   );
 }
