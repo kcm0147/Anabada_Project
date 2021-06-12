@@ -30,6 +30,7 @@ public class BuyItemService {
         Item item = itemService.findById(itemId);
         BuyItem buyItem;
 
+
         //== 물품 판매자가 경매 입찰 방지 ==//
         if((item.getSaleItem().getSeller().getUserId())==userId) {
             return false;
@@ -69,8 +70,4 @@ public class BuyItemService {
         return buyItem;
     }
 
-
-//    public long update(BidsDto bidsDto) {
-//        return bidsDto.getItemId();
-//    }
 }

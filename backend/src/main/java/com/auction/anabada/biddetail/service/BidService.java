@@ -74,7 +74,7 @@ public class BidService {
 
             if(LocalDateTime.now().isAfter(item.getAuctionEndDate())){
                 lastAuctionPrice=item.getCurrentPrice();
-                if(lastBidDetail.getBidCost()==item.getCurrentPrice()){
+                if(lastBidDetail.getBidCost().equals(lastAuctionPrice)){
                     result="낙찰";
                 }
                 else
