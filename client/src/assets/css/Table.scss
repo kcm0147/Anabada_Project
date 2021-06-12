@@ -27,6 +27,11 @@
 	border-top-color: #eee;
     border-left: 1px solid #eee;
     border-right: 1px solid #eee;
+    text-align: center;
+
+    img {
+        width: 70px;
+    }
 }
 
 .fail-span {
@@ -37,4 +42,12 @@
 .success-span {
     color: blue;
     font-weight: 800;
+}
+
+.item-count-div {
+    margin-bottom: 10px;
+    margin-left: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgb(121, 113, 113);
 }

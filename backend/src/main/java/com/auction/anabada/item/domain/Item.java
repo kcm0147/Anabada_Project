@@ -3,7 +3,6 @@ package com.auction.anabada.item.domain;
 import com.auction.anabada.buyItem.domain.BuyItem;
 import com.auction.anabada.item.dto.EnrollItemDto;
 import com.auction.anabada.saleItem.domain.SaleItem;
-import com.auction.anabada.user.domain.Category;
 import com.auction.anabada.wishitem.domain.WishItem;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

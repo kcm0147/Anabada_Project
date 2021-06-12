@@ -1,8 +1,7 @@
 package com.auction.anabada.item.dto;
 
-import com.auction.anabada.user.domain.Category;
+import com.auction.anabada.item.domain.Category;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;

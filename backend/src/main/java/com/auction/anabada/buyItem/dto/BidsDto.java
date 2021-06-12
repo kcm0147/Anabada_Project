@@ -1,8 +1,7 @@
 package com.auction.anabada.buyItem.dto;
 
-import com.auction.anabada.user.domain.Category;
+import com.auction.anabada.item.domain.Category;
 import java.time.LocalDateTime;
-import java.util.Date;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;

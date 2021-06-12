@@ -30,9 +30,17 @@ public class BuyItemService {
         Item item = itemService.findById(itemId);
         BuyItem buyItem;
 
-        if((item.getSaleItem().getSeller().getUserId())==userId) return false;
-        if(LocalDateTime.now().isAfter(item.getAuctionEndDate())) return false;
-        if(bidCost<item.getCurrentPrice() || bidCost<item.getLowerBoundPrice())
+
+        //== 물품 판매자가 경매 입찰 방지 ==//
+        if((item.getSaleItem().getSeller().getUserId())==userId) {
+            return false;
+        }
+        //== 경매 기간이 지난 상품에 입찰 요청 방지 ==//
+        if(LocalDateTime.now().isAfter(item.getAuctionEndDate())) {
+            return false;
+        }
+        //== 경매 물품 가격 이하의 입찰 요청 방지 ==//
+        if(bidCost <= item.getCurrentPrice() || bidCost < item.getLowerBoundPrice())
             return false;
 
         Optional<BuyItem> first = user.getBuyItems().stream()

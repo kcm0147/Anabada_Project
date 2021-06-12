@@ -3,6 +3,9 @@ import {
   getAllItemsRequest,
   getAllItemsSuccess,
   getAllItemsFailure,
+  getBest8ItemsRequest,
+  getBest8ItemsSuccess,
+  getBest8ItemsFailure,
   getItemsWithNameRequest,
   getItemsWithNameSuccess,
   getItemsWithNameFailure,
@@ -77,8 +80,22 @@ function* buyItemSaga(action) {
   }
 }
 
+function* getBest8ItemsSaga() {
+  try {
+    const result = yield call(api.getBest8Items);
+    if (result) {
+      yield put(getBest8ItemsSuccess(result));
+    } else {
+      yield put(getBest8ItemsFailure());
+    }
+  } catch (e) {
+    yield put(getBest8ItemsFailure(e));
+  }
+}
+
 export function* itemSaga() {
   yield takeLatest(getAllItemsRequest.type, getAllItemsSaga);
+  yield takeLatest(getBest8ItemsRequest.type, getBest8ItemsSaga);
   yield takeLatest(getItemsWithNameRequest.type, getItemsWithNameSaga);
   yield takeLatest(addWishItemRequest.type, addWishItemSaga);
   yield takeLatest(removeWishItemRequest.type, removeWishItemSaga);

@@ -25,6 +25,7 @@ const ItemDetailView = ({ match }) => {
   const [item, setItem] = useState(null);
   const [showBuyModal, setShowBuyModal] = useState(false);
   const [buyPrice, setBuyPrice] = useState("");
+  const [isEndBid, setIsEndBid] = useState(false);
 
   useEffect(() => {
     dispatch(getAllItemsRequest());
@@ -38,6 +39,7 @@ const ItemDetailView = ({ match }) => {
     );
     if (item) {
       setBuyPrice(item.currentPrice);
+      setIsEndBid(new Date(item.auctionEndDate) < new Date());
     }
   }, [match, allItemsData, item]);
 
@@ -48,6 +50,10 @@ const ItemDetailView = ({ match }) => {
     const handleBuyItem = () => {
       if (item.currentPrice >= Number(buyPrice)) {
         alert("입찰 가격은 현재 가격보다 높아야 합니다.");
+        return;
+      }
+      if (new Date(item.auctionStartDate) > new Date() || new Date() > new Date(item.auctionEndDate)) {
+        alert("지금은 입찰 기간이 아닙니다.");
         return;
       }
       dispatch(
@@ -103,7 +109,12 @@ const ItemDetailView = ({ match }) => {
         >
           <Row>
             <Col>
-              <img src={NoImg} width="256px" height="256px" alt="" />
+              <img
+                src={`http://18.222.240.132:8089/images/${item.itemImage}`}
+                width="256px"
+                height="256px"
+                alt=""
+              />
             </Col>
             <Col
               xs={7}
@@ -111,7 +122,16 @@ const ItemDetailView = ({ match }) => {
                 textAlign: "left",
               }}
             >
-              <h1>{item.itemName} </h1>
+              {isEndBid ? (
+                <>
+                  <h1>
+                    <strike>{item.itemName}</strike>
+                  </h1>
+                  <h3>종료된 경매입니다.</h3>
+                </>
+              ) : (
+                <h1>{item.itemName} </h1>
+              )}
               <h5>
                 <Badge
                   style={{
@@ -156,6 +176,7 @@ const ItemDetailView = ({ match }) => {
                   variant="danger"
                   size="lg"
                   onClick={handleInterestButtonClick}
+                  disabled={isEndBid}
                 >
                   <BsHeart /> 찜하기
                 </Button>
@@ -163,6 +184,7 @@ const ItemDetailView = ({ match }) => {
                   variant="danger"
                   size="lg"
                   onClick={handleInterestButtonClick}
+                  disabled={isEndBid}
                 >
                   {item.interestCnt}
                 </Button>
@@ -172,6 +194,7 @@ const ItemDetailView = ({ match }) => {
                   variant="success"
                   size="lg"
                   onClick={handleOpenBuyModal}
+                  disabled={isEndBid}
                 >
                   <BsHammer /> 입찰하기
                 </Button>
@@ -181,7 +204,7 @@ const ItemDetailView = ({ match }) => {
         </Container>
       </>
     );
-  }, [item, dispatch]);
+  }, [item, isEndBid, dispatch]);
 
   return (
     <>
