@@ -16,7 +16,6 @@ import {
   addWishItemRequest,
   buyItemRequest,
 } from "redux/item/itemSlice";
-import NoImg from "assets/image/no-image.png";
 import { BsClock, BsClockHistory, BsHeart, BsHammer } from "react-icons/bs";
 
 const ItemDetailView = ({ match }) => {

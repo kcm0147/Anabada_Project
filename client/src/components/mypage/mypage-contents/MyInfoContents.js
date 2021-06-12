@@ -17,7 +17,7 @@ const MyInfoContents = () => {
   const [name, setName] = useState("");
   const [nickName, setNickName] = useState("");
   const [phoneNum, setPhoneNum] = useState("");
-  const [profileImage, setProfileImage] = useState("");
+  // const [profileImage, setProfileImage] = useState("");
 
   useEffect(() => {
     dispatch(getUserInfoRequest());
@@ -31,7 +31,7 @@ const MyInfoContents = () => {
       setName(userInfoData.name || "");
       setNickName(userInfoData.nickName || "");
       setPhoneNum(userInfoData.phoneNum || "");
-      setProfileImage(userInfoData.profileImage || "");
+      // setProfileImage(userInfoData.profileImage || "");
     }
   }, [userInfoData]);
 
