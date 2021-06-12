@@ -27,11 +27,12 @@ export default function Table({ headary, contentary, resultPage }) {
                         <td>{comp.itemName}</td>
                         <td>{comp.category}</td>
                         <td>{comp.lastAuctionDate}</td>
-                        <td>{comp.lastAuctionPrice}</td>
+                        <td>{comp.lastAuctionPrice === 0 ? '-' : comp.lastAuctionPrice}</td>
                         <td>{comp.lastUserPrice}</td>
-                        <td>{comp.result ?
+                        <td>{(comp.result === '낙찰') ?
                             <span className='success-span'>낙찰</span> :
-                            <span className='fail-span'>패찰</span>}</td>
+                            (comp.result === '진행중') ? <span className='ongoing-span'>경매 진행중</span> :
+                                <span className='fail-span'>패찰</span>}</td>
                     </tr>)
                 key++;
             }
