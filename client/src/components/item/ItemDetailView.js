@@ -27,7 +27,11 @@ const ItemDetailView = ({ match }) => {
   const [isEndBid, setIsEndBid] = useState(false);
 
   useEffect(() => {
-    dispatch(getAllItemsRequest());
+    const intervalId = setInterval(() => {
+      dispatch(getAllItemsRequest());
+    }, 2000);
+
+    return () => clearInterval(intervalId);
   }, [dispatch]);
 
   useEffect(() => {
@@ -36,11 +40,13 @@ const ItemDetailView = ({ match }) => {
         (item) => Number(item.itemId) === Number(match.params.itemId)
       )
     );
+  }, [match, allItemsData]);
+
+  useEffect(() => {
     if (item) {
-      setBuyPrice(item.currentPrice);
       setIsEndBid(new Date(item.auctionEndDate) < new Date());
     }
-  }, [match, allItemsData, item]);
+  }, [item]);
 
   const handleOpenBuyModal = () => setShowBuyModal(true);
   const handleCloseBuyModal = () => setShowBuyModal(false);
@@ -51,7 +57,10 @@ const ItemDetailView = ({ match }) => {
         alert("입찰 가격은 현재 가격보다 높아야 합니다.");
         return;
       }
-      if (new Date(item.auctionStartDate) > new Date() || new Date() > new Date(item.auctionEndDate)) {
+      if (
+        new Date(item.auctionStartDate) > new Date() ||
+        new Date() > new Date(item.auctionEndDate)
+      ) {
         alert("지금은 입찰 기간이 아닙니다.");
         return;
       }
@@ -142,6 +151,13 @@ const ItemDetailView = ({ match }) => {
               </h5>
               <p>{item.description || "상세 설명이 없습니다."}</p>
               <br />
+              <p
+                style={{
+                  margin: 0,
+                }}
+              >
+                실시간 갱신 중!
+              </p>
               <h4>
                 시작가{" "}
                 <span
