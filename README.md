@@ -43,7 +43,7 @@
 
   <br/>
 
-  ![image-20210612215855259](/Users/ostar/Library/Application Support/typora-user-images/image-20210612215855259.png)
+  ![image](https://user-images.githubusercontent.com/57346455/121777140-6d733b00-cbcb-11eb-9533-3038332184fb.png)
 
   ![image](https://user-images.githubusercontent.com/57346455/121776763-9f839d80-cbc9-11eb-8be9-ecffd794b172.png)
 
