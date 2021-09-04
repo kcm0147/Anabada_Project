@@ -15,6 +15,9 @@ import {
   removeWishItemRequest,
   removeWishItemSuccess,
   removeWishItemFailure,
+  getWishItemsRequest,
+  getWishItemsSuccess,
+  getWishItemsFailure,
   buyItemRequest,
   buyItemSuccess,
   buyItemFailure,
@@ -69,6 +72,19 @@ function* removeWishItemSaga(action) {
   }
 }
 
+function* getWishItemsSaga(action) {
+  try {
+    const result = yield call(api.getWishItemsAPI, action.payload);
+    if (result) {
+      yield put(getWishItemsSuccess(result));
+    } else {
+      yield put(getWishItemsFailure());
+    }
+  } catch (e) {
+    yield put(getWishItemsFailure());
+  }
+}
+
 function* buyItemSaga(action) {
   try {
     yield call(api.buyItem, action.payload);
@@ -99,5 +115,6 @@ export function* itemSaga() {
   yield takeLatest(getItemsWithNameRequest.type, getItemsWithNameSaga);
   yield takeLatest(addWishItemRequest.type, addWishItemSaga);
   yield takeLatest(removeWishItemRequest.type, removeWishItemSaga);
+  yield takeLatest(getWishItemsRequest.type, getWishItemsSaga);
   yield takeLatest(buyItemRequest.type, buyItemSaga);
 }

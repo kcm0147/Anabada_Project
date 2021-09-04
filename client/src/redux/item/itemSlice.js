@@ -66,6 +66,18 @@ export const itemSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    getWishItemsRequest: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    getWishItemsSuccess: (state, action) => {
+      state.loading = false;
+      state.data = action.payload;
+    },
+    getWishItemsFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
     buyItemRequest: (state) => {
       state.loading = true;
       state.error = null;
@@ -97,6 +109,9 @@ export const {
   removeWishItemRequest,
   removeWishItemSuccess,
   removeWishItemFailure,
+  getWishItemsRequest,
+  getWishItemsSuccess,
+  getWishItemsFailure,
   buyItemRequest,
   buyItemSuccess,
   buyItemFailure,
