@@ -122,21 +122,6 @@ export const enrollItemAPI = async (payload) => {
   }
 };
 
-export const wishItemsAPI = async () => {
-  // 찜한 목록 데이터 api
-  try {
-    const response = await axios.get("/api/user/wishItems", {
-      headers: {
-        "Content-type": "application/json",
-        Accept: "application/json",
-      },
-    });
-    return response.data;
-  } catch (e) {
-    console.error(e);
-  }
-};
-
 export const getAllItems = async () => {
   try {
     const response = await axios.get("/api/item/all", {
@@ -182,6 +167,21 @@ export const addWishItem = async (payload) => {
 export const removeWishItem = async (payload) => {
   try {
     const response = await axios.post("/api/wishitem/remove", payload.itemId, {
+      headers: {
+        "Content-type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    return response.data;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+export const getWishItemsAPI = async () => {
+  // 찜한 목록 데이터 api
+  try {
+    const response = await axios.get("/api/user/wishItems", {
       headers: {
         "Content-type": "application/json",
         Accept: "application/json",
