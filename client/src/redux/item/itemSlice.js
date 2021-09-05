@@ -89,6 +89,18 @@ export const itemSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    participateItemsRequest: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    participateItemsSuccess: (state, action) => {
+      state.loading = false;
+      state.data = action.payload;
+    },
+    participateItemsFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    }
   },
 });
 
@@ -115,5 +127,8 @@ export const {
   buyItemRequest,
   buyItemSuccess,
   buyItemFailure,
+  participateItemsRequest,
+  participateItemsSuccess,
+  participateItemsFailure
 } = itemSlice.actions;
 export const itemReducer = itemSlice.reducer;

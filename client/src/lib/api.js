@@ -62,7 +62,7 @@ export const modifyUserInfo = async (payload) => {
   }
 };
 
-export const participationlistAPI = async () => {
+export const getParticipateItemsAPI = async () => {
   // 유저 경매 참여 내역 api
   try {
     const response = await axios.get("/api/user/simplebids", {
