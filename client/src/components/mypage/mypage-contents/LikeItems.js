@@ -7,7 +7,6 @@ import { getWishItemsRequest } from 'redux/item/itemSlice'
 
 export default function LikeItems() {
 
-  // const [loading, setLoading] = useState(true)
   const [endpagenum, setEndpagenum] = useState(0)
   const [startpagenum, setStartpagenum] = useState(1)
   const [curpagenum, setCurpagenum] = useState(1)
@@ -15,7 +14,7 @@ export default function LikeItems() {
   const headary = ['상품 사진', '상품명', '카테고리', '경매 하한가(원)', '경매 시작일시', '경매 종료일시']
   const dispatch = useDispatch();
 
-  let contentary = useSelector((state) => state.ITEM.data)
+  let contentary = useSelector(state => state.ITEM.data)
   let loading = useSelector(state => state.ITEM.loading)
 
   const changeCurpagenum = (number) => {
@@ -29,15 +28,6 @@ export default function LikeItems() {
     dispatch(getWishItemsRequest());
     const endnum = contentary.length / 10 + ((contentary.length % 10 > 0) ? 1 : 0)
     setEndpagenum((endnum === 0) ? 1 : endnum)
-
-    // const axiosing = async () => {
-    //   const result = await getWishItemsAPI()
-    //   const endnum = result.length / 10 + ((result.length % 10 > 0) ? 1 : 0)
-    //   setLoading(false)
-
-    //   setContentary(result)
-    // }
-    // axiosing()
   }, [dispatch, contentary.length])
 
   return (
