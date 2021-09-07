@@ -24,6 +24,9 @@ import {
   participateItemsSuccess,
   participateItemsFailure,
   participateItemsRequest,
+  enrollItemRequest,
+  enrollItemFailure,
+  enrollItemSuccess,
 } from "./itemSlice";
 import * as api from "../../lib/api";
 
@@ -125,6 +128,19 @@ function* getParticipateItemsSaga() {
   }
 }
 
+function* enrollItemSaga(action) {
+  try {
+    const result = yield call(api.enrollItemAPI, action.payload);
+    if (result) {
+      yield put(enrollItemSuccess())
+    } else {
+      yield put(enrollItemFailure())
+    }
+  } catch (e) {
+    yield put(enrollItemFailure())
+  }
+}
+
 export function* itemSaga() {
   yield takeLatest(getAllItemsRequest.type, getAllItemsSaga);
   yield takeLatest(getBest8ItemsRequest.type, getBest8ItemsSaga);
@@ -134,4 +150,5 @@ export function* itemSaga() {
   yield takeLatest(getWishItemsRequest.type, getWishItemsSaga);
   yield takeLatest(buyItemRequest.type, buyItemSaga);
   yield takeLatest(participateItemsRequest.type, getParticipateItemsSaga);
+  yield takeLatest(enrollItemRequest.type, enrollItemSaga);
 }
