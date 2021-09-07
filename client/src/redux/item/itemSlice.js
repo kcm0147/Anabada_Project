@@ -100,6 +100,17 @@ export const itemSlice = createSlice({
     participateItemsFailure: (state, action) => {
       state.loading = false;
       state.error = action.payload;
+    },
+    enrollItemRequest: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    enrollItemSuccess: (state) => {
+      state.loading = false;
+    },
+    enrollItemFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
     }
   },
 });
@@ -129,6 +140,9 @@ export const {
   buyItemFailure,
   participateItemsRequest,
   participateItemsSuccess,
-  participateItemsFailure
+  participateItemsFailure,
+  enrollItemRequest,
+  enrollItemSuccess,
+  enrollItemFailure
 } = itemSlice.actions;
 export const itemReducer = itemSlice.reducer;
