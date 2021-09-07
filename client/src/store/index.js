@@ -8,7 +8,7 @@ import { ITEM, itemReducer } from "../redux/item/itemSlice";
 import { userSaga } from "../redux/user/userSaga";
 import { userInfoSaga } from "../redux/userInfo/userInfoSaga";
 import { itemSaga } from "../redux/item/itemSaga";
-import storage from "redux-persist/lib/storage";
+import sessionStorage from "redux-persist/lib/storage/session";
 import { persistReducer } from "redux-persist";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
 
 const persistConfig = {
   key: "root",
-  storage,
+  storage: sessionStorage,
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
